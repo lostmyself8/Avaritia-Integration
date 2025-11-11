@@ -1,0 +1,16 @@
+{
+  "default": [
+    {
+      "name": "avaritia_integration:crystalline",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:aftershock",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:strength_of_will",
+      "level": 1
+    }
+  ]
+}

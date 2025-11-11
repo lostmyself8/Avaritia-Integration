@@ -1,0 +1,40 @@
+{
+  "default": [
+    {
+      "name": "avaritia_integration:cosmic",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:global_traveler",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:brown_magic",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:infinitum",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:omnipotence",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:null_almighty",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:eternity",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:celestial",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:gale_force",
+      "level": 1
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "default": [
+    {
+      "name": "avaritia_integration:condensing",
+      "level": 1
+    },
+    {
+      "name": "avaritia_integration:reactive",
+      "level": 1
+    }
+  ]
+}
