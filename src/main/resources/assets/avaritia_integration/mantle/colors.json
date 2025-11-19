@@ -1,0 +1,19 @@
+{
+  "modifier.avaritia_integration":
+  {
+    "infinitum":     "#cccccc",
+    "rule_over":     "#cccccc",
+    "vault_split":   "#cccccc",
+    "eternity":      "#cccccc",
+    "blaze_crown":   "#fdc045",
+    "crystalshine":  "#67bbb6",
+    "condensing":    "#a0a4bf"
+  },
+  "material.avaritia_integration":
+  {
+    "infinity":      "#cccccc",
+    "blaze_cube":    "#fdc045",
+    "crystal_matrix":"#67bbb6",
+    "neutronium":    "#a0a4bf"
+  }
+}

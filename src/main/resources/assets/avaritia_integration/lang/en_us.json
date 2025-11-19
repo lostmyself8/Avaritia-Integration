@@ -89,6 +89,83 @@
 
   "item.avaritia_integration.infinity_storage_part": "Infinity Storage Part",
 
+  "item.avaritia_integration.heaven_arrow": "AoE Arrow",
+  "item.avaritia_integration.trace_arrow": "Trace Arrow",
+
+  "block.avaritia_integration.molten_blaze_fluid": "Molten Blaze",
+  "fluid.avaritia_integration.molten_blaze": "Molten Blaze",
+  "fluid.avaritia_integration.flowing_molten_blaze": "Flowing Molten Blaze",
+  "item.avaritia_integration.molten_blaze_bucket": "Molten Blaze Bucket",
+  "fluid.avaritia_integration.molten_blaze.fluid_effect": "",
+  "block.avaritia_integration.molten_crystal_matrix_fluid": "Molten Crystal Matrix",
+  "fluid.avaritia_integration.molten_crystal_matrix": "Molten Crystal Matrix",
+  "fluid.avaritia_integration.flowing_molten_crystal_matrix": "Flowing Molten Crystal Matrix",
+  "item.avaritia_integration.molten_crystal_matrix_bucket": "Molten Crystal Matrix Bucket",
+  "fluid.avaritia_integration.molten_crystal_matrix.fluid_effect": "",
+  "block.avaritia_integration.molten_neutron_fluid": "Molten Neutron",
+  "fluid.avaritia_integration.molten_neutron": "Molten Neutron",
+  "fluid.avaritia_integration.flowing_molten_neutron": "Flowing Molten Neutron",
+  "item.avaritia_integration.molten_neutron_bucket": "Molten Neutron Bucket",
+  "fluid.avaritia_integration.molten_neutron.fluid_effect": "",
+  "block.avaritia_integration.molten_infinity_fluid": "Infinity Vapor",
+  "fluid.avaritia_integration.molten_infinity": "Infinity Vapor",
+  "fluid.avaritia_integration.flowing_molten_infinity": "Flowing Infinity Vapor",
+  "item.avaritia_integration.molten_infinity_bucket": "Infinity Vapor Bucket",
+  "fluid.avaritia_integration.molten_infinity.fluid_effect": "",
+  "block.avaritia_integration.molten_star_fluid": "Star Fuel",
+  "fluid.avaritia_integration.molten_star": "Star Fuel",
+  "fluid.avaritia_integration.flowing_molten_star": "Flowing Star Fuel",
+  "item.avaritia_integration.molten_star_bucket": "Star Fuel Bucket",
+  "fluid.avaritia_integration.molten_star.fluid_effect": "",
+
+  "fluid_effect.tconstruct.damage.infinity": "Infinity Damage",
+
+  "material.avaritia_integration.infinity": "Infinity",
+  "material.avaritia_integration.infinity.flavor": "The fury of the universe in the palm of your hand",
+  "material.avaritia_integration.infinity.encyclopedia": "Melee weapons can one-hit kill targets; Mining tools can break Bedrock and End Portals; Grants Fortune X and Looting X",
+  "material.avaritia_integration.infinity.ranged": "+6.5 Projectile Power; Fires AoE arrow of Longbow of the Heavens when out of arrows (swaps to trace arrow while sneaking)",
+  "material.avaritia_integration.infinity.armor": "Gains the following effects based on the number of armor pieces with this trait equipped: 1—Immunity to negative effects; 2—Infinite Night Vision, Oxygen, and Hunger; 3—Flight; 4—Invincibility; 5—Speed Boost",
+
+  "material.avaritia_integration.blaze_cube": "Blaze Cube",
+  "material.avaritia_integration.blaze_cube.flavor": "Blaze Storm",
+  "material.avaritia_integration.blaze_cube.encyclopedia": "Extends target's burning duration by 15 seconds per level; Automatically smelts dropped items; Drops Wither Skeleton Skulls when killing any Skeleton type",
+
+  "material.avaritia_integration.crystal_matrix": "Crystal Matrix",
+  "material.avaritia_integration.crystal_matrix.flavor": "This isn't even its final form",
+  "material.avaritia_integration.crystal_matrix.encyclopedia": "At full durability: +60% Mining Speed and Projectile Velocity per level; 18% chance to negate durability loss; Mining tools can break Bedrock and End Portals",
+
+  "material.avaritia_integration.neutronium": "Neutronium",
+  "material.avaritia_integration.neutronium.flavor": "The dense heart of a star in convenient ingot form",
+  "material.avaritia_integration.neutronium.encyclopedia": "+5% Gravity; Chance to generate Neutronium Dust on melee hits, block mining, or projectile impacts—probability equals the percentage of Gravity attribute increased",
+
+  "modifier.avaritia_integration.infinitum": "Infinitum",
+  "modifier.avaritia_integration.infinitum.flavor": "Stars and tombstones—symbols of eternity",
+  "modifier.avaritia_integration.infinitum.description": "Ignores most durability loss and regenerates durability quickly; Immune to external damage such as fire",
+
+  "modifier.avaritia_integration.rule_over": "Rule Over",
+  "modifier.avaritia_integration.rule_over.flavor": "Dominate all creation!",
+  "modifier.avaritia_integration.rule_over.description": "Melee weapons can one-hit kill targets; Mining tools can break Bedrock and End Portals; Grants Fortune X and Looting X",
+
+  "modifier.avaritia_integration.vault_split": "Vault Split",
+  "modifier.avaritia_integration.vault_split.flavor": "Rend the heavens!",
+  "modifier.avaritia_integration.vault_split.description": "Increases Projectile Power; Fires AoE arrow of Longbow of the Heavens when out of arrows (swaps to trace arrows while sneaking)",
+
+  "modifier.avaritia_integration.eternity": "Eternity",
+  "modifier.avaritia_integration.eternity.flavor": "Immortal and unyielding!",
+  "modifier.avaritia_integration.eternity.description": "Gains partial effects of the Infinity Armor based on the number of armor pieces with this trait equipped; Unlocks Invincibility with 4 pieces",
+
+  "modifier.avaritia_integration.blaze_crown": "Blaze Crown",
+  "modifier.avaritia_integration.blaze_crown.flavor": "Beheads skeletons and scorches them black",
+  "modifier.avaritia_integration.blaze_crown.description": "Greatly extends target's burning duration; Automatically smelts dropped items; Drops Wither Skeleton Skulls when killing any Skeleton type",
+
+  "modifier.avaritia_integration.crystalshine": "Crystalshine",
+  "modifier.avaritia_integration.crystalshine.flavor": "The shine of crystal lies in its purity",
+  "modifier.avaritia_integration.crystalshine.description": "At full durability: Increases Mining Speed and Projectile Velocity; Reduces chance of durability loss; Mining tools can break Bedrock and End Portals",
+
+  "modifier.avaritia_integration.condensing": "Condensing",
+  "modifier.avaritia_integration.condensing.flavor": "As dust settles",
+  "modifier.avaritia_integration.condensing.description": "Slightly increases gravity; Chance to generate Neutronium Dust on melee hits, block mining, or projectile impacts; Probability equals the percentage of gravity attribute increased",
+
   "screen.avaritia_integration.module.title": "Avaritia: Integration Modules",
   "screen.avaritia_integration.module.warning": "All changes make here need to restart game to take effect",
   "screen.avaritia_integration.module.back": "Back",
@@ -112,5 +189,6 @@
   "module.avaritia_integration.name.pneumaticcraft": "PneumaticCraft: Repressurized",
   "module.avaritia_integration.name.refinedstorage": "Refined Storage",
   "module.avaritia_integration.name.slashblade": "SlashBlade",
-  "module.avaritia_integration.name.thermal_expansion": "Thermal Expansion"
+  "module.avaritia_integration.name.thermal_expansion": "Thermal Expansion",
+  "module.avaritia_integration.name.tconstruct": "Tinkers' Construct"
 }
