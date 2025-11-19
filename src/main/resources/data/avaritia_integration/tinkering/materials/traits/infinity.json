@@ -1,40 +1,36 @@
 {
-  "default": [
-    {
-      "name": "avaritia_integration:cosmic",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:global_traveler",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:brown_magic",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:infinitum",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:omnipotence",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:null_almighty",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:eternity",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:celestial",
-      "level": 1
-    },
-    {
-      "name": "avaritia_integration:gale_force",
-      "level": 1
-    }
-  ]
+  "perStat": {
+    "tconstruct:ranged": [
+      {
+        "name": "avaritia_integration:infinitum"
+      },
+      {
+        "name": "avaritia_integration:vault_split"
+      }
+    ],
+    "tconstruct:melee_harvest": [
+      {
+        "name": "avaritia_integration:infinitum"
+      },
+      {
+        "name": "avaritia_integration:rule_over"
+      }
+    ],
+    "tconstruct:armor": [
+      {
+        "name": "avaritia_integration:infinitum"
+      },
+      {
+        "name": "avaritia_integration:eternity"
+      }
+    ],
+    "tconstruct:plating_shield": [
+      {
+        "name": "avaritia_integration:infinitum"
+      },
+      {
+        "name": "avaritia_integration:eternity"
+      }
+    ]
+  }
 }

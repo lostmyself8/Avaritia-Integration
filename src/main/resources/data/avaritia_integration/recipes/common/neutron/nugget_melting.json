@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "avaritia:neutron_nugget" },
+  "result": {
+    "fluid": "avaritia_integration:molten_neutron",
+    "amount": 10
+  },
+  "temperature": 8000,
+  "time": 65
+}

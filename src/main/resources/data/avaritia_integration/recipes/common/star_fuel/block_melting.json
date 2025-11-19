@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "avaritia:star_fuel_block" },
+  "result": {
+    "fluid": "avaritia_integration:molten_star",
+    "amount": 900
+  },
+  "temperature": 3000,
+  "time": 325
+}

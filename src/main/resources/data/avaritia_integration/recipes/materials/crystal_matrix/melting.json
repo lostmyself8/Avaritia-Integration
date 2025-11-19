@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "avaritia_integration:crystal_matrix",
+  "temperature": 2500,
+  "result": {
+    "fluid": "avaritia_integration:molten_crystal_matrix",
+    "amount": 90
+  }
+}
