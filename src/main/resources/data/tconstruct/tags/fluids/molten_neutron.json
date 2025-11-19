@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "avaritia_integration:molten_neutron",
+    "avaritia_integration:flowing_molten_neutron"
+  ]
+}
