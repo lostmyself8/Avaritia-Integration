@@ -130,7 +130,7 @@
 
   "material.avaritia_integration.crystal_matrix": "水晶矩阵",
   "material.avaritia_integration.crystal_matrix.flavor": "这甚至不是最终形态",
-  "material.avaritia_integration.crystal_matrix.encyclopedia": "满耐久度时，每级+60%挖掘速度和初速度，耐久消耗概率-18%；挖掘工具可以破坏基岩和末地传送门",
+  "material.avaritia_integration.crystal_matrix.encyclopedia": "满耐久度时，耐久消耗概率-60%，每级+60%挖掘速度和初速度，；挖掘工具可以破坏基岩和末地传送门",
 
   "material.avaritia_integration.neutronium": "中子",
   "material.avaritia_integration.neutronium.flavor": "致密恒星之心，化为一锭",

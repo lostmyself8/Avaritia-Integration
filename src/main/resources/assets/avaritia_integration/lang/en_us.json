@@ -130,7 +130,7 @@
 
   "material.avaritia_integration.crystal_matrix": "Crystal Matrix",
   "material.avaritia_integration.crystal_matrix.flavor": "This isn't even its final form",
-  "material.avaritia_integration.crystal_matrix.encyclopedia": "At full durability: +60% Mining Speed and Projectile Velocity per level; 18% chance to negate durability loss; Mining tools can break Bedrock and End Portals",
+  "material.avaritia_integration.crystal_matrix.encyclopedia": "At full durability: 18% chance to negate durability loss, +60% Mining Speed and Projectile Velocity per level; Mining tools can break Bedrock and End Portals",
 
   "material.avaritia_integration.neutronium": "Neutronium",
   "material.avaritia_integration.neutronium.flavor": "The dense heart of a star in convenient ingot form",
