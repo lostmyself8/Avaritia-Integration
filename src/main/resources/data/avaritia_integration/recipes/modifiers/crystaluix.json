@@ -21,8 +21,9 @@
     "tag": "tconstruct:modifiable/armor/worn"
   },
   "slots": {
-    "defenses": 1
+    "defense": 1
   },
   "allow_crystal": true,
   "result": "avaritia_integration:crystaluix"
+
 }
