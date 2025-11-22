@@ -1,0 +1,28 @@
+{
+  "type": "tconstruct:modifier",
+  "inputs": [
+    {
+      "tag": "forge:storage_blocks/coal"
+    },
+    {
+      "item": "avaritia:star_fuel"
+    },
+    {
+      "tag": "forge:storage_blocks/coal"
+    },
+    {
+      "item": "avaritia:star_fuel"
+    },
+    {
+      "item": "avaritia:star_fuel"
+    }
+  ],
+  "tools": {
+    "tag": "tconstruct:modifiable/melee"
+  },
+  "slots": {
+    "abilities": 1
+  },
+  "allow_crystal": true,
+  "result": "avaritia_integration:star_dash"
+}
