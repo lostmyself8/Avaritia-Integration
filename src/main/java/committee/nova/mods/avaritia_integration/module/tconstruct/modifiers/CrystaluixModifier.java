@@ -50,7 +50,7 @@ public class CrystaluixModifier extends Modifier implements InventoryTickModifie
             if (nearestCrystal.isRemoved()) {
                 removeCrystals(living);
             } else {
-                nearestCrystal.setBeamTarget(living.getOnPos());
+                nearestCrystal.setBeamTarget(living.getOnPos().below());
                 if (living.tickCount % 10 == 0 && living.getHealth() < living.getMaxHealth()) {
                     living.setHealth(living.getHealth() + level);
                     living.level().playSound(null, living.getX(), living.getY(), living.getZ(), SoundEvents.BEACON_AMBIENT, SoundSource.BLOCKS, 1.0f, 1.0f);
@@ -94,4 +94,5 @@ public class CrystaluixModifier extends Modifier implements InventoryTickModifie
         data.remove(CrystaluixKey);
         living.level().playSound(null, living.getX(), living.getY(), living.getZ(), SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 1.5f, 1.0f);
     }
+
 }
