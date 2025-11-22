@@ -7,7 +7,10 @@
     "eternity":      "#cccccc",
     "blaze_crown":   "#fdc045",
     "crystalshine":  "#67bbb6",
-    "condensing":    "#a0a4bf"
+    "condensing":    "#a0a4bf",
+    "crystaluix":  "#67bbb6",
+    "star_dash":  "#5e9ddd",
+    "superheat":  "#fdc045"
   },
   "material.avaritia_integration":
   {

@@ -118,8 +118,6 @@
   "item.avaritia_integration.molten_star_bucket": "恒星燃料桶",
   "fluid.avaritia_integration.molten_star.fluid_effect": "不稳定的恒星燃料，很容易爆炸并产生火焰",
 
-  "fluid_effect.tconstruct.damage.infinity": "无尽伤害",
-
   "material.avaritia_integration.infinity": "无尽",
   "material.avaritia_integration.infinity.flavor": "汝掌心中者，寰宇之力也",
   "material.avaritia_integration.infinity.encyclopedia": "近战武器可以秒杀目标；挖掘工具可以破坏基岩和末地传送门；获得时运X和抢夺X效果",
@@ -140,7 +138,7 @@
 
   "modifier.avaritia_integration.infinitum": "永恒",
   "modifier.avaritia_integration.infinitum.flavor": "星星和墓碑，是最能象征永恒的东西",
-  "modifier.avaritia_integration.infinitum.description": "无视大多数耐久消耗，并会快速恢复耐久；在掉落物状态下无敌",
+  "modifier.avaritia_integration.infinitum.description": "无视大多数耐久消耗，并会快速恢复耐久；在掉落物状态下无敌；获得一个能力槽",
 
   "modifier.avaritia_integration.rule_over": "支配",
   "modifier.avaritia_integration.rule_over.flavor": "支配万物！",
@@ -165,6 +163,18 @@
   "modifier.avaritia_integration.condensing": "凝聚",
   "modifier.avaritia_integration.condensing.flavor": "尘埃落定",
   "modifier.avaritia_integration.condensing.description": "略微升高重力，攻击命中、挖掘方块或弹射物命中时有概率产生中子素尘埃，概率与自身重力属性提高的百分比相等",
+
+  "modifier.avaritia_integration.crystaluix": "晶能",
+  "modifier.avaritia_integration.crystaluix.flavor": "那好啊，它吸收我也吸收",
+  "modifier.avaritia_integration.crystaluix.description": "可以吸收附近末地水晶的能量恢复生命值",
+
+  "modifier.avaritia_integration.star_dash": "星绽",
+  "modifier.avaritia_integration.star_dash.flavor": "闪耀之星！",
+  "modifier.avaritia_integration.star_dash.description": "攻击时提高伤害并有概率爆炸或发射弹射物；温度越高，伤害和触发爆炸的概率越高，额外发射弹射物的概率越低",
+
+  "modifier.avaritia_integration.superheat": "过热",
+  "modifier.avaritia_integration.superheat.flavor": "高温灼烧",
+  "modifier.avaritia_integration.superheat.description": "增加对着火目标造成的伤害",
 
   "screen.avaritia_integration.module.title": "无尽：集成 模块管理",
   "screen.avaritia_integration.module.warning": "在这里做出的任何更改均需要重启才能生效",
