@@ -42,7 +42,7 @@ public class CrystalshineModifier extends Modifier implements ConditionalStatMod
         if (tool.getDamage()==0) {
             int maxDamage = amount;
             for (int i = 0; i < maxDamage; i++) {
-                if (RANDOM.nextFloat() < 0.18 * modifier.getLevel()) {
+                if (RANDOM.nextFloat() < 0.6) {
                     amount--;
                 }
             }
@@ -50,3 +50,4 @@ public class CrystalshineModifier extends Modifier implements ConditionalStatMod
         return amount;
     }
 }
+
