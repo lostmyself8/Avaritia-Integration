@@ -1,7 +1,13 @@
 {
   "replace": false,
   "values": [
-    "avaritia_integration:molten_star",
-    "avaritia_integration:flowing_molten_star"
+    {
+      "id": "avaritia_integration:molten_star",
+      "required": false
+    },
+    {
+      "id": "avaritia_integration:flowing_molten_star",
+      "required": false
+    }
   ]
 }
