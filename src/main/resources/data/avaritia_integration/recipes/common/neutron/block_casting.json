@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "tconstruct",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "type": "tconstruct:casting_basin",
   "fluid": {
     "fluid": "avaritia_integration:molten_neutron",

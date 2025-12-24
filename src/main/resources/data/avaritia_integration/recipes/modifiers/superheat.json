@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "tconstruct",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "type": "tconstruct:modifier",
   "inputs": [
     {

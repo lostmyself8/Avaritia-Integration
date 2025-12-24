@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "tconstruct",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "type": "tconstruct:melting",
   "ingredient": { "item": "avaritia:crystal_matrix_ingot" },
   "result": {

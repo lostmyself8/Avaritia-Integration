@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "tconstruct",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "type": "tconstruct:material_melting",
   "input": "avaritia_integration:crystal_matrix",
   "temperature": 2500,
