@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.mekanism.common.tile;
+package committee.nova.mods.avaritia_integration.module.mekanismgenerators.common.tile;
 
 import mekanism.api.IEvaporationSolar;
 import mekanism.api.math.FloatingLong;

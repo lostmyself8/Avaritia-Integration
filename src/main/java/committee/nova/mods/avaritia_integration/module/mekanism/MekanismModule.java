@@ -3,10 +3,7 @@ package committee.nova.mods.avaritia_integration.module.mekanism;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationContainerTypes;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationItems;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationTileEntityTypes;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.*;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.api.providers.IItemProvider;
 import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters;
@@ -23,6 +20,7 @@ public final class MekanismModule implements Module {
         MekIntegrationBlocks.BLOCKS.register(registryBus);
         MekIntegrationContainerTypes.CONTAINER_TYPES.register(registryBus);
         MekIntegrationTileEntityTypes.TILE_ENTITY_TYPES.register(registryBus);
+        MekIntegrationRecipeSerializers.RECIPE_SERIALIZERS.register(registryBus);
     }
 
     @Override

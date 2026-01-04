@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import committee.nova.mods.avaritia_integration.init.registry.AICreativeTabs;
 import committee.nova.mods.avaritia_integration.init.registry.AIItems;
 import committee.nova.mods.avaritia_integration.module.ModuleManager;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -19,5 +20,9 @@ public class AvaritiaIntegration {
         AICreativeTabs.REGISTRY.register(bus);
         AIItems.REGISTRY.register(bus);
         ModuleManager.loadModules(bus);
+    }
+
+    public static ResourceLocation rl(String path) {
+        return new ResourceLocation(MOD_ID, path);
     }
 }

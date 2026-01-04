@@ -1,0 +1,11 @@
+{
+  "type": "avaritia:compressor",
+  "ingredient": {
+    "item": "mekanism:plutonium"
+  },
+  "result": {
+    "item": "avaritia:neutron_ingot"
+  },
+  "inputCount": 1,
+  "timeCost": 1
+}

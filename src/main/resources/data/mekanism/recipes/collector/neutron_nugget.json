@@ -1,0 +1,16 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "avaritia_integration:collector",
+  "input": {
+    "amount": 5000,
+    "gas": "mekanism:spent_nuclear_waste"
+  },
+  "output": {
+    "item": "avaritia:neutron_nugget"
+  }
+}

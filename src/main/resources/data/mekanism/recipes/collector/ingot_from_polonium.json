@@ -1,0 +1,16 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "avaritia_integration:collector",
+  "input": {
+    "amount": 1000,
+    "gas": "mekanism:polonium"
+  },
+  "output": {
+    "item": "avaritia:neutron_ingot"
+  }
+}

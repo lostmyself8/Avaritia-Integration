@@ -1,0 +1,16 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanismgenerators"
+    }
+  ],
+  "type": "avaritia_integration:collector",
+  "input": {
+    "amount": 10000,
+    "gas": "mekanismgenerators:tritium"
+  },
+  "output": {
+    "item": "avaritia:neutron_pile"
+  }
+}
