@@ -39,7 +39,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     public InfinityTinyPotatoBlock() {
         super(Properties.copy(BotaniaBlocks.tinyPotato));
-        this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
