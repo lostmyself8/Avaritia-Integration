@@ -1,5 +1,5 @@
 {
-  "parent": "avaritia_integration:block/shapes/infinity_mana_pool_full",
+  "parent": "botania:block/shapes/creative_mana_pool_full",
   "textures": {
     "bottom": "avaritia_integration:block/botania/infinity_mana_pool_bottom",
     "inside": "avaritia_integration:block/botania/infinity_mana_pool_inside",

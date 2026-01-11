@@ -1,8 +1,8 @@
 package committee.nova.mods.avaritia_integration.module.botania.registry;
 
+import committee.nova.mods.avaritia.init.registry.ModRarities;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.botania.item.block.AsgardDandelionBlock;
-import committee.nova.mods.avaritia_integration.module.botania.item.block.InfinityManaPoolBlock;
 import committee.nova.mods.avaritia_integration.module.botania.item.block.InfinityTinyPotatoBlock;
 import committee.nova.mods.avaritia_integration.module.botania.item.block.SoarleanderBlock;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +17,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.FloatingSpecialFlowerBlock;
+import vazkii.botania.common.block.mana.ManaPoolBlock;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -33,11 +34,15 @@ public final class BotaniaIntegrationBlocks {
     public static final RegistryObject<Block> SOARLEANDER = register("soarleander", () -> new SoarleanderBlock(MobEffects.WITHER, 1, SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER));
     public static final RegistryObject<Block> SOARLEANDER_FLOATING = register("soarleander_floating", () -> new FloatingSpecialFlowerBlock(BotaniaBlocks.FLOATING_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER));
     public static final RegistryObject<Block> POTTED_SOARLEANDER = register("potted_soarleander", () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), SOARLEANDER, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion().lightLevel(level -> 5)));
-    public static final RegistryObject<Block> INFINITY_MANA_POOL = register("infinity_mana_pool", () -> new InfinityManaPoolBlock(InfinityManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> INFINITY_MANA_POOL = register("infinity_mana_pool", () -> new ManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock)), new Item.Properties().rarity(ModRarities.COSMIC));
     public static final RegistryObject<Block> INFINITY_POTATO = register("infinity_potato", InfinityTinyPotatoBlock::new);
 
     private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> obj) {
         return register(id, obj, b -> new BlockItem(b, new Item.Properties()));
+    }
+
+    private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> obj, Item.Properties properties) {
+        return register(id, obj, b -> new BlockItem(b, properties));
     }
 
     private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> obj, Function<Block, Item> itemBuilder) {
