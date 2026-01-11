@@ -1,6 +1,6 @@
-package committee.nova.mods.avaritia_integration.module.botania.item.block;
+package committee.nova.mods.avaritia_integration.module.botania.block;
 
-import committee.nova.mods.avaritia_integration.module.botania.item.block.entity.InfinityTinyPotatoBlockEntity;
+import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityTinyPotatoBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,7 +39,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     public InfinityTinyPotatoBlock() {
         super(Properties.copy(BotaniaBlocks.tinyPotato));
-        this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH));
     }
 
     @Override
@@ -107,7 +107,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     @Override
     public @NotNull BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return super.getStateForPlacement(ctx).setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
+        return super.getStateForPlacement(ctx).setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.botania.item.block.entity;
+package committee.nova.mods.avaritia_integration.module.botania.entity;
 
 
 import net.minecraft.core.BlockPos;
