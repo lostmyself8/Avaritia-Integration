@@ -15,7 +15,7 @@ public final class BotaniaIntegrationItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(Registries.ITEM, AvaritiaIntegration.MOD_ID);
     public static final Item alpha_spark = new AlphaSparkItem(new Item.Properties());
     public static final RegistryObject<Item> ALPHA_SPARK = register(
-            "asgard_dandelion_be",
+            "alpha_spark",
             () -> alpha_spark
     );
     public static <T extends Item> RegistryObject<T> register(String id, Supplier<T> obj) {

@@ -19,7 +19,7 @@ public class AsgardDandelionBlockEntity extends GeneratingFlowerBlockEntity {
     private static final int RANGE = 8;
 
     public AsgardDandelionBlockEntity(BlockPos pos, BlockState state) {
-        super(BotaniaIntegrationBlockEntities.ASGARD_DANDELION_BLOCK_ENTITIES.get(), pos, state);
+        super(BotaniaIntegrationBlockEntities.ASGARD_DANDELION, pos, state);
     }
 
     @Override

@@ -28,7 +28,7 @@ public final class BotaniaIntegrationEntities {
             .build(ResourceLocation.tryBuild(AvaritiaIntegration.MOD_ID, "alpha_spark").toString());
 
     public static final RegistryObject<EntityType<AlphaSparkEntity>> ALPHA_SPARK_ENTITIES = register(
-            "asgard_dandelion_be",
+            "alpha_spark",
             () -> ALPHA_SPARK
     );
 

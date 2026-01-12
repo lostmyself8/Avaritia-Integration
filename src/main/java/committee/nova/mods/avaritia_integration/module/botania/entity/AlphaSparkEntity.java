@@ -74,7 +74,7 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark{
     }
 
     @Override
-    protected void defineSynchedData() {
+    public void defineSynchedData() {
         super.defineSynchedData();
         entityData.define(UPGRADE, 0);
     }
@@ -346,13 +346,13 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark{
     }
 
     @Override
-    protected void readAdditionalSaveData(@NotNull CompoundTag cmp) {
+    public void readAdditionalSaveData(@NotNull CompoundTag cmp) {
         super.readAdditionalSaveData(cmp);
         setUpgrade(SparkUpgradeType.values()[cmp.getInt(TAG_UPGRADE)]);
     }
 
     @Override
-    protected void addAdditionalSaveData(@NotNull CompoundTag cmp) {
+    public void addAdditionalSaveData(@NotNull CompoundTag cmp) {
         super.addAdditionalSaveData(cmp);
         cmp.putInt(TAG_UPGRADE, getUpgrade().ordinal());
     }

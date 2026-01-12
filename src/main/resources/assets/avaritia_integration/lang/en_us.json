@@ -68,6 +68,9 @@
   "block.avaritia_integration.soarleander_floating": "§cFloating Soarleander",
   "block.avaritia_integration.infinity_mana_pool": "Infinity Mana Pool",
   "block.avaritia_integration.infinity_potato": "Infinity Tiny Potato",
+  "item.avaritia_integration.alpha_spark": "Alpha Spark",
+  "entity.avaritia_integration.alpha_spark": "Alpha Spark",
+
 
   "item.avaritia_integration.stredgeuniverse": "§cThe §6Strongest §eBlade §2in §bthe §3Universe §1[End of All Things · Boundless Starry Sky]",
   "item.avaritia_integration.stredgeuniverse.tooltip1": "§5§o“Liberated here, the mightiest power in the universe“",
