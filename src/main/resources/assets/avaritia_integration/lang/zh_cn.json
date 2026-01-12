@@ -91,6 +91,93 @@
 
   "item.avaritia_integration.infinity_storage_part": "无限存储元件",
 
+  "item.avaritia_integration.heaven_arrow": "范围箭",
+  "item.avaritia_integration.trace_arrow": "追踪箭",
+
+  "block.avaritia_integration.molten_blaze_fluid": "熔火之焰",
+  "fluid.avaritia_integration.molten_blaze": "熔火之焰",
+  "fluid.avaritia_integration.flowing_molten_blaze": "流动的熔火之焰",
+  "item.avaritia_integration.molten_blaze_bucket": "熔火之焰桶",
+  "fluid.avaritia_integration.molten_blaze.fluid_effect": "熔火之焰的高温不仅能熔化方块，还能熔化敌人",
+  "block.avaritia_integration.molten_crystal_matrix_fluid": "熔融水晶矩阵",
+  "fluid.avaritia_integration.molten_crystal_matrix": "熔融水晶矩阵",
+  "fluid.avaritia_integration.flowing_molten_crystal_matrix": "流动的熔融水晶矩阵",
+  "item.avaritia_integration.molten_crystal_matrix_bucket": "熔融水晶矩阵桶",
+  "fluid.avaritia_integration.molten_crystal_matrix.fluid_effect": "没有什么方块能拦住熔融水晶矩阵",
+  "block.avaritia_integration.molten_neutron_fluid": "中子流质",
+  "fluid.avaritia_integration.molten_neutron": "中子流质",
+  "fluid.avaritia_integration.flowing_molten_neutron": "流动的中子流质",
+  "item.avaritia_integration.molten_neutron_bucket": "中子流质桶",
+  "fluid.avaritia_integration.molten_neutron.fluid_effect": "中子流质巨大的密度能让敌人停下来",
+  "block.avaritia_integration.molten_infinity_fluid": "升腾无尽",
+  "fluid.avaritia_integration.molten_infinity": "升腾无尽",
+  "fluid.avaritia_integration.flowing_molten_infinity": "流动的升腾无尽",
+  "item.avaritia_integration.molten_infinity_bucket": "升腾无尽桶",
+  "fluid.avaritia_integration.molten_infinity.fluid_effect": "升腾无尽不符合诸多常理，伤害也是如此",
+  "block.avaritia_integration.molten_star_fluid": "恒星燃料",
+  "fluid.avaritia_integration.molten_star": "恒星燃料",
+  "fluid.avaritia_integration.flowing_molten_star": "流动的恒星燃料",
+  "item.avaritia_integration.molten_star_bucket": "恒星燃料桶",
+  "fluid.avaritia_integration.molten_star.fluid_effect": "不稳定的恒星燃料，很容易爆炸并产生火焰",
+
+  "material.avaritia_integration.infinity": "无尽",
+  "material.avaritia_integration.infinity.flavor": "汝掌心中者，寰宇之力也",
+  "material.avaritia_integration.infinity.encyclopedia": "近战武器可以秒杀目标；挖掘工具可以破坏基岩和末地传送门；获得时运X和抢夺X效果",
+  "material.avaritia_integration.infinity.ranged":"+6.5弹射物力量；没有箭矢时可以射出天堂陨落长弓的范围箭矢（潜行时改为追踪箭矢）",
+  "material.avaritia_integration.infinity.armor":"根据穿戴的带该特性的盔甲数量获得下列效果：1—免疫负面效果；2—无限夜视、氧气和饥饿值；3—飞行；4—无敌；5—加速",
+
+  "material.avaritia_integration.blaze_cube": "炽骨立方",
+  "material.avaritia_integration.blaze_cube.flavor": "火焰风暴",
+  "material.avaritia_integration.blaze_cube.encyclopedia": "每级延长目标15秒着火时间；可自动冶炼掉落物；击杀任意骷髅时掉落凋灵骷髅头颅",
+
+  "material.avaritia_integration.crystal_matrix": "水晶矩阵",
+  "material.avaritia_integration.crystal_matrix.flavor": "这甚至不是最终形态",
+  "material.avaritia_integration.crystal_matrix.encyclopedia": "满耐久度时，耐久消耗概率-60%，每级+60%挖掘速度和初速度，；挖掘工具可以破坏基岩和末地传送门",
+
+  "material.avaritia_integration.neutronium": "中子",
+  "material.avaritia_integration.neutronium.flavor": "致密恒星之心，化为一锭",
+  "material.avaritia_integration.neutronium.encyclopedia": "+5%重力；攻击命中、挖掘方块或弹射物命中时有概率产生中子素尘埃，概率与自身重力属性提高的百分比相等",
+
+  "modifier.avaritia_integration.infinitum": "永恒",
+  "modifier.avaritia_integration.infinitum.flavor": "星星和墓碑，是最能象征永恒的东西",
+  "modifier.avaritia_integration.infinitum.description": "无视大多数耐久消耗，并会快速恢复耐久；在掉落物状态下无敌；获得一个能力槽",
+
+  "modifier.avaritia_integration.rule_over": "支配",
+  "modifier.avaritia_integration.rule_over.flavor": "支配万物！",
+  "modifier.avaritia_integration.rule_over.description": "近战武器可以秒杀目标，挖掘工具可以破坏基岩和末地传送门；获得时运X和抢夺X效果",
+
+  "modifier.avaritia_integration.vault_split": "裂穹",
+  "modifier.avaritia_integration.vault_split.flavor": "撕裂天空！",
+  "modifier.avaritia_integration.vault_split.description": "增加弹射物力量，没有箭矢时可以射出天堂陨落长弓的范围箭（潜行时改为追踪箭）",
+
+  "modifier.avaritia_integration.eternity": "不朽",
+  "modifier.avaritia_integration.eternity.flavor": "永垂不朽！",
+  "modifier.avaritia_integration.eternity.description": "根据穿戴的带该特性的盔甲数量获得无尽盔甲的部分效果，4件时可无敌",
+
+  "modifier.avaritia_integration.blaze_crown": "灼首",
+  "modifier.avaritia_integration.blaze_crown.flavor": "斩骷髅首级，后烧至焦黑",
+  "modifier.avaritia_integration.blaze_crown.description": "大幅延长目标着火时间，可自动冶炼掉落物，击杀任意骷髅时掉落凋灵骷髅头颅",
+
+  "modifier.avaritia_integration.crystalshine": "晶耀",
+  "modifier.avaritia_integration.crystalshine.flavor": "水晶之耀，在于无瑕",
+  "modifier.avaritia_integration.crystalshine.description": "满耐久度时，提高挖掘速度和初速度，耐久消耗概率降低；挖掘工具可以破坏基岩和末地传送门",
+
+  "modifier.avaritia_integration.condensing": "凝聚",
+  "modifier.avaritia_integration.condensing.flavor": "尘埃落定",
+  "modifier.avaritia_integration.condensing.description": "略微升高重力，攻击命中、挖掘方块或弹射物命中时有概率产生中子素尘埃，概率与自身重力属性提高的百分比相等",
+
+  "modifier.avaritia_integration.crystaluix": "晶能",
+  "modifier.avaritia_integration.crystaluix.flavor": "那好啊，它吸收我也吸收",
+  "modifier.avaritia_integration.crystaluix.description": "可以吸收附近末地水晶的能量恢复生命值",
+
+  "modifier.avaritia_integration.star_dash": "星绽",
+  "modifier.avaritia_integration.star_dash.flavor": "闪耀之星！",
+  "modifier.avaritia_integration.star_dash.description": "攻击时提高伤害并有概率爆炸或发射弹射物；温度越高，伤害和触发爆炸的概率越高，额外发射弹射物的概率越低",
+
+  "modifier.avaritia_integration.superheat": "过热",
+  "modifier.avaritia_integration.superheat.flavor": "高温灼烧",
+  "modifier.avaritia_integration.superheat.description": "增加对着火目标造成的伤害",
+
   "screen.avaritia_integration.module.title": "无尽：集成 模块管理",
   "screen.avaritia_integration.module.warning": "在这里做出的任何更改均需要重启才能生效",
   "screen.avaritia_integration.module.back": "返回",
@@ -114,5 +201,6 @@
   "module.avaritia_integration.name.pneumaticcraft": "气动工艺",
   "module.avaritia_integration.name.refinedstorage": "精致存储",
   "module.avaritia_integration.name.slashblade": "拔刀剑",
-  "module.avaritia_integration.name.thermal_expansion": "热力拓展（热力膨胀）"
+  "module.avaritia_integration.name.thermal_expansion": "热力拓展（热力膨胀）",
+  "module.avaritia_integration.name.tconstruct": "匠魂"
 }

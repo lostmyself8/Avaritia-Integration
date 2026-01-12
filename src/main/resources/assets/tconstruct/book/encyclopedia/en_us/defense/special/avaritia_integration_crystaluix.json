@@ -1,0 +1,13 @@
+{
+  "modifier_id": "avaritia_integration:crystaluix",
+  "text": [
+    {
+      "text": "Restores 1 health per level every 0.5 seconds when End Crystals are within 32 blocks"
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "No max level",
+    "Requires 1 defense slot per level"
+  ]
+}

@@ -82,13 +82,18 @@ repositories {
         url = "https://api.modrinth.com/maven"
     }
     maven {
-        url = uri("https://maven.theillusivec4.top")
+        url = "https://maven.theillusivec4.top"
     }
     maven {
         url = "https://repo.spongepowered.org/repository/maven-public"
     }
     maven {
-        url = "https://maven.nova-committee.cn/releases"
+        name 'DVS1 Maven FS'
+        url = "https://dvs1.progwml6.com/files/maven"
+        
+    }
+    maven {
+        url = "url = "https://maven.nova-committee.cn/releases""
     }
 }
 
@@ -130,6 +135,9 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:${jade_version}")
     //SlashBlade
     implementation fg.deobf("curse.maven:slashblade-resharped-1022428:${slash_blade_version}")
+    //TConstruct
+    implementation fg.deobf("slimeknights.mantle:Mantle:1.20.1-1.11.95")
+    implementation fg.deobf("slimeknights.tconstruct:TConstruct:1.20.1-3.11.0.148")
     //Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:[0.4.1,0.5.0)"))
