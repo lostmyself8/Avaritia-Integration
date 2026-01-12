@@ -34,7 +34,7 @@ public final class BotaniaIntegrationBlocks {
     public static final Block soarleander = new SoarleanderBlock(MobEffects.WITHER, 1, SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
     public static final Block soarleander_floating = new FloatingSpecialFlowerBlock(SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
     public static final Block potted_soarleander = flowerPot(soarleander, 5);
-    public static final Block infinity_mana_pool = new InfinityManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock));
+    public static final Block infinity_mana_pool = new InfinityManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock).lightLevel(level -> 15));
     public static final Block infinity_potato = new InfinityTinyPotatoBlock();
 
     public static final RegistryObject<Block> ASGARD_DANDELION = register("asgard_dandelion", () -> asgard_dandelion);
