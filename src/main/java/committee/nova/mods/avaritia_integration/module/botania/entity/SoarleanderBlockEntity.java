@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.botania.item.block.entity;
+package committee.nova.mods.avaritia_integration.module.botania.entity;
 
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -22,7 +22,7 @@ public class SoarleanderBlockEntity extends GeneratingFlowerBlockEntity {
     private static final float DAMAGE_AMOUNT = 4.0f;
 
     public SoarleanderBlockEntity(BlockPos pos, BlockState state) {
-        super(BotaniaIntegrationBlockEntities.SOARLEANDER_BLOCK_ENTITIES.get(), pos, state);
+        super(BotaniaIntegrationBlockEntities.SOARLEANDER, pos, state);
     }
 
     @Override

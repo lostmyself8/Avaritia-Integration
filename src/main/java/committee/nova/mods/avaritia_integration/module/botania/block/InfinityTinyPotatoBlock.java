@@ -1,6 +1,6 @@
-package committee.nova.mods.avaritia_integration.module.botania.item.block;
+package committee.nova.mods.avaritia_integration.module.botania.block;
 
-import committee.nova.mods.avaritia_integration.module.botania.item.block.entity.InfinityTinyPotatoBlockEntity;
+import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityTinyPotatoBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -49,12 +49,12 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    public int getAnalogOutputSignal(@NotNull BlockState state, Level level, @NotNull BlockPos pos) {
         BlockEntity var5 = level.getBlockEntity(pos);
         if (var5 instanceof TinyPotatoBlockEntity tater) {
             return AbstractContainerMenu.getRedstoneSignalFromContainer(tater);
@@ -78,14 +78,13 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext ctx) {
         return SHAPE;
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof InfinityTinyPotatoBlockEntity potatoTile) {
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        if (world.getBlockEntity(pos) instanceof InfinityTinyPotatoBlockEntity potatoTile) {
             ItemStack heldItem = player.getItemInHand(hand);
             potatoTile.interact(player, hand, heldItem, hit.getDirection());
 
@@ -107,7 +106,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     @Override
     public @NotNull BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return super.getStateForPlacement(ctx).setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
+        return super.getStateForPlacement(ctx).setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection());
     }
 
     @Override
@@ -122,13 +121,9 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity living, ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
-            BlockEntity var7 = world.getBlockEntity(pos);
-            if (var7 instanceof TinyPotatoBlockEntity tater) {
-                tater.name = stack.getHoverName();
-            }
+        if (stack.hasCustomHoverName() && world.getBlockEntity(pos) instanceof TinyPotatoBlockEntity tater) {
+            tater.name = stack.getHoverName();
         }
-
     }
 
     @Override
@@ -142,7 +137,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
     }
 
     @Override
-    public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), InfinityTinyPotatoBlockEntity::commonTick);
+    public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
+        return createTickerHelper(type, BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO, InfinityTinyPotatoBlockEntity::commonTick);
     }
 }

@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.botania.item.block.entity;
+package committee.nova.mods.avaritia_integration.module.botania.entity;
 
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -61,10 +61,11 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
     public Component name = Component.literal("");
     private int nextDoIt = 0;
     private int birthdayTick = 0;
-    private static final List<Block> ALL_CANDLE_CAKES;
+    private static final List<Block> ALL_CANDLE_CAKES = List.of(Blocks.WHITE_CANDLE_CAKE, Blocks.ORANGE_CANDLE_CAKE, Blocks.MAGENTA_CANDLE_CAKE, Blocks.LIGHT_BLUE_CANDLE_CAKE, Blocks.YELLOW_CANDLE_CAKE, Blocks.LIME_CANDLE_CAKE, Blocks.PINK_CANDLE_CAKE, Blocks.GRAY_CANDLE_CAKE, Blocks.LIGHT_GRAY_CANDLE_CAKE, Blocks.CYAN_CANDLE_CAKE, Blocks.PURPLE_CANDLE_CAKE, Blocks.BLUE_CANDLE_CAKE, Blocks.BROWN_CANDLE_CAKE, Blocks.GREEN_CANDLE_CAKE, Blocks.RED_CANDLE_CAKE, Blocks.BLACK_CANDLE_CAKE, Blocks.CANDLE_CAKE);
+
 
     public InfinityTinyPotatoBlockEntity(BlockPos pos, BlockState state) {
-        super(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), pos, state);
+        super(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO, pos, state);
     }
 
     public void interact(Player player, InteractionHand hand, ItemStack stack, Direction side) {
@@ -242,9 +243,5 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
     private static int getTinyPotatoAge() {
         LocalDateTime now = LocalDateTime.now();
         return now.getYear() - 2014;
-    }
-
-    static {
-        ALL_CANDLE_CAKES = List.of(Blocks.WHITE_CANDLE_CAKE, Blocks.ORANGE_CANDLE_CAKE, Blocks.MAGENTA_CANDLE_CAKE, Blocks.LIGHT_BLUE_CANDLE_CAKE, Blocks.YELLOW_CANDLE_CAKE, Blocks.LIME_CANDLE_CAKE, Blocks.PINK_CANDLE_CAKE, Blocks.GRAY_CANDLE_CAKE, Blocks.LIGHT_GRAY_CANDLE_CAKE, Blocks.CYAN_CANDLE_CAKE, Blocks.PURPLE_CANDLE_CAKE, Blocks.BLUE_CANDLE_CAKE, Blocks.BROWN_CANDLE_CAKE, Blocks.GREEN_CANDLE_CAKE, Blocks.RED_CANDLE_CAKE, Blocks.BLACK_CANDLE_CAKE, Blocks.CANDLE_CAKE);
     }
 }
