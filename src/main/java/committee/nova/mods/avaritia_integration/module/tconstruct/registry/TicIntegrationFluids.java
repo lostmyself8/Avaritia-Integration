@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import slimeknights.mantle.fluid.InvertedFluid;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 
-import static committee.nova.mods.avaritia_integration.init.registry.Registries.CREATIVE_TAB;
+import static committee.nova.mods.avaritia_integration.init.registry.AICreativeTabs.CREATIVE_TAB;
 import static slimeknights.tconstruct.fluids.block.BurningLiquidBlock.createBurning;
 
 @Mod.EventBusSubscriber(modid = AvaritiaIntegration.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
