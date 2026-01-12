@@ -3,6 +3,7 @@ package committee.nova.mods.avaritia_integration.module.botania.registry;
 import committee.nova.mods.avaritia.init.registry.ModRarities;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.botania.block.AsgardDandelionBlock;
+import committee.nova.mods.avaritia_integration.module.botania.block.InfinityManaPoolBlock;
 import committee.nova.mods.avaritia_integration.module.botania.block.InfinityTinyPotatoBlock;
 import committee.nova.mods.avaritia_integration.module.botania.block.SoarleanderBlock;
 import net.minecraft.core.registries.Registries;
@@ -33,7 +34,7 @@ public final class BotaniaIntegrationBlocks {
     public static final Block soarleander = new SoarleanderBlock(MobEffects.WITHER, 1, SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
     public static final Block soarleander_floating = new FloatingSpecialFlowerBlock(SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
     public static final Block potted_soarleander = flowerPot(soarleander, 5);
-    public static final Block infinity_mana_pool = new ManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock));
+    public static final Block infinity_mana_pool = new InfinityManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock));
     public static final Block infinity_potato = new InfinityTinyPotatoBlock();
 
     public static final RegistryObject<Block> ASGARD_DANDELION = register("asgard_dandelion", () -> asgard_dandelion);

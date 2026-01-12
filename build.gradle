@@ -5,6 +5,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
+    id 'dev.vfyjxf.modaccessor' version "1.2.1"
 }
 
 version = minecraft_version + "-" + mod_version + "-" + mod_version_tag
@@ -18,6 +19,12 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
+modAccessor {
+    createTransformConfiguration(configurations.compileOnly)
+    accessTransformerFiles = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -118,6 +125,7 @@ dependencies {
     //PneumaticCraft: Repressurized
     implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:${pneumaticcraft_repressurized_version}")
     //Botania
+    accessCompileOnly fg.deobf("curse.maven:botania-225643:${botania_version}")
     implementation fg.deobf("curse.maven:botania-225643:${botania_version}")
     //Ender IO
     implementation fg.deobf("curse.maven:ender-io-64578:${ender_io_version}")
