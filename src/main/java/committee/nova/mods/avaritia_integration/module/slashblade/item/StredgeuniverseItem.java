@@ -71,7 +71,7 @@ public class StredgeuniverseItem extends ItemSlashBlade {
 
     private void setupBlade(ItemStack stack) {
         EnchantmentHelper.setEnchantments(
-                Map.of(Enchantments.MOB_LOOTING, 10, Enchantments.BLOCK_FORTUNE, 100, Enchantments.POWER_ARROWS, 100, Enchantments.SHARPNESS, 100
+                Map.of(Enchantments.MOB_LOOTING, 100, Enchantments.BLOCK_FORTUNE, 100, Enchantments.POWER_ARROWS, 100, Enchantments.SHARPNESS, 100
                         , Enchantments.BANE_OF_ARTHROPODS, 100),
                 stack
         );
