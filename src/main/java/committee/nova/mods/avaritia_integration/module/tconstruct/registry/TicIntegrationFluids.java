@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import slimeknights.mantle.fluid.InvertedFluid;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 
+import static committee.nova.mods.avaritia_integration.init.registry.AICreativeTabs.CREATIVE_TAB;
 import static slimeknights.tconstruct.fluids.block.BurningLiquidBlock.createBurning;
 
 public class TicIntegrationFluids extends TicRegistry{

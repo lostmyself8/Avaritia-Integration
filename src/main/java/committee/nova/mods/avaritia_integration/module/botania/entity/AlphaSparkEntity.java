@@ -35,7 +35,6 @@ import vazkii.botania.api.mana.spark.SparkAttachable;
 import vazkii.botania.api.mana.spark.SparkHelper;
 import vazkii.botania.api.mana.spark.SparkUpgradeType;
 import vazkii.botania.client.core.helper.RenderHelper;
-import vazkii.botania.common.entity.ManaSparkEntity;
 import vazkii.botania.common.entity.SparkBaseEntity;
 import vazkii.botania.common.helper.ColorHelper;
 import vazkii.botania.common.helper.PlayerHelper;
@@ -55,7 +54,7 @@ import java.util.*;
 public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark{
     private static final int TRANSFER_RATE = 100000;
     private static final String TAG_UPGRADE = "upgrade";
-    private static final EntityDataAccessor<Integer> UPGRADE = SynchedEntityData.defineId(ManaSparkEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> UPGRADE = SynchedEntityData.defineId(AlphaSparkEntity.class, EntityDataSerializers.INT);
 
     private final Set<ManaSpark> outgoingTransfers = Collections.newSetFromMap(new WeakHashMap<>());
 
