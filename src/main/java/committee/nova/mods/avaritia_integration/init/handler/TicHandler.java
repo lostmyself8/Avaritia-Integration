@@ -2,11 +2,12 @@ package committee.nova.mods.avaritia_integration.init.handler;
 
 import committee.nova.mods.avaritia.api.util.PlayerUtils;
 import committee.nova.mods.avaritia.init.handler.AbilityHandler;
-import committee.nova.mods.avaritia.init.registry.ModBlocks;
 import committee.nova.mods.avaritia.init.registry.ModDamageTypes;
+import committee.nova.mods.avaritia_integration.module.tconstruct.AvaritiaDatakeys;
 import committee.nova.mods.avaritia_integration.module.tconstruct.AvaritiaModifierIds;
 import committee.nova.mods.avaritia_integration.module.tconstruct.TConstructModule;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationModifiers;
+import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationBlocks;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -35,6 +36,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
+import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
@@ -50,10 +52,10 @@ public class TicHandler {
     public static final Set<String> entitiesWithBoots = new HashSet<>();
     public static final Map<String, FlightInfo> entitiesWithFlight = new ConcurrentHashMap<>();
     private static boolean isLoaded(){
-       return ModList.get().isLoaded(TConstructModule.MOD_ID);
+        return ModList.get().isLoaded(TConstructModule.MOD_ID);
     }
     private static boolean isInfinity(ItemStack item){
-        return isLoaded() && item.is(TinkerTags.Items.HARVEST_PRIMARY) && (getModifierLevel(item ,AvaritiaModifierIds.RuleOver) > 0 || getModifierLevel(item ,TicIntegrationModifiers.Crystalshine.getId()) > 0);
+        return item.is(TinkerTags.Items.HARVEST_PRIMARY) && (getModifierLevel(item ,AvaritiaModifierIds.RuleOver) > 0 || getModifierLevel(item ,TicIntegrationModifiers.Crystalshine.getId()) > 0);
     }
     @SubscribeEvent
     public static void onPlayerMine(PlayerInteractEvent.LeftClickBlock event) {
@@ -63,21 +65,34 @@ public class TicHandler {
         var state = level.getBlockState(pos);
         var player = event.getEntity();
         var face = event.getFace();
-        if (face == null || level.isClientSide || item.isEmpty() || player.isCreative()) {
+        if (!isLoaded() || face == null || level.isClientSide || player.isCreative()) {
             return;
         }
         if (isInfinity(item)) {
             if (state.is(Blocks.BEDROCK)) {
-                level.setBlock(pos, ModBlocks.fake_bedrock.get().defaultBlockState(), 2);
+                level.setBlock(pos, TicIntegrationBlocks.fake_bedrock.get().defaultBlockState(), 2);
             } else if (state.is(Blocks.END_PORTAL_FRAME)) {
                 // 保留原方块状态（包括是否有末影之眼）
-                BlockState fakeEndPortalFrameState = ModBlocks.fake_end_portal_frame.get().defaultBlockState()
+                BlockState fakeEndPortalFrameState = TicIntegrationBlocks.fake_end_portal_frame.get().defaultBlockState()
                         .setValue(EndPortalFrameBlock.FACING, state.getValue(EndPortalFrameBlock.FACING))
                         .setValue(EndPortalFrameBlock.HAS_EYE, state.getValue(EndPortalFrameBlock.HAS_EYE));
                 level.setBlock(pos, fakeEndPortalFrameState, 2);
             } else if (state.is(Blocks.END_PORTAL)) {
                 // 保留末地传送门状态
-                level.setBlock(pos, ModBlocks.fake_end_portal.get().defaultBlockState(), 2);
+                level.setBlock(pos, TicIntegrationBlocks.fake_end_portal.get().defaultBlockState(), 2);
+            }
+        } else {
+            if (state.is(TicIntegrationBlocks.fake_bedrock.get())) {
+                level.setBlock(pos, Blocks.BEDROCK.defaultBlockState(), 2);
+            } else if (state.is(TicIntegrationBlocks.fake_end_portal_frame.get())) {
+                // 保留原方块状态（包括是否有末影之眼）
+                BlockState endPortalFrameState = Blocks.END_PORTAL_FRAME.defaultBlockState()
+                        .setValue(EndPortalFrameBlock.FACING, state.getValue(EndPortalFrameBlock.FACING))
+                        .setValue(EndPortalFrameBlock.HAS_EYE, state.getValue(EndPortalFrameBlock.HAS_EYE));
+                level.setBlock(pos, endPortalFrameState, 2);
+            } else if (state.is(TicIntegrationBlocks.fake_end_portal.get())) {
+                // 保留末地传送门状态
+                level.setBlock(pos, Blocks.END_PORTAL.defaultBlockState(), 2);
             }
         }
     }
@@ -86,22 +101,14 @@ public class TicHandler {
         if (event.phase == TickEvent.Phase.END && event.side.isServer() && isLoaded()) {
             var player = event.player;
             String key = player.getGameProfile().getName() + ":" + player.level().isClientSide;
-
-            int x = getEternityLevel(player);
-
-            nightVision(player, key, x>1);
-            fly(player, key, x>2);
-            speedUp(player, key, x>4);
+            Optional<TinkerDataCapability.Holder> dataCap = player.getCapability(TinkerDataCapability.CAPABILITY).resolve();
+            dataCap.ifPresent(data -> {
+                int x = data.get(AvaritiaDatakeys.Eternity, 0);
+                nightVision(player, key, x>1);
+                fly(player, key, x>2);
+                speedUp(player, key, x>4);
+            });
         }
-    }
-    private static int getEternityLevel(LivingEntity living){
-        int x = 0;
-        for (int i=98;i<104;i++){
-            if (getModifierLevel(living.getSlot(i).get(), AvaritiaModifierIds.Eternity)>0) {
-                x += 1;
-            }
-        }
-        return x;
     }
     private static int getModifierLevel(ItemStack item, ModifierId id){
         return item.getItem() instanceof IModifiable ? ToolStack.from(item).getModifierLevel(id) : 0;
@@ -112,7 +119,8 @@ public class TicHandler {
                 player.setAirSupply(300);
                 player.getFoodData().setFoodLevel(20);
                 player.getFoodData().setSaturation(20f);
-                if (!player.hasEffect(MobEffects.NIGHT_VISION) || player.getEffect(MobEffects.NIGHT_VISION).getDuration()<280) {
+                MobEffectInstance effect = player.getEffect(MobEffects.NIGHT_VISION);
+                if (effect == null || effect.duration<280) {
                     player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0, false, false));
                 }
             } else {
@@ -228,41 +236,59 @@ public class TicHandler {
             serverPlayer.onUpdateAbilities();
         }
     }
-    private static boolean isEternity(LivingEntity entity){
-        return isLoaded() && getEternityLevel(entity)>3;
+    private static boolean failBlock(Entity entity){
+        return !isLoaded() || !(entity instanceof Player);
     }
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onGetHurt(LivingHurtEvent event) {
         DamageSource source = event.getSource();
         Entity attacker = source.getEntity();
         Entity entity = event.getEntity();
-        if (entity instanceof Player player && isEternity(player)) {
-            if (!source.is(ModDamageTypes.INFINITY)) {
-                event.setCanceled(true);
-            } else{
-                event.setAmount(0);
-                entity.level().explode(attacker, entity.getBlockX(), entity.getBlockY(), entity.getBlockZ(), 25.0F, Level.ExplosionInteraction.MOB);
-            }
+        if (failBlock(entity)){
+            return;
         }
+        Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
+        dataCap.ifPresent(data -> {
+            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3){
+                if (!source.is(ModDamageTypes.INFINITY)) {
+                    event.setCanceled(true);
+                } else{
+                    event.setAmount(0);
+                    entity.level().explode(attacker, entity.getBlockX(), entity.getBlockY(), entity.getBlockZ(), 25.0F, Level.ExplosionInteraction.MOB);
+                }
+            }
+        });
     }
 
     //取消对无尽套的伤害
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onAttacked(LivingAttackEvent event) {
-        if (isEternity(event.getEntity()) && !event.getSource().is(ModDamageTypes.INFINITY)) {
-            event.setCanceled(true);
+        LivingEntity entity = event.getEntity();
+        if (failBlock(entity) || event.getSource().is(ModDamageTypes.INFINITY)){
+            return;
         }
+        Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
+        dataCap.ifPresent(data -> {
+            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3) {
+                event.setCanceled(true);
+            }
+        });
     }
 
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        if (event.getEntity() instanceof Player player) {
-            if (isEternity(player) && !event.getSource().is(ModDamageTypes.INFINITY)) {
-                event.setAmount(0.0F);
-                player.hurtTime = 0;
-                player.deathTime = 0;
-            }
+        LivingEntity entity = event.getEntity();
+        if (failBlock(entity) || event.getSource().is(ModDamageTypes.INFINITY)){
+            return;
         }
+        Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
+        dataCap.ifPresent(data -> {
+            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3){
+                event.setAmount(0.0F);
+                entity.hurtTime = 0;
+                entity.deathTime = 0;
+            }
+        });
     }
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {
