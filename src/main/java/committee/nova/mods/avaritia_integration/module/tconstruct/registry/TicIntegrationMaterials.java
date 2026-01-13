@@ -1,10 +1,10 @@
-package committee.nova.mods.avaritia_integration.module.tconstruct;
+package committee.nova.mods.avaritia_integration.module.tconstruct.registry;
 
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
-public class AvaritiaMaterials {
+public class TicIntegrationMaterials {
 
     public static final MaterialId INFINITY = material("infinity");
     public static final MaterialId NEUTRONIUM = material("neutronium");

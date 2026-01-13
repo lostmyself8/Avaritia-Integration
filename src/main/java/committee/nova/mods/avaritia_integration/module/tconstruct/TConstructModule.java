@@ -1,37 +1,35 @@
 package committee.nova.mods.avaritia_integration.module.tconstruct;
 
-import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
-import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 
 @ModuleEntry(
-        id = "tconstruct",
-        target = {@ModMeta("tconstruct")}
+        id = TConstructModule.MOD_ID,
+        target = {@ModMeta(TConstructModule.MOD_ID)}
 )
 public final class TConstructModule implements Module {
     public static final String MOD_ID = "tconstruct";
 
+    @Override
     public void init(IEventBus bus) {
-        bus.register(new TicIntegrationItems());
-        bus.register(new TicIntegrationBlocks());
-        bus.register(new TicIntegrationFluids());
-        bus.register(new TicIntegrationModifiers());
-        TicIntegrationModifiers.initRegisters();
-        TicRegistry.initRegisters();
-        AvaritiaDatakeys.init();
+        TicIntegrationBlocks.BLOCKS.register(bus);
+        TicIntegrationItems.ITEMS.register(bus);
+        TicIntegrationFluids.FLUIDS.register(bus);
+        TicIntegrationModifiers.MODIFIERS.register(bus);
+        TicIntegrationModifiers.RECIPE_SERIALIZERS.register(bus);
+        TicIntegrationDataKeys.init();
     }
-    public static ResourceLocation getResource(String name) {
-        return new ResourceLocation(AvaritiaIntegration.MOD_ID, name);
+
+    @Override
+    public void registerEvent(IEventBus modBus, IEventBus gameBus) {
+        modBus.addListener(TicIntegrationModifiers::registerSerializers);
     }
-    public static <T> TinkerDataCapability.TinkerDataKey<T> createKey(String name) {
-        return TinkerDataCapability.TinkerDataKey.of(getResource(name));
-    }
+
+    @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(TicIntegrationFluids.molten_blaze);
         output.accept(TicIntegrationFluids.molten_crystal_matrix);

@@ -21,7 +21,7 @@
 * This mod add capability between Re:Avaritia and many other mods.
 
 ## **✏️Authors:**
-- Programmer: `cnlimiter` `IAFEnvoy` `Frostbite-time` `Oganesson897` `cu6` `CreepingCreeper` `lostmyself8` `Lounode`
+- Programmer: `cnlimiter` `IAFEnvoy` `Frostbite-time` `CreepingCreeper` `Oganesson897` `cu6` `lostmyself8` `Lounode`
 - Artist: `MHanHanBing` `Neo-Tix`
 
 ## **🔒License:**

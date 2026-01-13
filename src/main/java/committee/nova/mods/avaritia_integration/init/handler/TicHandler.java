@@ -3,9 +3,8 @@ package committee.nova.mods.avaritia_integration.init.handler;
 import committee.nova.mods.avaritia.api.util.PlayerUtils;
 import committee.nova.mods.avaritia.init.handler.AbilityHandler;
 import committee.nova.mods.avaritia.init.registry.ModDamageTypes;
-import committee.nova.mods.avaritia_integration.module.tconstruct.AvaritiaDatakeys;
-import committee.nova.mods.avaritia_integration.module.tconstruct.AvaritiaModifierIds;
 import committee.nova.mods.avaritia_integration.module.tconstruct.TConstructModule;
+import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationDataKeys;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationModifiers;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationBlocks;
 import net.minecraft.server.level.ServerPlayer;
@@ -55,7 +54,7 @@ public class TicHandler {
         return ModList.get().isLoaded(TConstructModule.MOD_ID);
     }
     private static boolean isInfinity(ItemStack item){
-        return item.is(TinkerTags.Items.HARVEST_PRIMARY) && (getModifierLevel(item ,AvaritiaModifierIds.RuleOver) > 0 || getModifierLevel(item ,TicIntegrationModifiers.Crystalshine.getId()) > 0);
+        return item.is(TinkerTags.Items.HARVEST_PRIMARY) && (getModifierLevel(item ,TicIntegrationModifiers.RULE_OVER) > 0 || getModifierLevel(item ,TicIntegrationModifiers.CRYSTAL_SHINE.getId()) > 0);
     }
     @SubscribeEvent
     public static void onPlayerMine(PlayerInteractEvent.LeftClickBlock event) {
@@ -103,7 +102,7 @@ public class TicHandler {
             String key = player.getGameProfile().getName() + ":" + player.level().isClientSide;
             Optional<TinkerDataCapability.Holder> dataCap = player.getCapability(TinkerDataCapability.CAPABILITY).resolve();
             dataCap.ifPresent(data -> {
-                int x = data.get(AvaritiaDatakeys.Eternity, 0);
+                int x = data.get(TicIntegrationDataKeys.eternity, 0);
                 nightVision(player, key, x>1);
                 fly(player, key, x>2);
                 speedUp(player, key, x>4);
@@ -120,7 +119,7 @@ public class TicHandler {
                 player.getFoodData().setFoodLevel(20);
                 player.getFoodData().setSaturation(20f);
                 MobEffectInstance effect = player.getEffect(MobEffects.NIGHT_VISION);
-                if (effect == null || effect.duration<280) {
+                if (effect == null || effect.getDuration() < 280) {
                     player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0, false, false));
                 }
             } else {
@@ -249,7 +248,7 @@ public class TicHandler {
         }
         Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
         dataCap.ifPresent(data -> {
-            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3){
+            if (data.get(TicIntegrationDataKeys.eternity, 0) > 3){
                 if (!source.is(ModDamageTypes.INFINITY)) {
                     event.setCanceled(true);
                 } else{
@@ -269,7 +268,7 @@ public class TicHandler {
         }
         Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
         dataCap.ifPresent(data -> {
-            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3) {
+            if (data.get(TicIntegrationDataKeys.eternity, 0) > 3) {
                 event.setCanceled(true);
             }
         });
@@ -283,7 +282,7 @@ public class TicHandler {
         }
         Optional<TinkerDataCapability.Holder> dataCap = entity.getCapability(TinkerDataCapability.CAPABILITY).resolve();
         dataCap.ifPresent(data -> {
-            if (data.get(AvaritiaDatakeys.Eternity, 0) > 3){
+            if (data.get(TicIntegrationDataKeys.eternity, 0) > 3){
                 event.setAmount(0.0F);
                 entity.hurtTime = 0;
                 entity.deathTime = 0;
@@ -293,7 +292,7 @@ public class TicHandler {
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {
         if (event.isRecentlyHit() && event.getEntity() instanceof AbstractSkeleton && event.getSource().getEntity() instanceof Player player) {
-            ModifierId id = TicIntegrationModifiers.BlazeCrown.getId();
+            ModifierId id = TicIntegrationModifiers.BLAZE_CROWN.getId();
             if (getModifierLevel(player.getMainHandItem(), id) > 0) {
                 addDrop(event, new ItemStack(Items.WITHER_SKELETON_SKULL, 1));
             }
