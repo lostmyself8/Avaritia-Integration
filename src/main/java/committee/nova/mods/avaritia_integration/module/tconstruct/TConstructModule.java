@@ -6,6 +6,7 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 
@@ -25,12 +26,18 @@ public final class TConstructModule implements Module {
         TicRegistry.initRegisters();
         AvaritiaDatakeys.init();
     }
-
     public static ResourceLocation getResource(String name) {
         return new ResourceLocation(AvaritiaIntegration.MOD_ID, name);
     }
     public static <T> TinkerDataCapability.TinkerDataKey<T> createKey(String name) {
         return TinkerDataCapability.TinkerDataKey.of(getResource(name));
+    }
+    public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+        output.accept(TicIntegrationFluids.molten_blaze);
+        output.accept(TicIntegrationFluids.molten_crystal_matrix);
+        output.accept(TicIntegrationFluids.molten_star);
+        output.accept(TicIntegrationFluids.molten_neutron);
+        output.accept(TicIntegrationFluids.molten_infinity);
     }
 }
 
