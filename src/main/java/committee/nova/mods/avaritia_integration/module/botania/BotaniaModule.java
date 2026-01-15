@@ -35,6 +35,7 @@ import vazkii.botania.api.mana.ManaReceiver;
 import vazkii.botania.client.render.block_entity.ManaPoolBlockEntityRenderer;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
 import vazkii.botania.client.render.entity.ManaSparkRenderer;
+import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
 import vazkii.botania.common.lib.ResourceLocationHelper;
 import vazkii.botania.forge.CapabilityUtil;
 
@@ -103,7 +104,7 @@ public final class BotaniaModule implements Module {
         if (be instanceof SoarleanderBlockEntity tile)
             e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new BindableSpecialFlowerBlockEntity.BindableFlowerWandHud<>(tile)));
         if (be instanceof InfinityManaPoolBlockEntity tile)
-            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new InfinityManaPoolBlockEntity.WandHud(tile)));
+            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new ManaPoolBlockEntity.WandHud(tile)));
     }
 
     private static void attachEntityClientCapabilities(AttachCapabilitiesEvent<Entity> e) {
