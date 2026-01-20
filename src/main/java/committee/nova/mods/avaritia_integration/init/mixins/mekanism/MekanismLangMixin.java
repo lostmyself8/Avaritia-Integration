@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 @Mixin(value = MekanismLang.class, remap = false)
 public abstract class MekanismLangMixin implements ILangEntry {
+
     @Shadow(remap = false)
     @Final
     @Mutable

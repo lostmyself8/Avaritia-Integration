@@ -2,11 +2,11 @@ package committee.nova.mods.avaritia_integration.module.mekanism.client.jei;
 
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.mekanism.client.jei.machine.GasStackToItemStackRecipeCategory;
-import committee.nova.mods.avaritia_integration.module.mekanism.client.jei.machine.MekCompressorRecipeCategory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.MekIntegrationRecipeType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
 import mekanism.client.jei.CatalystRegistryHelper;
 import mekanism.client.jei.RecipeRegistryHelper;
+import mekanism.client.jei.machine.ItemStackToItemStackRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -30,7 +30,7 @@ public class MekIntegrationJEI implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new GasStackToItemStackRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COLLECTOR, MekIntegrationBlocks.NEUTRON_COLLECTOR));
-        registry.addRecipeCategories(new MekCompressorRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR, MekIntegrationBlocks.NEUTRON_COMPRESSOR));
+        registry.addRecipeCategories(new ItemStackToItemStackRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR, MekIntegrationBlocks.NEUTRON_COMPRESSOR));
     }
 
     @Override

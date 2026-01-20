@@ -1,6 +1,7 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.client;
 
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import committee.nova.mods.avaritia_integration.module.mekanism.client.gui.machine.GuiMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.client.gui.machine.GuiNeutronCollector;
 import committee.nova.mods.avaritia_integration.module.mekanism.client.gui.machine.GuiNeutronCompressor;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationContainerTypes;
@@ -24,6 +25,8 @@ public class MekIntegrationClientRegistration {
         event.register(Registries.MENU, helper -> {
             ClientRegistrationUtil.registerScreen(MekIntegrationContainerTypes.NEUTRON_COLLECTOR, GuiNeutronCollector::new);
             ClientRegistrationUtil.registerScreen(MekIntegrationContainerTypes.NEUTRON_COMPRESSOR, GuiNeutronCompressor::new);
+
+            ClientRegistrationUtil.registerScreen(MekIntegrationContainerTypes.FACTORY, GuiMIFactory::new);
         });
     }
 }

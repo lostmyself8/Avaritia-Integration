@@ -1,6 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.cache;
 
-import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.MekCompressorRecipe;
+import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.api.recipes.cache.OneInputCachedRecipe;
 import mekanism.api.recipes.ingredients.InputIngredient;
@@ -33,7 +33,7 @@ public class MekCompressorCachedRecipe<INPUT, OUTPUT, RECIPE extends MekanismRec
         super(recipe, recheckAllErrors, inputHandler, outputHandler, inputSupplier, outputGetter, inputEmptyCheck, outputEmptyCheck);
     }
 
-    public static MekCompressorCachedRecipe<@NotNull ItemStack, @NotNull ItemStack, MekCompressorRecipe> compressor(MekCompressorRecipe recipe,
+    public static MekCompressorCachedRecipe<@NotNull ItemStack, @NotNull ItemStack, ItemStackToItemStackRecipe> compressor(ItemStackToItemStackRecipe recipe,
                                                                                                                     BooleanSupplier recheckAllErrors, IInputHandler<@NotNull ItemStack> inputHandler, IOutputHandler<@NotNull ItemStack> outputHandler) {
         return new MekCompressorCachedRecipe<>(recipe, recheckAllErrors, inputHandler, outputHandler, recipe::getInput, recipe::getOutput, ItemStack::isEmpty,
                 ItemStack::isEmpty);

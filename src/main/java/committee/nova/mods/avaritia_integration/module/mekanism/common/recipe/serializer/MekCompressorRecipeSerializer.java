@@ -3,9 +3,9 @@ package committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.s
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.MekCompressorRecipe;
 import mekanism.api.JsonConstants;
 import mekanism.api.SerializerHelper;
+import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.ingredients.ItemStackIngredient;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.Mekanism;
@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MekCompressorRecipeSerializer<RECIPE extends MekCompressorRecipe> implements RecipeSerializer<RECIPE> {
+public class MekCompressorRecipeSerializer<RECIPE extends ItemStackToItemStackRecipe> implements RecipeSerializer<RECIPE> {
 
     private final IFactory<RECIPE> factory;
 
@@ -30,20 +30,11 @@ public class MekCompressorRecipeSerializer<RECIPE extends MekCompressorRecipe> i
         JsonElement itemInput = GsonHelper.isArrayNode(json, JsonConstants.ITEM_INPUT) ? GsonHelper.getAsJsonArray(json, JsonConstants.ITEM_INPUT) :
                 GsonHelper.getAsJsonObject(json, JsonConstants.ITEM_INPUT);
         ItemStackIngredient itemIngredient = IngredientCreatorAccess.item().deserialize(itemInput);
-        int inputCount = 1000;
-        int timeCost = 240;
-        JsonElement count = json.get("inputCount");
-        JsonElement cost = json.get("timeCost");
-        if (!GsonHelper.isNumberValue(count) || !GsonHelper.isNumberValue(cost)) {
-            throw new JsonSyntaxException("Expected inputCount not to be a number.");
-        }
-        inputCount = count.getAsJsonPrimitive().getAsInt();
-        timeCost = cost.getAsJsonPrimitive().getAsInt();
         ItemStack output = SerializerHelper.getItemStack(json, JsonConstants.OUTPUT);
         if (output.isEmpty()) {
             throw new JsonSyntaxException("Recipe output must not be empty.");
         }
-        return factory.create(recipeId, itemIngredient, output, inputCount, timeCost);
+        return factory.create(recipeId, itemIngredient, output);
     }
 
     @Override
@@ -51,9 +42,7 @@ public class MekCompressorRecipeSerializer<RECIPE extends MekCompressorRecipe> i
         try {
             ItemStackIngredient inputIngredient = IngredientCreatorAccess.item().read(buffer);
             ItemStack output = buffer.readItem();
-            int inputCount = buffer.readInt();
-            int timeCost = buffer.readInt();
-            return this.factory.create(recipeId, inputIngredient, output, inputCount, timeCost);
+            return this.factory.create(recipeId, inputIngredient, output);
         } catch (Exception e) {
             Mekanism.logger.error("Error reading Mek-compressor recipe from packet.", e);
             throw e;
@@ -71,7 +60,7 @@ public class MekCompressorRecipeSerializer<RECIPE extends MekCompressorRecipe> i
     }
 
     @FunctionalInterface
-    public interface IFactory<RECIPE extends MekCompressorRecipe> {
-        RECIPE create(ResourceLocation id, ItemStackIngredient input, ItemStack output, int inputCount, int timeCost);
+    public interface IFactory<RECIPE extends ItemStackToItemStackRecipe> {
+        RECIPE create(ResourceLocation id, ItemStackIngredient input, ItemStack output);
     }
 }

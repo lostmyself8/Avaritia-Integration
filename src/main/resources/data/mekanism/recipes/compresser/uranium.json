@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/uranium"
+      }
+    }
+  ],
+  "type": "avaritia_integration:compressor",
+  "input": {
+    "amount": 1000,
+    "ingredient": {
+      "tag": "forge:ingots/uranium"
+    }
+  },
+  "output": {
+    "item": "avaritia:singularity",
+    "nbt": {
+      "Id": "avaritia:uranium"
+    }
+  }
+}

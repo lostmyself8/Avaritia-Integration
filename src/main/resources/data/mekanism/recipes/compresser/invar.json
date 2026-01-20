@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots/invar"
+      }
+    }
+  ],
+  "type": "avaritia_integration:compressor",
+  "input": {
+    "amount": 1000,
+    "ingredient": {
+      "tag": "forge:ingots/invar"
+    }
+  },
+  "output": {
+    "item": "avaritia:singularity",
+    "nbt": {
+      "Id": "avaritia:invar"
+    }
+  }
+}

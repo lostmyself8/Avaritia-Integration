@@ -1,11 +1,10 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine;
 
-import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.MekCompressorRecipe;
 import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.cache.MekCompressorCachedRecipe;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.MekIntegrationRecipeType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
 import mekanism.api.IContentsListener;
-import mekanism.api.providers.IBlockProvider;
+import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.inputs.IInputHandler;
@@ -37,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityNeutronCompressor extends TileEntityProgressMachine<MekCompressorRecipe> implements ItemRecipeLookupHandler<MekCompressorRecipe> {
+public class TileEntityNeutronCompressor extends TileEntityProgressMachine<ItemStackToItemStackRecipe> implements ItemRecipeLookupHandler<ItemStackToItemStackRecipe> {
 
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -86,27 +85,29 @@ public class TileEntityNeutronCompressor extends TileEntityProgressMachine<MekCo
     }
 
     @Override
-    public void onCachedRecipeChanged(@Nullable CachedRecipe<MekCompressorRecipe> cachedRecipe, int cacheIndex) {
+    public void onCachedRecipeChanged(@Nullable CachedRecipe<ItemStackToItemStackRecipe> cachedRecipe, int cacheIndex) {
         super.onCachedRecipeChanged(cachedRecipe, cacheIndex);
     }
 
     @Override
     protected void onUpdateServer() {
         super.onUpdateServer();
+        energySlot.fillContainerOrConvert();
+        recipeCacheLookupMonitor.updateAndProcess();
     }
 
     @Override
-    public @NotNull IMekanismRecipeTypeProvider<MekCompressorRecipe, SingleItem<MekCompressorRecipe>> getRecipeType() {
+    public @NotNull IMekanismRecipeTypeProvider<ItemStackToItemStackRecipe, SingleItem<ItemStackToItemStackRecipe>> getRecipeType() {
         return MekIntegrationRecipeType.MEK_COMPRESSING;
     }
 
     @Override
-    public @Nullable MekCompressorRecipe getRecipe(int cacheIndex) {
+    public @Nullable ItemStackToItemStackRecipe getRecipe(int cacheIndex) {
         return getRecipeType().getInputCache().findFirstRecipe(level, inputHandler.getInput());
     }
 
     @Override
-    public @NotNull CachedRecipe<MekCompressorRecipe> createNewCachedRecipe(@NotNull MekCompressorRecipe recipe, int cacheIndex) {
+    public @NotNull CachedRecipe<ItemStackToItemStackRecipe> createNewCachedRecipe(@NotNull ItemStackToItemStackRecipe recipe, int cacheIndex) {
         return MekCompressorCachedRecipe.compressor(recipe, recheckAllRecipeErrors, inputHandler, outputHandler)
                 .setErrorsChanged(this::onErrorsChanged)
                 .setCanHolderFunction(() -> MekanismUtils.canFunction(this))

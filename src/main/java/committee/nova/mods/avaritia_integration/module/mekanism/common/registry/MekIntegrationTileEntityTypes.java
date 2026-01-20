@@ -1,11 +1,19 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.registry;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.content.blocktype.MekIntegrationFactoryType;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityCollectingFactory;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityCompressingFactory;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCollector;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCompressor;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.base.TileEntityMekanism;
+import mekanism.common.util.EnumUtils;
 
 public class MekIntegrationTileEntityTypes {
 
@@ -14,6 +22,19 @@ public class MekIntegrationTileEntityTypes {
     }
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(AvaritiaIntegration.MOD_ID);
 
+    private static final Table<FactoryTier, MekIntegrationFactoryType, TileEntityTypeRegistryObject<? extends TileEntityMIFactory<?>>> FACTORIES = HashBasedTable.create();
+
+    static {
+        for (FactoryTier tier : EnumUtils.FACTORY_TIERS) {
+            FACTORIES.put(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING, TILE_ENTITY_TYPES.register(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING), (pos, state) -> new TileEntityCollectingFactory(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
+            FACTORIES.put(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING, TILE_ENTITY_TYPES.register(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING), (pos, state) -> new TileEntityCompressingFactory(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
+        }
+    }
+
     public static final TileEntityTypeRegistryObject<TileEntityNeutronCollector> NEUTRON_COLLECTOR = TILE_ENTITY_TYPES.register(MekIntegrationBlocks.NEUTRON_COLLECTOR, TileEntityNeutronCollector::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     public static final TileEntityTypeRegistryObject<TileEntityNeutronCompressor> NEUTRON_COMPRESSOR = TILE_ENTITY_TYPES.register(MekIntegrationBlocks.NEUTRON_COMPRESSOR, TileEntityNeutronCompressor::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+
+    public static TileEntityTypeRegistryObject<? extends TileEntityMIFactory<?>> getFactoryTile(FactoryTier tier, MekIntegrationFactoryType type) {
+        return FACTORIES.get(tier, type);
+    }
 }

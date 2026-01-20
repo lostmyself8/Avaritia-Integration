@@ -5,8 +5,7 @@
   "refmap": "avaritia_integration.refmap.json",
   "mixins": [
     "mekanism.MekanismLangMixin",
-    "mekanism.MixinBlockShapes",
-    "mekanism.MixinFactoryType",
+    "mekanism.MixinPacketHandler",
     "mekanism.recipe.MixinMekanismRecipeType"
   ],
   "injectors": {
