@@ -13,10 +13,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 @NothingNullByDefault
 public class MekCompressorIRecipe extends ItemStackToItemStackRecipe {
 
-//    public MekCompressorIRecipe(Item item, ItemStackIngredient input, ItemStack output, int inputCount, int timeRequire) {
-//        this(Mekanism.rl("compressor/" + RegistryUtils.getName(item).toString().replace(':', '/')), input, output, inputCount, timeRequire);
-//    }
-
     public MekCompressorIRecipe(ResourceLocation id, ItemStackIngredient input, ItemStack output) {
         super(id, input, output);
     }

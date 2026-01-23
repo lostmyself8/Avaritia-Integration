@@ -73,7 +73,7 @@ public class GuiMIFactory extends GuiConfigurableTile<TileEntityMIFactory<?>, Me
     private GuiProgress addProgress(GuiProgress progressBar) {
         MekanismJEIRecipeType<?> jeiType = switch (tile.getFactoryType()) {
             case NEUTRON_COLLECTING -> MekIntegrationJEIRecipeType.NEUTRON_COLLECTOR;
-            case NEUTRON_COMPRESSING -> MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR;
+            case SINGULARITY_COMPRESSING -> MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR;
         };
         return addRenderableWidget(progressBar.jeiCategories(jeiType));
     }

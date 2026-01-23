@@ -30,7 +30,7 @@ public abstract class MekanismLangMixin implements ILangEntry {
         MekIntegrationLang.NEUTRON_COLLECTING = mekIntegration$addVariant("NEUTRON_COLLECTING", "factory", "neutron_collecting");
         MekIntegrationLang.DESCRIPTION_NEUTRON_COLLECTING = mekIntegration$addVariant("DESCRIPTION_NEUTRON_COLLECTING", "description", "neutron_collecting");
         MekIntegrationLang.NEUTRON_COMPRESSING = mekIntegration$addVariant("NEUTRON_COMPRESSING", "factory", "neutron_compressing");
-        MekIntegrationLang.DESCRIPTION_NEUTRON_COMPRESSING = mekIntegration$addVariant("DESCRIPTION_NEUTRON_COMPRESSING", "description", "neutron_compressing");
+        MekIntegrationLang.DESCRIPTION_SINGULARITY_COMPRESSING = mekIntegration$addVariant("DESCRIPTION_NEUTRON_COMPRESSING", "description", "neutron_compressing");
     }
 
     @Unique

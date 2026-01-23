@@ -68,7 +68,7 @@ public class MekIntegrationFactory<TILE extends TileEntityMIFactory<?>> extends 
 
         private static VoxelShape[] getShape(MekIntegrationFactoryType type) {
             return switch (type) {
-                case NEUTRON_COLLECTING, NEUTRON_COMPRESSING -> ENRICHING_FACTORY;
+                case NEUTRON_COLLECTING, SINGULARITY_COMPRESSING -> ENRICHING_FACTORY;
             };
         }
     }

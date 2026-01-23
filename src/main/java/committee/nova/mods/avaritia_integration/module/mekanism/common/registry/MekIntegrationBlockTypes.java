@@ -9,7 +9,7 @@ import committee.nova.mods.avaritia_integration.module.mekanism.common.content.b
 import committee.nova.mods.avaritia_integration.module.mekanism.common.content.blocktype.MekIntegrationFactoryMachine.MekIntegrationMachineBuilder;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.content.blocktype.MekIntegrationFactoryType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCollector;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCompressor;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntitySingularityCompressor;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.util.MekIntegrationEnumUtils;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.registries.MekanismSounds;
@@ -34,12 +34,12 @@ public class MekIntegrationBlockTypes {
             .build();
 
     // Neutron Compressor
-    public static final MekIntegrationFactoryMachine<TileEntityNeutronCompressor> NEUTRON_COMPRESSOR = MekIntegrationMachineBuilder
-            .createMekIntegrationFactoryMachine(() -> MekIntegrationTileEntityTypes.NEUTRON_COMPRESSOR, MekIntegrationLang.DESCRIPTION_NEUTRON_COLLECTING, MekIntegrationFactoryType.NEUTRON_COMPRESSING)
-            .withGui(() -> MekIntegrationContainerTypes.NEUTRON_COMPRESSOR)
+    public static final MekIntegrationFactoryMachine<TileEntitySingularityCompressor> SINGULARITY_COMPRESSOR = MekIntegrationMachineBuilder
+            .createMekIntegrationFactoryMachine(() -> MekIntegrationTileEntityTypes.SINGULARITY_COMPRESSOR, MekIntegrationLang.DESCRIPTION_SINGULARITY_COMPRESSING, MekIntegrationFactoryType.SINGULARITY_COMPRESSING)
+            .withGui(() -> MekIntegrationContainerTypes.SINGULARITY_COMPRESSOR)
             .withSound(MekanismSounds.CHEMICAL_CRYSTALLIZER)
             .withEnergyConfig(MekanismConfig.usage.chemicalCrystallizer, MekanismConfig.storage.chemicalCrystallizer)
-            .withComputerSupport("neutronCompressor")
+            .withComputerSupport("singularityCompressor")
             .build();
 
     static {

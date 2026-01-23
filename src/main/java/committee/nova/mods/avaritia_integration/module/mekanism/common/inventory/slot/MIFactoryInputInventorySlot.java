@@ -13,10 +13,6 @@ import java.util.Objects;
 @NothingNullByDefault
 public class MIFactoryInputInventorySlot extends InputInventorySlot {
 
-//    public static MIFactoryInputInventorySlot create(TileEntityItemToItemMIFactory<?> factory, int process, IInventorySlot outputSlot, @Nullable IContentsListener listener, int x, int y) {
-//        return create(factory, process, outputSlot, listener, x, y);
-//    }
-
     public static MIFactoryInputInventorySlot create(TileEntityItemToItemMIFactory<?> factory, int process, IInventorySlot outputSlot, @Nullable IContentsListener listener, int x, int y) {
         Objects.requireNonNull(factory, "Factory cannot be null");
         Objects.requireNonNull(outputSlot, "Output slot cannot be null");

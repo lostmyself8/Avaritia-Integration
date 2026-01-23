@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 @NothingNullByDefault
 public enum MekIntegrationFactoryType implements IHasTranslationKey {
     NEUTRON_COLLECTING("neutron_collecting", MekIntegrationLang.NEUTRON_COLLECTING, () -> MekIntegrationBlockTypes.NEUTRON_COLLECTOR, () -> MekIntegrationBlocks.NEUTRON_COLLECTOR),
-    NEUTRON_COMPRESSING("neutron_compressing", MekIntegrationLang.NEUTRON_COMPRESSING, () -> MekIntegrationBlockTypes.NEUTRON_COMPRESSOR, () -> MekIntegrationBlocks.NEUTRON_COMPRESSOR);
+    SINGULARITY_COMPRESSING("singularity_compressing", MekIntegrationLang.NEUTRON_COMPRESSING, () -> MekIntegrationBlockTypes.SINGULARITY_COMPRESSOR, () -> MekIntegrationBlocks.SINGULARITY_COMPRESSOR);
 
     private final String registryNameComponent;
     private final MekanismLang langEntry;

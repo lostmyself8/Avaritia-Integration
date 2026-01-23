@@ -1,12 +1,12 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine;
 
-import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.cache.MekCompressorCachedRecipe;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.MekIntegrationRecipeType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
 import mekanism.api.IContentsListener;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
+import mekanism.api.recipes.cache.OneInputCachedRecipe;
 import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityNeutronCompressor extends TileEntityProgressMachine<ItemStackToItemStackRecipe> implements ItemRecipeLookupHandler<ItemStackToItemStackRecipe> {
+public class TileEntitySingularityCompressor extends TileEntityProgressMachine<ItemStackToItemStackRecipe> implements ItemRecipeLookupHandler<ItemStackToItemStackRecipe> {
 
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -48,13 +48,13 @@ public class TileEntityNeutronCompressor extends TileEntityProgressMachine<ItemS
     private final IInputHandler<@NotNull ItemStack> inputHandler;
     private final IOutputHandler<@NotNull ItemStack> outputHandler;
 
-    private MachineEnergyContainer<TileEntityNeutronCompressor> energyContainer;
+    private MachineEnergyContainer<TileEntitySingularityCompressor> energyContainer;
     InputInventorySlot inputSlot;
     OutputInventorySlot outputSlot;
     EnergyInventorySlot energySlot;
 
-    public TileEntityNeutronCompressor(BlockPos pos, BlockState state) {
-        super(MekIntegrationBlocks.NEUTRON_COMPRESSOR, pos, state, TRACKED_ERROR_TYPES, 200);
+    public TileEntitySingularityCompressor(BlockPos pos, BlockState state) {
+        super(MekIntegrationBlocks.SINGULARITY_COMPRESSOR, pos, state, TRACKED_ERROR_TYPES, 200);
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
         configComponent.setupItemIOConfig(inputSlot, outputSlot, energySlot);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
@@ -108,7 +108,7 @@ public class TileEntityNeutronCompressor extends TileEntityProgressMachine<ItemS
 
     @Override
     public @NotNull CachedRecipe<ItemStackToItemStackRecipe> createNewCachedRecipe(@NotNull ItemStackToItemStackRecipe recipe, int cacheIndex) {
-        return MekCompressorCachedRecipe.compressor(recipe, recheckAllRecipeErrors, inputHandler, outputHandler)
+        return OneInputCachedRecipe.itemToItem(recipe, recheckAllRecipeErrors, inputHandler, outputHandler)
                 .setErrorsChanged(this::onErrorsChanged)
                 .setCanHolderFunction(() -> MekanismUtils.canFunction(this))
                 .setActive(this::setActive)
@@ -118,7 +118,7 @@ public class TileEntityNeutronCompressor extends TileEntityProgressMachine<ItemS
                 .setOperatingTicksChanged(this::setOperatingTicks);
     }
 
-    public MachineEnergyContainer<TileEntityNeutronCompressor> getEnergyContainer() {
+    public MachineEnergyContainer<TileEntitySingularityCompressor> getEnergyContainer() {
         return energyContainer;
     }
 }

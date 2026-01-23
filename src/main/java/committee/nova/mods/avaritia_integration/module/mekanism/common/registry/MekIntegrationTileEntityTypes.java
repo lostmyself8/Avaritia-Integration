@@ -8,7 +8,7 @@ import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.fact
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityCompressingFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCollector;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCompressor;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntitySingularityCompressor;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tier.FactoryTier;
@@ -27,12 +27,12 @@ public class MekIntegrationTileEntityTypes {
     static {
         for (FactoryTier tier : EnumUtils.FACTORY_TIERS) {
             FACTORIES.put(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING, TILE_ENTITY_TYPES.register(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING), (pos, state) -> new TileEntityCollectingFactory(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COLLECTING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
-            FACTORIES.put(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING, TILE_ENTITY_TYPES.register(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING), (pos, state) -> new TileEntityCompressingFactory(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.NEUTRON_COMPRESSING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
+            FACTORIES.put(tier, MekIntegrationFactoryType.SINGULARITY_COMPRESSING, TILE_ENTITY_TYPES.register(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.SINGULARITY_COMPRESSING), (pos, state) -> new TileEntityCompressingFactory(MekIntegrationBlocks.getMekIntegrationFactory(tier, MekIntegrationFactoryType.SINGULARITY_COMPRESSING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
         }
     }
 
     public static final TileEntityTypeRegistryObject<TileEntityNeutronCollector> NEUTRON_COLLECTOR = TILE_ENTITY_TYPES.register(MekIntegrationBlocks.NEUTRON_COLLECTOR, TileEntityNeutronCollector::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
-    public static final TileEntityTypeRegistryObject<TileEntityNeutronCompressor> NEUTRON_COMPRESSOR = TILE_ENTITY_TYPES.register(MekIntegrationBlocks.NEUTRON_COMPRESSOR, TileEntityNeutronCompressor::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntitySingularityCompressor> SINGULARITY_COMPRESSOR = TILE_ENTITY_TYPES.register(MekIntegrationBlocks.SINGULARITY_COMPRESSOR, TileEntitySingularityCompressor::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
 
     public static TileEntityTypeRegistryObject<? extends TileEntityMIFactory<?>> getFactoryTile(FactoryTier tier, MekIntegrationFactoryType type) {
         return FACTORIES.get(tier, type);

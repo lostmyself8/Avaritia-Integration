@@ -1,6 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.client.gui.machine;
 
-import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCompressor;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntitySingularityCompressor;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiUpArrow;
@@ -15,9 +15,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public class GuiNeutronCompressor extends GuiConfigurableTile<TileEntityNeutronCompressor, MekanismTileContainer<TileEntityNeutronCompressor>> {
+public class GuiSingularityCompressor extends GuiConfigurableTile<TileEntitySingularityCompressor, MekanismTileContainer<TileEntitySingularityCompressor>> {
 
-    public GuiNeutronCompressor(MekanismTileContainer<TileEntityNeutronCompressor> container, Inventory inv, Component title) {
+    public GuiSingularityCompressor(MekanismTileContainer<TileEntitySingularityCompressor> container, Inventory inv, Component title) {
         super(container, inv, title);
         dynamicSlots = true;
     }

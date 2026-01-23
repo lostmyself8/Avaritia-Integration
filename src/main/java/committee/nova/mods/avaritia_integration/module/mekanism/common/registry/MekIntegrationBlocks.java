@@ -9,7 +9,7 @@ import committee.nova.mods.avaritia_integration.module.mekanism.common.content.b
 import committee.nova.mods.avaritia_integration.module.mekanism.common.item.block.machine.ItemBlockMekIntegrationFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCollector;
-import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntityNeutronCompressor;
+import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine.TileEntitySingularityCompressor;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.util.MekIntegrationEnumUtils;
 import mekanism.api.tier.ITier;
 import mekanism.common.block.attribute.AttributeTier;
@@ -49,7 +49,7 @@ public class MekIntegrationBlocks {
     }
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityNeutronCollector, Machine<TileEntityNeutronCollector>>, ItemBlockMachine> NEUTRON_COLLECTOR = BLOCKS.register("neutron_collector", () -> new BlockTileModel<>(MekIntegrationBlockTypes.NEUTRON_COLLECTOR, properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())), ItemBlockMachine::new);
-    public static final BlockRegistryObject<BlockTileModel<TileEntityNeutronCompressor, Machine<TileEntityNeutronCompressor>>, ItemBlockMachine> NEUTRON_COMPRESSOR = BLOCKS.register("neutron_compressor", () -> new BlockTileModel<>(MekIntegrationBlockTypes.NEUTRON_COMPRESSOR, properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())), ItemBlockMachine::new);
+    public static final BlockRegistryObject<BlockTileModel<TileEntitySingularityCompressor, Machine<TileEntitySingularityCompressor>>, ItemBlockMachine> SINGULARITY_COMPRESSOR = BLOCKS.register("singularity_compressor", () -> new BlockTileModel<>(MekIntegrationBlockTypes.SINGULARITY_COMPRESSOR, properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())), ItemBlockMachine::new);
 
 
     private static <TILE extends TileEntityMIFactory<?>> BlockRegistryObject<BlockMekIntegrationFactory<?>, ItemBlockMekIntegrationFactory> registerFactory(MekIntegrationFactory<TILE> type) {

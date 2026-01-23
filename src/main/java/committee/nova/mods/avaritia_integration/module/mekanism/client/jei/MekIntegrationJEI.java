@@ -30,7 +30,7 @@ public class MekIntegrationJEI implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new GasStackToItemStackRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COLLECTOR, MekIntegrationBlocks.NEUTRON_COLLECTOR));
-        registry.addRecipeCategories(new ItemStackToItemStackRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR, MekIntegrationBlocks.NEUTRON_COMPRESSOR));
+        registry.addRecipeCategories(new ItemStackToItemStackRecipeCategory(guiHelper, MekIntegrationJEIRecipeType.NEUTRON_COMPRESSOR, MekIntegrationBlocks.SINGULARITY_COMPRESSOR));
     }
 
     @Override
@@ -42,6 +42,6 @@ public class MekIntegrationJEI implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registry) {
         CatalystRegistryHelper.register(registry, MekIntegrationBlocks.NEUTRON_COLLECTOR);
-        CatalystRegistryHelper.register(registry, MekIntegrationBlocks.NEUTRON_COMPRESSOR);
+        CatalystRegistryHelper.register(registry, MekIntegrationBlocks.SINGULARITY_COMPRESSOR);
     }
 }
