@@ -1,0 +1,40 @@
+{
+  "type": "avaritia:shaped_table",
+  "category": "equipment",
+  "key": {
+    "d": {
+      "item": "avaritia:neutron_ingot"
+    },
+    "f": {
+      "item": "bloodmagic:vengefulcrystal"
+    },
+    "q": {
+      "item": "bloodmagic:archmagebloodorb"
+    },
+    "r": {
+      "item": "avaritia:infinity_ingot"
+    },
+    "s": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "x": {
+      "item": "bloodmagic:strong_tau"
+    }
+  },
+  "pattern": [
+    "         ",
+    "   rrr   ",
+    "  rqsqr  ",
+    "  rsfsr  ",
+    " drxsxrd ",
+    "dddrrrddd",
+    " ddddddd ",
+    "  ddddd  ",
+    "         "
+  ],
+  "result": {
+    "item": "avaritia_integration:blood_orb_of_armok"
+  },
+  "show_notification": true,
+  "tier": 4
+}

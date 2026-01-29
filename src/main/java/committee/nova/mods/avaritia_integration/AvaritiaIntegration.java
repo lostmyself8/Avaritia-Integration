@@ -1,6 +1,7 @@
 package committee.nova.mods.avaritia_integration;
 
 import com.mojang.logging.LogUtils;
+import committee.nova.mods.avaritia_integration.init.data.AIDataGen;
 import committee.nova.mods.avaritia_integration.init.registry.AICreativeTabs;
 import committee.nova.mods.avaritia_integration.init.registry.AIItems;
 import committee.nova.mods.avaritia_integration.module.ModuleManager;
@@ -20,6 +21,7 @@ public class AvaritiaIntegration {
         AICreativeTabs.REGISTRY.register(bus);
         AIItems.REGISTRY.register(bus);
         ModuleManager.loadModules(bus);
+        bus.addListener(AIDataGen::gatherData);
     }
 
     public static ResourceLocation rl(String name) {
