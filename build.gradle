@@ -186,23 +186,34 @@ tasks.named('jar', Jar).configure {
     finalizedBy 'reobfJar'
 }
 
+
 publishing {
     publications {
-        register('mavenJava', MavenPublication) {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId = project.mod_id + "-" + project.mod_platform
+            version = project.version
+
             artifact jar
         }
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            name = "Local"
+            url = file("build/repo").toURI()
+        }
+        maven {
+            name 'Releases'
+            url = 'https://maven.nova-committee.cn/releases'
+
+            credentials {
+                username System.getenv('MAVEN_USERNAME')
+                password System.getenv('MAVEN_PASSWORD')
+            }
         }
     }
 }
-Map<String, String> commonSystemProperties = [
-        'forge.logging.console.level': 'debug',
-        "mixin.debug.export": "true",
-        "mixin.config":"${mod_id}.mixins.json"
-]
+
 
 mixin {
     add(sourceSets.main, "${mod_id}.refmap.json")
