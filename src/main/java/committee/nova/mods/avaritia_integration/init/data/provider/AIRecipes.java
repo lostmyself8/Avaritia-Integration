@@ -2,7 +2,6 @@ package committee.nova.mods.avaritia_integration.init.data.provider;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import com.enderio.base.common.init.EIOItems;
 import committee.nova.mods.avaritia.init.data.provider.recipe.ModExtremeSmithingRecipeBuilder;
 import committee.nova.mods.avaritia.init.data.provider.recipe.ModShapedRecipeBuilder;
 import committee.nova.mods.avaritia.init.registry.ModItems;
@@ -23,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.item.BotaniaItems;
 import wayoftime.bloodmagic.common.item.BloodMagicItems;
@@ -35,7 +35,7 @@ public class AIRecipes extends RecipeProvider implements IConditionBuilder {
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         InventoryChangeTrigger.TriggerInstance lul = has(Items.AIR);
 
         //Slash Blade
