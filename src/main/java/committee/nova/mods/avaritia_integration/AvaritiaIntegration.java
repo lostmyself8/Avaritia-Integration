@@ -16,6 +16,7 @@ public class AvaritiaIntegration {
     public static final String MOD_ID = "avaritia_integration";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    @SuppressWarnings("removal")
     public AvaritiaIntegration() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         AICreativeTabs.REGISTRY.register(bus);
