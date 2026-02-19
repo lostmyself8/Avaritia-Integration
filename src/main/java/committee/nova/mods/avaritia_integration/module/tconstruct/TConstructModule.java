@@ -31,10 +31,6 @@ public final class TConstructModule implements Module {
 
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(TicIntegrationFluids.molten_blaze);
-        output.accept(TicIntegrationFluids.molten_crystal_matrix);
-        output.accept(TicIntegrationFluids.molten_star);
-        output.accept(TicIntegrationFluids.molten_neutron);
         output.accept(TicIntegrationFluids.molten_infinity);
     }
 }
