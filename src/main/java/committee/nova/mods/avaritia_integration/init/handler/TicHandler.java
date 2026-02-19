@@ -291,7 +291,7 @@ public class TicHandler {
     }
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {
-        if (event.isRecentlyHit() && event.getEntity() instanceof AbstractSkeleton && event.getSource().getEntity() instanceof Player player) {
+        if (isLoaded() && event.isRecentlyHit() && event.getEntity() instanceof AbstractSkeleton && event.getSource().getEntity() instanceof Player player) {
             ModifierId id = TicIntegrationModifiers.BLAZE_CROWN.getId();
             if (getModifierLevel(player.getMainHandItem(), id) > 0) {
                 addDrop(event, new ItemStack(Items.WITHER_SKELETON_SKULL, 1));
