@@ -1,24 +1,51 @@
 package committee.nova.mods.avaritia_integration.module.create;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
+import committee.nova.mods.avaritia_integration.module.create.content.BoilerHeaters;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationBlockEntityTypes;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationItems;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationPartialModels;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 @ModuleEntry(id = CreateModule.MOD_ID, target = @ModMeta(CreateModule.MOD_ID))
 public final class CreateModule implements Module {
     public static final String MOD_ID = "create";
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(AvaritiaIntegration.MOD_ID);
 
     @Override
     public void init(IEventBus registryBus) {
+        REGISTRATE.registerEventListeners(registryBus);
         CreateIntegrationItems.REGISTRY.register(registryBus);
+        CreateIntegrationBlocks.register();
+        CreateIntegrationBlockEntityTypes.register();
+        CreateIntegrationItems.register();
+    }
+
+    @Override
+    public void process() {
+        BoilerHeaters.registerDefaults();
+    }
+
+    @Override
+    public void initClient() {
+        CreateIntegrationPartialModels.init();
     }
 
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(CreateIntegrationItems.CREATIVE_MECHANISM.get());
         output.accept(CreateIntegrationItems.CREATIVE_COMPOUND.get());
+        output.accept(CreateIntegrationItems.STAR_BLAZE_CAKE.get());
+        output.accept(CreateIntegrationItems.STAR_BLAZE_CAKE_BASE.get());
+        output.accept(CreateIntegrationItems.BLAZE_BLAZE_CAKE.get());
+        output.accept(CreateIntegrationItems.BLAZE_BLAZE_CAKE_BASE.get());
+
+        output.accept(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.asItem());
     }
 }

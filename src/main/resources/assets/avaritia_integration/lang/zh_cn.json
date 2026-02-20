@@ -83,6 +83,11 @@
 
   "item.avaritia_integration.creative_mechanism": "创世构件",
   "item.avaritia_integration.creative_compound": "创世化合物",
+  "item.avaritia_integration.blaze_blaze_cake": "炽骨烈焰蛋糕",
+  "item.avaritia_integration.blaze_blaze_cake_base": "炽骨烈焰蛋糕胚",
+  "item.avaritia_integration.star_blaze_cake": "恒星烈焰蛋糕",
+  "item.avaritia_integration.star_blaze_cake_base": "恒星烈焰蛋糕胚",
+  "block.avaritia_integration.extreme_blaze_burner": "终焉烈焰人燃烧室",
 
   "item.avaritia_integration.infinity_me_storage_component": "无尽ME存储组件",
   "item.avaritia_integration.infinity_me_storage_cell": "无尽ME存储元件",
