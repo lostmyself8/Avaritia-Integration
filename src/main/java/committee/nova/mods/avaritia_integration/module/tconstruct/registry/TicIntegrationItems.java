@@ -18,4 +18,5 @@ public class TicIntegrationItems{
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(AvaritiaIntegration.MOD_ID);
     public static final ItemObject<ArrowItem> HeavenArrowItem = ITEMS.register("heaven_arrow", () -> new HeavenArrowItem(new Item.Properties().rarity(ModRarities.COSMIC)));
     public static final ItemObject<ArrowItem> TraceArrowItem = ITEMS.register("trace_arrow", () -> new TraceArrowItem(new Item.Properties().rarity(ModRarities.COSMIC)));
+    public static final ItemObject<BucketItem> MoltenInfinityBucket = ITEMS.register("molten_infinity_bucket", () -> new BucketItem(TicIntegrationFluids.molten_infinity, new Item.Properties().stacksTo(1).rarity(ModRarities.COSMIC)));
 }

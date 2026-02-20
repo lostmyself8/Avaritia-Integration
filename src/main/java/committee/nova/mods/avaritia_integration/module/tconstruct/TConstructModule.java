@@ -31,7 +31,7 @@ public final class TConstructModule implements Module {
 
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(TicIntegrationFluids.molten_infinity);
+        output.accept(TicIntegrationItems.MoltenInfinityBucket);
     }
 }
 
