@@ -1,7 +1,13 @@
 {
-  "parent": "avaritia_integration:item/halo_bucket_drip",
-  "flip_gas": true,
-  "fluid": "avaritia_integration:molten_infinity",
-  "loader": "forge:fluid_container"
+  "parent": "avaritia_integration:item/molten_infinity_bucket_base",
+  "textures": {
+    "halo": "avaritia:misc/halo"
+  },
+  "loader": "avaritia:halo",
+  "halo": {
+    "texture": "#halo",
+    "color": -16777216,
+    "size": 10,
+    "pulse": false
+  }
 }
-
