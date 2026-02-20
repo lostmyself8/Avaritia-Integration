@@ -10,6 +10,7 @@ import committee.nova.mods.avaritia_integration.module.bloodmagic.registry.Blood
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.enderio.registry.EnderIOIntegrationItems;
+import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.slashblade.registry.SlashBladeIntegrationItems;
 import mods.flammpfeil.slashblade.init.SBItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -191,5 +192,9 @@ public class AIRecipes extends RecipeProvider implements IConditionBuilder {
                 .define('d', ModItems.neutron_ingot.get())
                 .showNotification(true)
                 .unlockedBy("has_item", has(ModItems.infinity_ingot.get())).save(consumer);
+
+
+        //Industrial Foregoing
+        IndustrialForegoingIntegrationItems.ADDONS.values().forEach(addon -> addon.get().registerRecipe(consumer));
     }
 }

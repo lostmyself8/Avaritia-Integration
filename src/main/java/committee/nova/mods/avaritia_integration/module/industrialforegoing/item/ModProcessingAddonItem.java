@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.industrialforegoing.item;
 
+import com.buuz135.industrial.item.addon.ProcessingAddonItem;
 import com.hrznstudio.titanium.api.augment.IAugmentType;
 import com.hrznstudio.titanium.item.AugmentWrapper;
 import com.hrznstudio.titanium.item.BasicItem;
@@ -16,23 +17,20 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ModProcessingAddonItem extends AddonItem{
-    public static final IAugmentType PROCESSING = () -> {
-        return "Processing";
-    };
-    public ModProcessingAddonItem(int tier, String materialName) {
+    public ModProcessingAddonItem(int tier, Component materialName) {
         super(tier,materialName);
     }
 
     @Override
     public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level worldIn, @NotNull Player playerIn) {
         super.onCraftedBy(stack, worldIn, playerIn);
-        AugmentWrapper.setType(stack, PROCESSING, (float)(1 + this.tier));
+        AugmentWrapper.setType(stack, ProcessingAddonItem.PROCESSING, (float)(1 + this.tier));
     }
 
     @Override
     public @NotNull String getDescriptionId() {
         String addon = Component.translatable("item.industrialforegoing.addon").getString();
-        return addon + Component.translatable("item.industrialforegoing.processing").getString() + "Tier" + materialName + " ";
+        return addon + Component.translatable("item.industrialforegoing.processing").getString() + "Tier " + materialName.getString() + " ";
     }
 
     @Override

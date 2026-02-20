@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.industrialforegoing;
 
+import com.buuz135.industrial.item.addon.ProcessingAddonItem;
 import com.hrznstudio.titanium.api.augment.AugmentTypes;
 import com.hrznstudio.titanium.item.AugmentWrapper;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
@@ -8,6 +9,8 @@ import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.item.ModEfficiencyAddonItem;
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.item.ModProcessingAddonItem;
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.item.ModSpeedAddonItem;
+import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationBlocks;
+import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationFluids;
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +21,10 @@ public final class IndustrialForegoingModule implements Module {
     public static final String MOD_ID = "industrialforegoing";
     @Override
     public void init(IEventBus registryBus) {
-        IndustrialForegoingIntegrationItems.REGISTRY.register(registryBus);
+        IndustrialForegoingIntegrationItems.ITEMS.register(registryBus);
+        IndustrialForegoingIntegrationBlocks.BLOCKS.register(registryBus);
+        IndustrialForegoingIntegrationFluids.FLUIDS.register(registryBus);
+        IndustrialForegoingIntegrationFluids.FLUID_TYPES.register(registryBus);
     }
 
     @Override
@@ -30,7 +36,7 @@ public final class IndustrialForegoingModule implements Module {
                 output.accept(stack);
             }else if(obj.get() instanceof ModProcessingAddonItem processingAddonItem){
                 ItemStack stack = new ItemStack(processingAddonItem);
-                AugmentWrapper.setType(stack, ModProcessingAddonItem.PROCESSING, (float)(1 + processingAddonItem.getTier()));
+                AugmentWrapper.setType(stack, ProcessingAddonItem.PROCESSING, (float)(1 + processingAddonItem.getTier()));
                 output.accept(stack);
             }else if(obj.get() instanceof ModEfficiencyAddonItem efficiencyAddonItem){
                 ItemStack stack = new ItemStack(efficiencyAddonItem);
@@ -38,5 +44,7 @@ public final class IndustrialForegoingModule implements Module {
                 output.accept(stack);
             }
         });
+        output.accept(IndustrialForegoingIntegrationFluids.ELDERLY_MEDULLA.getBucketFluid().get());
+        output.accept(IndustrialForegoingIntegrationFluids.VOID_MATTER.getBucketFluid().get());
     }
 }

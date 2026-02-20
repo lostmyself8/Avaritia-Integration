@@ -100,6 +100,16 @@
 
   "tooltip.avaritia_integration.cooldown_amount": "Cooldown Amount",
   "tooltip.avaritia_integration.cooldown_time": "Cooldown Time",
+  "addon.avaritia_integration.neutron": "§eNeutron",
+  "addon.avaritia_integration.blaze_cube": "§bBlaze Cube",
+  "addon.avaritia_integration.crystal_matrix": "§bCrystal Matrix",
+  "addon.avaritia_integration.infinity": "§dInfinity",
+  "fluid_type.avaritia_integration.void_matter": "Void Matter",
+  "fluid_type.avaritia_integration.elderly_medulla": "Elderly Medulla",
+  "block.avaritia_integration.void_matter": "Void Matter",
+  "block.avaritia_integration.elderly_medulla": "Elderly Medulla",
+  "item.avaritia_integration.void_matter_bucket": "Void Matter Bucket",
+  "item.avaritia_integration.elderly_medulla_bucket": "Elderly Medulla Bucket",
 
   "block.avaritia_integration.molten_blaze_fluid": "Molten Blaze",
   "fluid.avaritia_integration.molten_blaze": "Molten Blaze",

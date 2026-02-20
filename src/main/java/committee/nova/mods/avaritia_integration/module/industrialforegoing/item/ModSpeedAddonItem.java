@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ModSpeedAddonItem extends AddonItem{
-    public ModSpeedAddonItem(int tier, String materialName) {
+    public ModSpeedAddonItem(int tier, Component materialName) {
         super(tier,materialName);
     }
 
@@ -27,7 +27,7 @@ public class ModSpeedAddonItem extends AddonItem{
     @Override
     public @NotNull String getDescriptionId() {
         String addon = Component.translatable("item.industrialforegoing.addon").getString();
-        return addon + Component.translatable("item.industrialforegoing.speed").getString() + "Tier" + materialName + " ";
+        return addon + Component.translatable("item.industrialforegoing.speed").getString() + "Tier " + materialName.getString() + " ";
     }
 
     @Override

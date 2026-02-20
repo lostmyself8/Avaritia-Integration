@@ -23,8 +23,8 @@ import java.util.function.Consumer;
 
 public abstract class AddonItem extends Item implements IRecipeProvider {
     protected final int tier;
-    protected final String materialName;
-    public AddonItem(int tier, String materialName){
+    protected final Component materialName;
+    public AddonItem(int tier, Component materialName){
         super(new Properties().stacksTo(16));
         this.tier = tier;
         this.materialName = materialName;
