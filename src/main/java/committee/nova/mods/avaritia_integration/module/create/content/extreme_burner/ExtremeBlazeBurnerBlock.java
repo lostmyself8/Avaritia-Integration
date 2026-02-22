@@ -2,14 +2,12 @@ package committee.nova.mods.avaritia_integration.module.create.content.extreme_b
 
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllShapes;
-import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.content.logistics.stockTicker.StockTickerBlockEntity;
 import com.simibubi.create.content.logistics.stockTicker.StockTickerInteractionHandler;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
-import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.simibubi.create.foundation.block.IBE;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
@@ -50,13 +48,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.util.FakePlayer;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implements IBE<ExtremeBlazeBurnerBlockEntity>, IWrenchable, SpecialBlockItemRequirement {
+public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implements IBE<ExtremeBlazeBurnerBlockEntity>, IWrenchable {
     public static final EnumProperty<ExtremeHeatLevel> EXTREME_HEAT_LEVEL = EnumProperty.create("extreme_blaze", ExtremeHeatLevel.class);
 
     public ExtremeBlazeBurnerBlock(Properties properties) {
@@ -224,14 +221,6 @@ public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implemen
     public static int getLight(BlockState state) {
         ExtremeHeatLevel level = state.getValue(EXTREME_HEAT_LEVEL);
         return level == ExtremeHeatLevel.SMOULDERING ? 8 : 15;
-    }
-
-    //TODO 是否要LootTable?
-
-    //TODO 验证是否需要特殊打印材料要求
-    @Override
-    public ItemRequirement getRequiredItems(BlockState state, @Nullable BlockEntity blockEntity) {
-        return new ItemRequirement(ItemRequirement.ItemUseType.CONSUME, CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.asStack());
     }
 
     public static void blockStateDataGen(DataGenContext<Block, ExtremeBlazeBurnerBlock> c, RegistrateBlockstateProvider p) {

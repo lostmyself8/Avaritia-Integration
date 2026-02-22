@@ -4,7 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "avaritia_integration.refmap.json",
   "mixins": [
-
+    "create.BasinOperatingBlockEntityMixin",
+    "create.MechanicalMixerBlockEntityMixin",
+    "create.RegistrateDisplayItemsGeneratorMixin",
+    "create.accessor.BasinBlockEntityAccessor",
+    "create.accessor.BasinOperatingBlockEntityAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

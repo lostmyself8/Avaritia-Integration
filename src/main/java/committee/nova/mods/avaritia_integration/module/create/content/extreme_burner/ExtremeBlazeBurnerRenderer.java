@@ -8,6 +8,7 @@ import com.simibubi.create.content.contraptions.render.ContraptionMatrices;
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer;
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationPartialModels;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationSpriteShifts;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.animation.LerpedFloat;
@@ -80,7 +81,7 @@ public class ExtremeBlazeBurnerRenderer extends SafeBlockEntityRenderer<ExtremeB
 
         if (canDrawFlame && blockAbove) {
             SpriteShiftEntry spriteShift =
-                    heatLevel == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.STAR ? CreateIntegrationPartialModels.STAR_BURNER_FLAME : CreateIntegrationPartialModels.BLAZE_BURNER_FLAME;
+                    heatLevel == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.STAR ? CreateIntegrationSpriteShifts.STAR_BURNER_FLAME : CreateIntegrationSpriteShifts.BLAZE_BURNER_FLAME;
 
             float spriteWidth = spriteShift.getTarget()
                     .getU1()

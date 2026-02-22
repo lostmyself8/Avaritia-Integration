@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.processing.burner.ScrollInstance;
 import com.simibubi.create.foundation.render.AllInstanceTypes;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationPartialModels;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationSpriteShifts;
 import dev.engine_room.flywheel.api.instance.Instance;
 import dev.engine_room.flywheel.api.visual.DynamicVisual;
 import dev.engine_room.flywheel.api.visual.TickableVisual;
@@ -214,7 +215,7 @@ public class ExtremeBlazeBurnerVisual extends AbstractBlockEntityVisual<ExtremeB
                 .light(LightTexture.FULL_BRIGHT);
 
         SpriteShiftEntry spriteShift =
-                heatLevel == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.STAR ? CreateIntegrationPartialModels.STAR_BURNER_FLAME : CreateIntegrationPartialModels.BLAZE_BURNER_FLAME;
+                heatLevel == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.STAR ? CreateIntegrationSpriteShifts.STAR_BURNER_FLAME : CreateIntegrationSpriteShifts.BLAZE_BURNER_FLAME;
 
         float spriteWidth = spriteShift.getTarget()
                 .getU1()

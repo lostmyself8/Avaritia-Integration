@@ -1,11 +1,7 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
-import com.simibubi.create.Create;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
-import net.createmod.catnip.render.SpriteShiftEntry;
-import net.createmod.catnip.render.SpriteShifter;
-import net.minecraft.resources.ResourceLocation;
 
 public class CreateIntegrationPartialModels {
     public static final PartialModel EXTREME_BLAZE_INERT = block("extreme_blaze_burner/blaze/inert");
@@ -17,12 +13,13 @@ public class CreateIntegrationPartialModels {
     public static final PartialModel BLAZE_BURNER_STAR_RODS_2 = block("extreme_blaze_burner/starheated_rods_large");
     public static final PartialModel BLAZE_BURNER_BLAZE_RODS = block("extreme_blaze_burner/blazeheated_rods_small");
     public static final PartialModel BLAZE_BURNER_BLAZE_RODS_2 = block("extreme_blaze_burner/blazeheated_rods_large");
-
-    public static final SpriteShiftEntry STAR_BURNER_FLAME = SpriteShifter.get(Create.asResource("block/blaze_burner_flame"), new ResourceLocation(AvaritiaIntegration.MOD_ID, "block/create/blaze_burner_flame_starheated_scroll"));
-    public static final SpriteShiftEntry BLAZE_BURNER_FLAME = SpriteShifter.get(Create.asResource("block/blaze_burner_flame"), new ResourceLocation(AvaritiaIntegration.MOD_ID, "block/create/blaze_burner_flame_blazeheated_scroll"));
+    public static final PartialModel NEUTRON_MECHANICAL_PRESS_HEAD = block("neutron_mechanical_press/head");
+    public static final PartialModel MATRIX_MECHANICAL_MIXER_POLE = block("matrix_mechanical_mixer/pole");
+    public static final PartialModel MATRIX_MECHANICAL_MIXER_HEAD = block("matrix_mechanical_mixer/head");
+    public static final PartialModel MATRIX_MECHANICAL_MIXER_COGWHEEL = block("matrix_mechanical_mixer/cogwheel");
 
     private static PartialModel block(String path) {
-        return PartialModel.of(new ResourceLocation(AvaritiaIntegration.MOD_ID, "block/create/" + path));
+        return PartialModel.of(AvaritiaIntegration.rl("block/create/" + path));
     }
 
     public static void init() {

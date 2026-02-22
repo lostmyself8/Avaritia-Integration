@@ -12,7 +12,6 @@ public class BoilerHeaters {
         BoilerHeater.REGISTRY.register(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.get(), BoilerHeaters::extremeBlazeBurner);
     }
 
-    //TODO 确定每一个状态的热量
     public static int extremeBlazeBurner(Level level, BlockPos pos, BlockState state) {
         ExtremeBlazeBurnerBlock.ExtremeHeatLevel value = state.getValue(ExtremeBlazeBurnerBlock.EXTREME_HEAT_LEVEL);
         if (value == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.STAR) {

@@ -8,6 +8,9 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import committee.nova.mods.avaritia.init.registry.ModItems;
+import committee.nova.mods.avaritia_integration.module.create.compat.CompatInfo;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.CCALiquidBlazeBurnerCompat;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.ICCABurnerCompat;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationTags;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
@@ -27,10 +30,16 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
@@ -39,10 +48,15 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
     public boolean isCreative;
     public boolean goggles;
     public boolean hat;
+    public boolean hasStraw;
 
     protected FuelType activeFuel;
     protected int remainingBurnTime;
     protected LerpedFloat headAngle;
+
+    protected ICCABurnerCompat fluidInventory = null;
+
+    public Fluid lastFluid = null;
 
     public ExtremeBlazeBurnerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -53,9 +67,14 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
         isCreative = false;
         goggles = false;
         stockKeeper = false;
+        hasStraw = false;
 
         headAngle.startWithValue((AngleHelper.horizontalAngle(state.getOptionalValue(ExtremeBlazeBurnerBlock.FACING)
                 .orElse(Direction.SOUTH)) + 180) % 360);
+
+        if (CompatInfo.isCCALoaded()) {
+            this.fluidInventory = new CCALiquidBlazeBurnerCompat(this);
+        }
     }
 
     public FuelType getActiveFuel() {
@@ -101,6 +120,13 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
     public void lazyTick() {
         super.lazyTick();
         stockKeeper = BlazeBurnerBlockEntity.getStockTicker(level, worldPosition) != null;
+    }
+
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.FLUID_HANDLER && fluidInventory != null)
+            return LazyOptional.of(() -> fluidInventory.getFluidInventory()).cast();
+        return super.getCapability(cap, side);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -156,6 +182,8 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
             compound.putBoolean("Goggles", true);
         if (hat)
             compound.putBoolean("TrainHat", true);
+        if (hasStraw)
+            compound.putBoolean("Straw", true);
         super.write(compound, clientPacket);
     }
 
@@ -166,6 +194,7 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity {
         isCreative = compound.getBoolean("isCreative");
         goggles = compound.contains("Goggles");
         hat = compound.contains("TrainHat");
+        hasStraw = compound.getBoolean("Straw");
         super.read(compound, clientPacket);
     }
 
