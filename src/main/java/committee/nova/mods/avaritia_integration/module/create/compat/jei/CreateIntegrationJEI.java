@@ -11,7 +11,10 @@ import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.simibubi.create.infrastructure.config.CRecipes;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import committee.nova.mods.avaritia_integration.module.create.compat.CompatInfo;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.liquid_burning.LiquidBurningRecipe;
 import committee.nova.mods.avaritia_integration.module.create.compat.jei.category.ExtremeMixingCategory;
+import committee.nova.mods.avaritia_integration.module.create.compat.jei.category.LiquidBurningCategory;
 import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeBasinRecipe;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
@@ -65,6 +68,15 @@ public class CreateIntegrationJEI implements IModPlugin {
                 .doubleItemIcon(AllBlocks.MECHANICAL_MIXER.get(), CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.get())
                 .emptyBackground(177, 103)
                 .build("extreme_mixing", ExtremeMixingCategory::standard);
+
+        if (CompatInfo.isCCALoaded()) {
+            CreateRecipeCategory<?> liquidBurning = builder(LiquidBurningRecipe.class)
+                    .addTypedRecipes(CreateIntegrationRecipeTypes.LIQUID_BURNING)
+                    .catalyst(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER::get)
+                    .itemIcon(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.get())
+                    .emptyBackground(177, 53)
+                    .build("liquid_burning", LiquidBurningCategory::new);
+        }
     }
 
     private <T extends Recipe<?>> CategoryBuilder<T> builder(Class<? extends T> recipeClass) {

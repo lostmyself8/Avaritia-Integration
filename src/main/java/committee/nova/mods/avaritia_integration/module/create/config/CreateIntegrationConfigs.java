@@ -43,7 +43,7 @@ public class CreateIntegrationConfigs {
         server = register(CIServer::new, ModConfig.Type.SERVER);
 
         for (Map.Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet())
-            context.registerConfig(pair.getKey(), pair.getValue().specification);
+            context.registerConfig(pair.getKey(), pair.getValue().specification, "avaritia-integration-create-integration.toml");
 
         CIStress stress = server().kinetics.stressValues;
         BlockStressValues.IMPACTS.registerProvider(stress::getImpact);

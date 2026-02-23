@@ -9,6 +9,7 @@ public class CreateIntegrationPartialModels {
     public static final PartialModel BLAZE_STAR_ACTIVE = block("extreme_blaze_burner/blaze/star_active");
     public static final PartialModel BLAZE_BLAZE = block("extreme_blaze_burner/blaze/blaze");
     public static final PartialModel BLAZE_BLAZE_ACTIVE = block("extreme_blaze_burner/blaze/blaze_active");
+    public static final PartialModel CCA_LIQUID_HAT = block("extreme_blaze_burner/hat/cca/liquid_hat");
     public static final PartialModel BLAZE_BURNER_STAR_RODS = block("extreme_blaze_burner/starheated_rods_small");
     public static final PartialModel BLAZE_BURNER_STAR_RODS_2 = block("extreme_blaze_burner/starheated_rods_large");
     public static final PartialModel BLAZE_BURNER_BLAZE_RODS = block("extreme_blaze_burner/blazeheated_rods_small");

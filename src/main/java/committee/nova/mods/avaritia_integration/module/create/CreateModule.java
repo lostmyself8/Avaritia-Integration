@@ -1,6 +1,9 @@
 package committee.nova.mods.avaritia_integration.module.create;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
+import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipModifier;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
@@ -8,6 +11,7 @@ import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.create.config.CreateIntegrationConfigs;
 import committee.nova.mods.avaritia_integration.module.create.content.BoilerHeaters;
 import committee.nova.mods.avaritia_integration.module.create.registry.*;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -15,7 +19,11 @@ import net.minecraftforge.fml.ModLoadingContext;
 @ModuleEntry(id = CreateModule.MOD_ID, target = @ModMeta(CreateModule.MOD_ID))
 public final class CreateModule implements Module {
     public static final String MOD_ID = "create";
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(AvaritiaIntegration.MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(AvaritiaIntegration.MOD_ID)
+            .setTooltipModifierFactory(item ->
+                    new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+                            .andThen(TooltipModifier.mapNull(KineticStats.create(item)))
+            );
 
     @Override
     public void init(IEventBus registryBus) {

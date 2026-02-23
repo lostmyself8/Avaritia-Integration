@@ -2,6 +2,7 @@ package committee.nova.mods.avaritia_integration.module.create.registry;
 
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.liquid_burning.LiquidBurningRecipeSerializer;
 import committee.nova.mods.avaritia_integration.module.create.content.mixer.ExtremeMixingRecipe;
 import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeBasinRecipe;
 import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeProcessingRecipeBuilder;
@@ -25,7 +26,8 @@ import java.util.function.Supplier;
 
 public enum CreateIntegrationRecipeTypes implements IRecipeTypeInfo {
     EXTREME_BASIN(ExtremeBasinRecipe::new),
-    EXTREME_MIXING(ExtremeMixingRecipe::new);
+    EXTREME_MIXING(ExtremeMixingRecipe::new),
+    LIQUID_BURNING(LiquidBurningRecipeSerializer::new);
 
     private final ResourceLocation id;
     private final RegistryObject<RecipeSerializer<?>> serializerObject;

@@ -39,7 +39,7 @@ public class ExtremeBlazeBurnerRenderer extends SafeBlockEntityRenderer<ExtremeB
         float horizontalAngle = AngleHelper.rad(be.headAngle.getValue(partialTicks));
         boolean canDrawFlame = heatLevel.isAtLeast(ExtremeBlazeBurnerBlock.ExtremeHeatLevel.FADING);
         boolean drawGoggles = be.goggles;
-        PartialModel drawHat = be.hat ? AllPartialModels.TRAIN_HAT : be.stockKeeper ? AllPartialModels.LOGISTICS_HAT : null;
+        PartialModel drawHat = be.hat ? AllPartialModels.TRAIN_HAT : be.stockKeeper ? AllPartialModels.LOGISTICS_HAT : be.hasStraw ? CreateIntegrationPartialModels.CCA_LIQUID_HAT : null;
         int hashCode = be.hashCode();
 
         renderShared(ms, null, bufferSource, level, blockState, heatLevel, animation, horizontalAngle, canDrawFlame, drawGoggles, drawHat, hashCode);

@@ -136,12 +136,13 @@ public class ExtremeBlazeBurnerVisual extends AbstractBlockEntityVisual<ExtremeB
             goggles = null;
         }
 
-        boolean hatPresent = blockEntity.hat || blockEntity.stockKeeper;
+        boolean hatPresent = blockEntity.hat || blockEntity.stockKeeper || blockEntity.hasStraw;
         if (hatPresent && hat == null) {
             hat = instancerProvider()
                     .instancer(InstanceTypes.TRANSFORMED,
                             Models.partial(
-                                    blockEntity.stockKeeper ? AllPartialModels.LOGISTICS_HAT : AllPartialModels.TRAIN_HAT))
+                                    blockEntity.stockKeeper ? AllPartialModels.LOGISTICS_HAT :
+                                            blockEntity.hat ? AllPartialModels.TRAIN_HAT : CreateIntegrationPartialModels.CCA_LIQUID_HAT))
                     .createInstance();
             hat.light(LightTexture.FULL_BRIGHT);
         } else if (!hatPresent && hat != null) {

@@ -1,10 +1,10 @@
 package committee.nova.mods.avaritia_integration.module.create.compat.cca;
 
-import com.mrh0.createaddition.index.CARecipes;
-import com.mrh0.createaddition.recipe.FluidRecipeWrapper;
-import com.mrh0.createaddition.recipe.liquid_burning.LiquidBurningRecipe;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.liquid_burning.FluidRecipeWrapper;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.liquid_burning.LiquidBurningRecipe;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CCALiquidBlazeBurnerCompat implements ICCABurnerCompat {
     private final ExtremeBlazeBurnerBlockEntity be;
     private final SmartFluidTank fluidInventory;
-    private Object recipeCache;
+    private Optional<LiquidBurningRecipe> recipeCache = Optional.empty();
 
     public CCALiquidBlazeBurnerCompat(ExtremeBlazeBurnerBlockEntity be) {
         this.be = be;
@@ -26,12 +26,12 @@ public class CCALiquidBlazeBurnerCompat implements ICCABurnerCompat {
         return fluidInventory;
     }
 
-    private void update(FluidStack stack) {
+    public void update(FluidStack stack) {
         if (!be.hasLevel())
             return;
         if(be.getLevel().isClientSide())
             return;
-        if(stack.getFluid().isSame(be.lastFluid))
+        if(!stack.getFluid().isSame(be.lastFluid))
             recipeCache = find(stack, be.getLevel());
         be.lastFluid = stack.getFluid();
     }
@@ -41,9 +41,13 @@ public class CCALiquidBlazeBurnerCompat implements ICCABurnerCompat {
             return Optional.empty();
         if(level == null)
             return Optional.empty();
-        var type = CARecipes.LIQUID_BURNING_TYPE.get();
+        var type = CreateIntegrationRecipeTypes.LIQUID_BURNING.getType();
         if (type == null) return Optional.empty();
 
-        return level.getRecipeManager().getRecipeFor(type, new FluidRecipeWrapper(stack), level);
+        return CreateIntegrationRecipeTypes.LIQUID_BURNING.find(new FluidRecipeWrapper(stack), level);
+    }
+
+    public Optional<LiquidBurningRecipe> getRecipeCache() {
+        return recipeCache;
     }
 }

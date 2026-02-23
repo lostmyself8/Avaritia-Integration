@@ -48,7 +48,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
@@ -91,12 +94,25 @@ public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implemen
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockRayTraceResult) {
         ItemStack heldItem = player.getItemInHand(hand);
+        ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(heldItem.getItem());
 
         if (AllItems.GOGGLES.isIn(heldItem)) {
             return onBlockEntityUse(world, pos, ebe -> {
                 if (ebe.goggles)
                     return InteractionResult.PASS;
                 ebe.goggles = true;
+                ebe.notifyUpdate();
+                return InteractionResult.SUCCESS;
+            });
+        }
+
+        if (registryName != null && registryName.toString().equals("createaddition:straw")) {
+            return onBlockEntityUse(world, pos, ebe -> {
+                if (ebe.hasStraw)
+                    return InteractionResult.PASS;
+                ebe.hasStraw = true;
+                if (!player.isCreative()) heldItem.shrink(1);
+                ebe.updateFluidInventory();
                 ebe.notifyUpdate();
                 return InteractionResult.SUCCESS;
             });
@@ -125,7 +141,7 @@ public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implemen
         boolean doNotConsume = player.isCreative();
         boolean forceOverFlow = !(player instanceof FakePlayer);
 
-        InteractionResultHolder<ItemStack> res = tryInsert(state, world, pos, heldItem, doNotConsume, forceOverFlow, false);
+        InteractionResultHolder<ItemStack> res = tryInsert(state, world, pos, player, heldItem, doNotConsume, forceOverFlow, false);
         ItemStack leftOver = res.getObject();
         if (!world.isClientSide && !doNotConsume && !leftOver.isEmpty()) {
             if (heldItem.isEmpty()) {
@@ -138,7 +154,7 @@ public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implemen
         return res.getResult() == InteractionResult.SUCCESS ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
-    public static InteractionResultHolder<ItemStack> tryInsert(BlockState state, Level world, BlockPos pos, ItemStack stack, boolean doNotConsume, boolean forceOverflow, boolean simulate) {
+    public static InteractionResultHolder<ItemStack> tryInsert(BlockState state, Level world, BlockPos pos, @Nullable Player player, ItemStack stack, boolean doNotConsume, boolean forceOverflow, boolean simulate) {
         if (!state.hasBlockEntity()) return InteractionResultHolder.fail(ItemStack.EMPTY);
 
         BlockEntity be = world.getBlockEntity(pos);
@@ -147,6 +163,14 @@ public class ExtremeBlazeBurnerBlock extends HorizontalDirectionalBlock implemen
         if (burnerBE.isCreativeFuel(stack)) {
             if (!simulate) burnerBE.applyCreativeFuel();
             return InteractionResultHolder.success(ItemStack.EMPTY);
+        }
+
+        FluidActionResult liquidResult = burnerBE.tryUpdateLiquid(stack, player, simulate);
+        if(liquidResult.isSuccess()) {
+            if(!doNotConsume) {
+                stack.shrink(1);
+            }
+            return InteractionResultHolder.success(liquidResult.getResult());
         }
 
         if (!burnerBE.tryUpdateFuel(stack, forceOverflow, simulate)) return InteractionResultHolder.fail(ItemStack.EMPTY);
