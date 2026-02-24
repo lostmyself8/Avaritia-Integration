@@ -14,7 +14,6 @@ import committee.nova.mods.avaritia_integration.module.create.registry.*;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
 
 @ModuleEntry(id = CreateModule.MOD_ID, target = @ModMeta(CreateModule.MOD_ID))
 public final class CreateModule implements Module {
@@ -35,7 +34,7 @@ public final class CreateModule implements Module {
         CreateIntegrationItems.register();
         CreateIntegrationRecipeTypes.register(registryBus);
 
-        CreateIntegrationConfigs.register(ModLoadingContext.get());
+//        CreateIntegrationConfigs.register(ModLoadingContext.get());
     }
 
     @Override

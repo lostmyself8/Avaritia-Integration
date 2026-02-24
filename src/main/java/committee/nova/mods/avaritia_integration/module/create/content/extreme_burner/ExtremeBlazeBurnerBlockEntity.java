@@ -1,7 +1,5 @@
 package committee.nova.mods.avaritia_integration.module.create.content.extreme_burner;
 
-import com.mrh0.createaddition.network.IObserveTileEntity;
-import com.mrh0.createaddition.network.ObservePacket;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
@@ -12,9 +10,9 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import committee.nova.mods.avaritia.init.registry.ModItems;
 import committee.nova.mods.avaritia_integration.module.create.compat.CompatInfo;
+import committee.nova.mods.avaritia_integration.module.create.compat.cca.CCACompatHelper;
 import committee.nova.mods.avaritia_integration.module.create.compat.cca.CCALiquidBlazeBurnerCompat;
 import committee.nova.mods.avaritia_integration.module.create.compat.cca.ICCABurnerCompat;
-import committee.nova.mods.avaritia_integration.module.create.compat.cca.CCACompatHelper;
 import committee.nova.mods.avaritia_integration.module.create.compat.cca.liquid_burning.LiquidBurningRecipe;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationTags;
@@ -29,7 +27,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -390,6 +387,8 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity implements I
         if (next == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.FADING)
             next = next.nextActiveLevel();
         setExtremeBlockHeat(next);
+        if (next == ExtremeBlazeBurnerBlock.ExtremeHeatLevel.SMOULDERING) setBlockHeat(BlazeBurnerBlock.HeatLevel.KINDLED);
+        else setBlockHeat(BlazeBurnerBlock.HeatLevel.SEETHING);
     }
 
     public boolean isCreativeFuel(ItemStack stack) {

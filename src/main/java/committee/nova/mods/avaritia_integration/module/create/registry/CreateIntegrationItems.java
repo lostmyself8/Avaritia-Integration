@@ -22,6 +22,7 @@ public final class CreateIntegrationItems {
     public static final RegistryObject<Item> CREATIVE_MECHANISM = register("creative_mechanism", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
     public static final RegistryObject<Item> CREATIVE_COMPOUND = register("creative_compound", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
 
+    //TODO star_cake
     public static final ItemEntry<Item> STAR_BLAZE_CAKE_BASE = REGISTRATE.item("star_blaze_cake_base", Item::new)
             .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
@@ -31,7 +32,7 @@ public final class CreateIntegrationItems {
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
             .onRegister(i -> i.setBurnTime(Integer.MAX_VALUE))
             .register();
-    //TODO 把blaze_blaze替换为ignis
+    //TODO 把blaze_blaze替换为ignis -> ignis_cake
     public static final ItemEntry<Item> BLAZE_BLAZE_CAKE_BASE = REGISTRATE.item("blaze_blaze_cake_base", Item::new)
             .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))

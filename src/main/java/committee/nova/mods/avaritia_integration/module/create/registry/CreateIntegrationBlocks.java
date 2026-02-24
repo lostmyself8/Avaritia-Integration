@@ -12,7 +12,6 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerMovementBehaviou
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
-import committee.nova.mods.avaritia_integration.module.create.config.CIStress;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlock;
@@ -54,13 +53,12 @@ public class CreateIntegrationBlocks {
                 .transform(BuilderTransformers.casing(() -> CreateIntegrationSpriteShifts.CRYSTAL_MATRIX_CASING))
                 .register();
 
-        //TODO 方块物品没有应力影响的Tooltip
         NEUTRON_MECHANICAL_PRESS = REGISTRATE.block("neutron_mechanical_press", NeutronMechanicalPressBlock::new)
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLACK))
                 .transform(TagGen.axeOrPickaxe())
                 .blockstate(BlockStateGen.horizontalBlockProvider(true))
-                .transform(CIStress.setImpact(8.0))
+                .onRegister(CreateIntegrationStress.setImpact(16.0))
                 .item(AssemblyOperatorBlockItem::new)
                 .transform(ModelGen.customItemModel())
                 .register();
@@ -83,7 +81,7 @@ public class CreateIntegrationBlocks {
                 .transform(TagGen.axeOrPickaxe())
                 .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
                 .addLayer(() -> RenderType::cutoutMipped)
-                .transform(CIStress.setImpact(4.0))
+                .onRegister(CreateIntegrationStress.setImpact(16.0))
                 .item(MatrixMechanicalMixerBlockItem::new)
                 .transform(ModelGen.customItemModel())
                 .register();

@@ -1,10 +1,10 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
-import com.simibubi.create.content.processing.basin.BasinRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerVisual;
@@ -39,7 +39,7 @@ public class CreateIntegrationBlockEntityTypes {
                 .register();
         EXTREME_BASIN = REGISTRATE.blockEntity("extreme_basin", ExtremeBasinBlockEntity::new)
                 .validBlocks(CreateIntegrationBlocks.EXTREME_BASIN)
-                .renderer(() -> BasinRenderer::new)
+                .renderer(() -> ExtremeBasinRenderer::new)
                 .register();
         MATRIX_MECHANICAL_MIXER = REGISTRATE.blockEntity("matrix_mechanical_mixer", MatrixMechanicalMixerBlockEntity::new)
                 .visual(() -> MatrixMechanicalMixerVisual::new)

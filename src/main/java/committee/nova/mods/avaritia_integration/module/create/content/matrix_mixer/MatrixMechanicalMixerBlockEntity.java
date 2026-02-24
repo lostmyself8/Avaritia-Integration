@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer;
 
+import com.mojang.datafixers.util.Either;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.fluids.FluidFX;
@@ -10,13 +11,23 @@ import com.simibubi.create.content.kinetics.press.MechanicalPressBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinOperatingBlockEntity;
+import com.simibubi.create.content.processing.basin.BasinRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.advancement.CreateAdvancement;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.item.SmartInventory;
+import com.simibubi.create.foundation.recipe.RecipeFinder;
+import com.simibubi.create.foundation.recipe.trie.AbstractVariant;
+import com.simibubi.create.foundation.recipe.trie.RecipeTrie;
+import com.simibubi.create.foundation.recipe.trie.RecipeTrieFinder;
 import com.simibubi.create.infrastructure.config.AllConfigs;
+import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinAdapter;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeBasinRecipe;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.data.Couple;
 import net.createmod.catnip.math.VecHelper;
@@ -33,6 +44,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -41,10 +53,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.crafting.IShapedRecipe;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity {
 
@@ -105,6 +120,31 @@ public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity 
     }
 
     @Override
+    protected boolean updateBasin() {
+        if (!isSpeedRequirementFulfilled())
+            return true;
+        if (getSpeed() == 0)
+            return true;
+        if (isRunning())
+            return true;
+        if (level == null || level.isClientSide)
+            return true;
+        Optional<BasinBlockEntity> basin = getBasin();
+        Optional<ExtremeBasinBlockEntity> extremeBasin = getExtremeBasin();
+        if (!basin.filter(BasinBlockEntity::canContinueProcessing).isPresent()
+                && !extremeBasin.filter(ExtremeBasinBlockEntity::canContinueProcessing).isPresent())
+            return true;
+
+        List<Recipe<?>> recipes = getMatchingRecipes();
+        if (recipes.isEmpty())
+            return true;
+        currentRecipe = recipes.get(0);
+        startProcessingBasin();
+        sendData();
+        return true;
+    }
+
+    @Override
     protected void read(CompoundTag compound, boolean clientPacket) {
         running = compound.getBoolean("Running");
         runningTicks = compound.getInt("Ticks");
@@ -132,7 +172,8 @@ public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity 
             return;
         }
 
-        float speed = Math.abs(getSpeed());
+        //处理速度提高十倍
+        float speed = Math.abs(getSpeed() * 10.0f);
         if (running && level != null) {
             if (level.isClientSide && runningTicks == 20)
                 renderParticles();
@@ -215,24 +256,77 @@ public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity 
         level.addParticle(data, center.x, center.y - 1.75f, center.z, target.x, target.y, target.z);
     }
 
+    protected Optional<ExtremeBasinBlockEntity> getExtremeBasin() {
+        if (this.level == null) {
+            return Optional.empty();
+        } else {
+            BlockEntity basinBE = this.level.getBlockEntity(this.worldPosition.below(2));
+            return !(basinBE instanceof ExtremeBasinBlockEntity) ? Optional.empty() : Optional.of((ExtremeBasinBlockEntity)basinBE);
+        }
+    }
+
+    protected List<Recipe<?>> getMatchingExtremeRecipes() {
+        Optional<ExtremeBasinBlockEntity> $basin = getExtremeBasin();
+        ExtremeBasinBlockEntity basin;
+        if ($basin.isEmpty() || (basin = $basin.get()).isEmpty())
+            return new ArrayList<>();
+
+        List<Recipe<?>> list = new ArrayList<>();
+        try {
+            IItemHandler availableItems = basin.getCapability(ForgeCapabilities.ITEM_HANDLER)
+                    .orElse(null);
+            IFluidHandler availableFluids = basin.getCapability(ForgeCapabilities.FLUID_HANDLER)
+                    .orElse(null);
+
+            // no point even searching, since no recipe will ever match
+            if (availableItems == null && availableFluids == null) {
+                return list;
+            }
+
+            RecipeTrie<?> trie = RecipeTrieFinder.get(getRecipeCacheKey(), level, this::matchStaticFilters);
+            Set<AbstractVariant> availableVariants = RecipeTrie.getVariants(availableItems, availableFluids);
+
+            for (Recipe<?> r : trie.lookup(availableVariants))
+                if (matchBasinRecipe(r))
+                    list.add(r);
+        } catch (Exception e) {
+            AvaritiaIntegration.LOGGER.error("Failed to get recipe trie, falling back to slow logic", e);
+            list.clear();
+
+            for (Recipe<?> r : RecipeFinder.get(getRecipeCacheKey(), level, this::matchStaticFilters))
+                if (matchBasinRecipe(r))
+                    list.add(r);
+        }
+
+        list.sort((r1, r2) -> r2.getIngredients().size() - r1.getIngredients().size());
+
+        return list;
+    }
+
     @Override
     protected List<Recipe<?>> getMatchingRecipes() {
         List<Recipe<?>> matchingRecipes = super.getMatchingRecipes();
+        matchingRecipes.addAll(getMatchingExtremeRecipes());
 
         if (!AllConfigs.server().recipes.allowBrewingInMixer.get())
             return matchingRecipes;
 
         Optional<BasinBlockEntity> basin = getBasin();
-        if (!basin.isPresent())
+        Optional<ExtremeBasinBlockEntity> extremeBasin = getExtremeBasin();
+        if (basin.isEmpty() && extremeBasin.isEmpty())
             return matchingRecipes;
 
-        BasinBlockEntity basinBlockEntity = basin.get();
-        if (basin.isEmpty())
-            return matchingRecipes;
+        BasinBlockEntity basinBlockEntity = basin.orElse(null);
+        ExtremeBasinBlockEntity extremeBasinBlockEntity = extremeBasin.orElse(null);
 
-        IItemHandler availableItems = basinBlockEntity
+        IItemHandler availableItems = basinBlockEntity == null ?
+                extremeBasinBlockEntity
+                .getCapability(ForgeCapabilities.ITEM_HANDLER)
+                .orElse(null)
+                : basinBlockEntity
                 .getCapability(ForgeCapabilities.ITEM_HANDLER)
                 .orElse(null);
+
         if (availableItems == null)
             return matchingRecipes;
 
@@ -258,7 +352,8 @@ public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity 
                 && AllConfigs.server().recipes.allowShapelessInMixer.get() && r.getIngredients()
                 .size() > 1
                 && !MechanicalPressBlockEntity.canCompress(r)) && !AllRecipeTypes.shouldIgnoreInAutomation(r)
-                || r.getType() == AllRecipeTypes.MIXING.getType());
+                || r.getType() == AllRecipeTypes.MIXING.getType())
+                || r.getType() == CreateIntegrationRecipeTypes.EXTREME_MIXING.getType();
     }
 
     @Override
@@ -322,5 +417,74 @@ public class MatrixMechanicalMixerBlockEntity extends BasinOperatingBlockEntity 
         for (BlockPos offset : BlockPos.betweenClosed(-1, -1, -1, 1, 1, 1))
             if (offset.distSqr(BlockPos.ZERO) == 2) neighbours.add(worldPosition.offset(offset));
         return neighbours;
+    }
+
+    @Override
+    protected void applyBasinRecipe() {
+        if (currentRecipe == null)
+            return;
+
+        Optional<BasinBlockEntity> optionalBasin = getBasin();
+        Optional<ExtremeBasinBlockEntity> optionalExtremeBasin = getExtremeBasin();
+        Optional<Either<BasinBlockEntity, ExtremeBasinBlockEntity>> basinEitherOpt =
+                optionalExtremeBasin.<Either<BasinBlockEntity, ExtremeBasinBlockEntity>>map(Either::right)
+                        .or(() -> optionalBasin.map(Either::left));
+
+        if (basinEitherOpt.isEmpty()) return;
+
+        Either<BasinBlockEntity, ExtremeBasinBlockEntity> basin = basinEitherOpt.get();
+
+        boolean wasEmpty = basin.map(BasinBlockEntity::canContinueProcessing,
+                ExtremeBasinBlockEntity::canContinueProcessing);
+        boolean processedAtLeastOnce = false;
+        int safetyNet = 64;
+        if (currentRecipe instanceof ExtremeBasinRecipe) {
+            while (safetyNet > 0 && ExtremeBasinRecipe.apply(basin.map(l -> l, r -> r), currentRecipe)) {
+                processedAtLeastOnce = true;
+                safetyNet--;
+            }
+        } else {
+            while (safetyNet > 0 && BasinRecipe.apply(basin.map(l -> l, ExtremeBasinAdapter::of), currentRecipe)) {
+                processedAtLeastOnce = true;
+                safetyNet--;
+            }
+        }
+
+        if (!processedAtLeastOnce)
+            return;
+
+        getProcessedRecipeTrigger().ifPresent(this::award);
+        basin.ifRight(r -> r.inputTank.sendDataImmediately())
+                .ifLeft(l -> l.inputTank.sendDataImmediately());
+
+        if (wasEmpty && matchBasinRecipe(currentRecipe)) {
+            continueWithPreviousRecipe();
+            sendData();
+        }
+
+        basin.ifRight(ExtremeBasinBlockEntity::notifyChangeOfContents)
+                .ifLeft(BasinBlockEntity::notifyChangeOfContents);
+    }
+
+    @Override
+    protected <C extends Container> boolean matchBasinRecipe(Recipe<C> recipe) {
+        if (recipe == null)
+            return false;
+        Optional<BasinBlockEntity> basin = getBasin();
+        Optional<ExtremeBasinBlockEntity> extremeBasin = getExtremeBasin();
+        if (basin.isPresent()) {
+            if (recipe instanceof ExtremeBasinRecipe) {
+                return ExtremeBasinRecipe.match(basin.get(), recipe);
+            } else  if (recipe instanceof BasinRecipe) {
+                return BasinRecipe.match(basin.get(), recipe);
+            }
+        } else if (extremeBasin.isPresent()) {
+            if (recipe instanceof ExtremeBasinRecipe) {
+                return ExtremeBasinRecipe.match(extremeBasin.get(), recipe);
+            } else  if (recipe instanceof BasinRecipe) {
+                return BasinRecipe.match(ExtremeBasinAdapter.of(extremeBasin.get()), recipe);
+            }
+        }
+        return false;
     }
 }

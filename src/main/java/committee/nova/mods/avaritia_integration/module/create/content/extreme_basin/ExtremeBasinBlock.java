@@ -13,7 +13,6 @@ import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.item.ItemHelper;
-import committee.nova.mods.avaritia_integration.init.mixins.create.accessor.BasinBlockEntityAccessor;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -107,8 +106,7 @@ public class ExtremeBasinBlock extends Block implements IBE<ExtremeBasinBlockEnt
                 return InteractionResult.PASS;
             }
 
-//            IItemHandlerModifiable inv = be.itemCapability.orElse(new ItemStackHandler(1));
-            IItemHandlerModifiable inv = ((BasinBlockEntityAccessor) be).getItemCapability().orElse(new ItemStackHandler(1));
+            IItemHandlerModifiable inv = be.itemCapability.orElse(new ItemStackHandler(1));
             boolean success = false;
             for (int slot = 0; slot < inv.getSlots(); slot++) {
                 ItemStack stackInSlot = inv.getStackInSlot(slot);

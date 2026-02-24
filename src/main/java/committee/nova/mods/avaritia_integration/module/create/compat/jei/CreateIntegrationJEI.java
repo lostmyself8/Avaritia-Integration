@@ -7,6 +7,9 @@ import com.simibubi.create.compat.jei.DoubleItemIcon;
 import com.simibubi.create.compat.jei.EmptyBackground;
 import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.MixingCategory;
+import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.simibubi.create.infrastructure.config.CRecipes;
@@ -20,6 +23,7 @@ import committee.nova.mods.avaritia_integration.module.create.registry.CreateInt
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -31,6 +35,7 @@ import net.createmod.catnip.config.ConfigBase;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
@@ -62,6 +67,7 @@ public class CreateIntegrationJEI implements IModPlugin {
         CreateRecipeCategory<?>
                 extremeMixing = builder(ExtremeBasinRecipe.class)
                 .addTypedRecipes(CreateIntegrationRecipeTypes.EXTREME_MIXING)
+                .catalyst(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER::get)
                 .catalyst(AllBlocks.MECHANICAL_MIXER::get)
                 .catalyst(AllBlocks.BASIN::get)
                 .catalyst(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER::get)
@@ -105,6 +111,23 @@ public class CreateIntegrationJEI implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         allCategories.forEach(c -> c.registerCatalysts(registration));
+
+        //TODO 为机动原版JEI添加新机器
+        registration.getJeiHelpers().getRecipeType(AllRecipeTypes.MIXING.getId())
+                .ifPresent(type -> {
+                    registration.addRecipeCatalyst(
+                            CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(),
+                            type
+                    );
+                });
+
+        registration.getJeiHelpers().getRecipeType(AllRecipeTypes.PRESSING.getId())
+                .ifPresent(type -> {
+                    registration.addRecipeCatalyst(
+                            CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(),
+                            type
+                    );
+                });
     }
 
     private class CategoryBuilder<T extends Recipe<?>> {
