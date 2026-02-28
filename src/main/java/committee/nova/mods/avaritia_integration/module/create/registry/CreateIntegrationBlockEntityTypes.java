@@ -8,6 +8,8 @@ import committee.nova.mods.avaritia_integration.module.create.content.extreme_ba
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerVisual;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlockRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerVisual;
@@ -21,6 +23,7 @@ public class CreateIntegrationBlockEntityTypes {
     public static final BlockEntityEntry<NeutronMechanicalPressBlockEntity> NEUTRON_MECHANICAL_PRESS;
     public static final BlockEntityEntry<ExtremeBasinBlockEntity> EXTREME_BASIN;
     public static final BlockEntityEntry<MatrixMechanicalMixerBlockEntity> MATRIX_MECHANICAL_MIXER;
+    public static final BlockEntityEntry<ExtremeDepotBlockEntity> EXTREME_DEPOT;
 
     public static void register() {
     }
@@ -45,6 +48,10 @@ public class CreateIntegrationBlockEntityTypes {
                 .visual(() -> MatrixMechanicalMixerVisual::new)
                 .validBlocks(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER)
                 .renderer(() -> MatrixMechanicalMixerBlockRenderer::new)
+                .register();
+        EXTREME_DEPOT = REGISTRATE.blockEntity("extreme_depot", ExtremeDepotBlockEntity::new)
+                .validBlocks(CreateIntegrationBlocks.EXTREME_DEPOT)
+                .renderer(() -> ExtremeDepotRenderer::new)
                 .register();
     }
 }

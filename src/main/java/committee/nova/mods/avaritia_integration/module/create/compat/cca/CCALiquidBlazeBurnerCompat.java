@@ -29,17 +29,17 @@ public class CCALiquidBlazeBurnerCompat implements ICCABurnerCompat {
     public void update(FluidStack stack) {
         if (!be.hasLevel())
             return;
-        if(be.getLevel().isClientSide())
+        if (be.getLevel().isClientSide())
             return;
-        if(!stack.getFluid().isSame(be.lastFluid))
+        if (!stack.getFluid().isSame(be.lastFluid))
             recipeCache = find(stack, be.getLevel());
         be.lastFluid = stack.getFluid();
     }
 
     public Optional<LiquidBurningRecipe> find(FluidStack stack, Level level) {
-        if(stack == null)
+        if (stack == null)
             return Optional.empty();
-        if(level == null)
+        if (level == null)
             return Optional.empty();
         var type = CreateIntegrationRecipeTypes.LIQUID_BURNING.getType();
         if (type == null) return Optional.empty();

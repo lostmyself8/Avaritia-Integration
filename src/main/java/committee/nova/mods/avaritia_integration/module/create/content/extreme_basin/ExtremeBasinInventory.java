@@ -133,7 +133,7 @@ public class ExtremeBasinInventory extends SmartInventory {
         return 1024;
     }
 
-    private void intItemStackSave (ItemStack stack, CompoundTag tag) {
+    private void intItemStackSave(ItemStack stack, CompoundTag tag) {
         CompoundTag itemTag = new CompoundTag();
         stack.save(itemTag);
         if (itemTag.contains("Count")) {

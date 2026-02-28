@@ -32,7 +32,7 @@ import java.util.List;
 
 public class ExtremeBasinRecipe extends ExtremeProcessingRecipe<Container> {
 
-    public static <S extends SmartBlockEntity> boolean match(S be, Recipe<?> recipe) {
+    public static <K extends SmartBlockEntity> boolean match(K be, Recipe<?> recipe) {
         FilteringBehaviour filter;
 
         if (be instanceof BasinBlockEntity basin) {
@@ -63,11 +63,11 @@ public class ExtremeBasinRecipe extends ExtremeProcessingRecipe<Container> {
         return !filterTest ? false : apply(be, recipe, true);
     }
 
-    public static <S extends SmartBlockEntity> boolean apply(S basin, Recipe<?> recipe) {
+    public static <K extends SmartBlockEntity> boolean apply(K basin, Recipe<?> recipe) {
         return apply(basin, recipe, false);
     }
 
-    private static <S extends SmartBlockEntity> boolean apply(S basin, Recipe<?> recipe, boolean test) {
+    private static <K extends SmartBlockEntity> boolean apply(K basin, Recipe<?> recipe, boolean test) {
         boolean isBasinRecipe = recipe instanceof ExtremeBasinRecipe;
         IItemHandler availableItems = basin.getCapability(ForgeCapabilities.ITEM_HANDLER)
                 .orElse(null);
@@ -77,12 +77,7 @@ public class ExtremeBasinRecipe extends ExtremeProcessingRecipe<Container> {
         if (availableItems == null || availableFluids == null)
             return false;
 
-        ExtremeBlazeBurnerBlock.ExtremeHeatLevel heat = null;
-        if (basin instanceof ExtremeBasinBlockEntity basinBE) {
-            heat = basinBE.getExtremeHeatLevel();
-        } else if (basin instanceof BasinBlockEntity basinBE) {
-            heat = BasinExtremeHeatHelper.getHeat(basinBE);
-        }
+        ExtremeBlazeBurnerBlock.ExtremeHeatLevel heat = BasinExtremeHeatHelper.getHeat(basin);
         if (heat == null) return false;
         if (isBasinRecipe && !((ExtremeBasinRecipe) recipe).getRequiredHeat()
                 .testBlazeBurner(heat))
@@ -150,17 +145,10 @@ public class ExtremeBasinRecipe extends ExtremeProcessingRecipe<Container> {
             }
 
             if (fluidsAffected) {
-                if (basin instanceof ExtremeBasinBlockEntity basinBE) {
-                    basinBE.getBehaviour(SmartFluidTankBehaviour.INPUT)
-                            .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
-                    basinBE.getBehaviour(SmartFluidTankBehaviour.OUTPUT)
-                            .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
-                } else if (basin instanceof BasinBlockEntity basinBE) {
-                    basinBE.getBehaviour(SmartFluidTankBehaviour.INPUT)
-                            .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
-                    basinBE.getBehaviour(SmartFluidTankBehaviour.OUTPUT)
-                            .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
-                }
+                basin.getBehaviour(SmartFluidTankBehaviour.INPUT)
+                        .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
+                basin.getBehaviour(SmartFluidTankBehaviour.OUTPUT)
+                        .forEach(SmartFluidTankBehaviour.TankSegment::onFluidStackChanged);
             }
 
             if (simulate) {

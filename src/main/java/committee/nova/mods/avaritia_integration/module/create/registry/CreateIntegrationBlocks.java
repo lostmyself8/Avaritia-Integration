@@ -1,10 +1,15 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
+import com.simibubi.create.AllDisplaySources;
+import com.simibubi.create.AllMountedStorageTypes;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.behaviour.interaction.ConductorBlockInteractionBehavior;
 import com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour;
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
+import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.logistics.depot.MountedDepotInteractionBehaviour;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.content.processing.basin.BasinGenerator;
 import com.simibubi.create.content.processing.basin.BasinMovementBehaviour;
@@ -14,6 +19,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlock;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlockItem;
 import committee.nova.mods.avaritia_integration.module.create.content.neutron_press.NeutronMechanicalPressBlock;
@@ -28,6 +34,7 @@ public class CreateIntegrationBlocks {
     public static final BlockEntry<NeutronMechanicalPressBlock> NEUTRON_MECHANICAL_PRESS;
     public static final BlockEntry<ExtremeBasinBlock> EXTREME_BASIN;
     public static final BlockEntry<MatrixMechanicalMixerBlock> MATRIX_MECHANICAL_MIXER;
+    public static final BlockEntry<ExtremeDepotBlock> EXTREME_DEPOT;
 
     public static void register() {
     }
@@ -72,7 +79,7 @@ public class CreateIntegrationBlocks {
                 .addLayer(() -> RenderType::cutoutMipped)
                 .onRegister(MovementBehaviour.movementBehaviour(new BasinMovementBehaviour()))
                 .item()
-                .transform(ModelGen.customItemModel("_", "block"))
+                .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
 
         MATRIX_MECHANICAL_MIXER = REGISTRATE.block("matrix_mechanical_mixer", MatrixMechanicalMixerBlock::new)
@@ -84,6 +91,24 @@ public class CreateIntegrationBlocks {
                 .onRegister(CreateIntegrationStress.setImpact(16.0))
                 .item(MatrixMechanicalMixerBlockItem::new)
                 .transform(ModelGen.customItemModel())
+                .register();
+
+        EXTREME_DEPOT = REGISTRATE.block("extreme_depot", ExtremeDepotBlock::new)
+                .initialProperties(SharedProperties::stone)
+                .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
+                .transform(TagGen.axeOrPickaxe())
+                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+//                .transform(DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES))
+                .onRegister(block -> {
+                    DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES);
+                })
+                .onRegister(MovingInteractionBehaviour.interactionBehaviour(new MountedDepotInteractionBehaviour()))
+//                .transform(MountedItemStorageType.mountedItemStorage(AllMountedStorageTypes.DEPOT))
+                .onRegister(block -> {
+                    MountedItemStorageType.mountedItemStorage(AllMountedStorageTypes.DEPOT);
+                })
+                .item()
+                .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
     }
 }

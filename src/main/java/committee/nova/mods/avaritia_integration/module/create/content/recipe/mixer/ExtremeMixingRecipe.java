@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.create.content.mixer;
+package committee.nova.mods.avaritia_integration.module.create.content.recipe.mixer;
 
 import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeBasinRecipe;
 import committee.nova.mods.avaritia_integration.module.create.content.recipe.ExtremeProcessingRecipeBuilder;
