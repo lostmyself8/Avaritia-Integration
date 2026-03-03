@@ -10,33 +10,39 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.function.Supplier;
 
 public final class BotaniaIntegrationBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, AvaritiaIntegration.MOD_ID);
 
-    public static final BlockEntityType<AsgardDandelionBlockEntity> ASGARD_DANDELION = XplatAbstractions.INSTANCE.createBlockEntityType(AsgardDandelionBlockEntity::new, BotaniaIntegrationBlocks.asgard_dandelion, BotaniaIntegrationBlocks.asgard_dandelion_floating);
-    public static final BlockEntityType<SoarleanderBlockEntity> SOARLEANDER = XplatAbstractions.INSTANCE.createBlockEntityType(SoarleanderBlockEntity::new, BotaniaIntegrationBlocks.soarleander, BotaniaIntegrationBlocks.soarleander_floating);
-    public static final BlockEntityType<InfinityManaPoolBlockEntity> INFINITY_MANA_POOL = XplatAbstractions.INSTANCE.createBlockEntityType(InfinityManaPoolBlockEntity::new, BotaniaIntegrationBlocks.infinity_mana_pool);
-    public static final BlockEntityType<InfinityTinyPotatoBlockEntity> INFINITY_TINY_POTATO = XplatAbstractions.INSTANCE.createBlockEntityType(InfinityTinyPotatoBlockEntity::new, BotaniaIntegrationBlocks.infinity_potato);
-
-    public static final RegistryObject<BlockEntityType<AsgardDandelionBlockEntity>> ASGARD_DANDELION_BE = register(
+    public static final RegistryObject<BlockEntityType<AsgardDandelionBlockEntity>> ASGARD_DANDELION = register(
             "asgard_dandelion",
-            () -> ASGARD_DANDELION
+            () -> BlockEntityType.Builder.of(
+                    AsgardDandelionBlockEntity::new,
+                    BotaniaIntegrationBlocks.asgard_dandelion, BotaniaIntegrationBlocks.asgard_dandelion_floating
+            ).build(null)
     );
-    public static final RegistryObject<BlockEntityType<SoarleanderBlockEntity>> SOARLEANDER_BE = register(
+    public static final RegistryObject<BlockEntityType<SoarleanderBlockEntity>> SOARLEANDER = register(
             "soarleander",
-            () -> SOARLEANDER
+            () -> BlockEntityType.Builder.of(
+                    SoarleanderBlockEntity::new,
+                    BotaniaIntegrationBlocks.soarleander, BotaniaIntegrationBlocks.soarleander_floating
+            ).build(null)
     );
-    public static final RegistryObject<BlockEntityType<InfinityManaPoolBlockEntity>> INFINITY_MANA_POOL_BE = register(
+    public static final RegistryObject<BlockEntityType<InfinityManaPoolBlockEntity>> INFINITY_MANA_POOL = register(
             "infinity_mana_pool",
-            () -> INFINITY_MANA_POOL
+            () -> BlockEntityType.Builder.of(
+                    InfinityManaPoolBlockEntity::new,
+                    BotaniaIntegrationBlocks.infinity_mana_pool
+            ).build(null)
     );
-    public static final RegistryObject<BlockEntityType<InfinityTinyPotatoBlockEntity>> INFINITY_TINY_POTATO_BE = register(
+    public static final RegistryObject<BlockEntityType<InfinityTinyPotatoBlockEntity>> INFINITY_TINY_POTATO = register(
             "infinity_tiny_potato",
-            () -> INFINITY_TINY_POTATO
+            () -> BlockEntityType.Builder.of(
+                    InfinityTinyPotatoBlockEntity::new,
+                    BotaniaIntegrationBlocks.infinity_potato
+            ).build(null)
     );
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id, Supplier<BlockEntityType<T>> obj) {

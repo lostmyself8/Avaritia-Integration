@@ -65,7 +65,7 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
 
 
     public InfinityTinyPotatoBlockEntity(BlockPos pos, BlockState state) {
-        super(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO, pos, state);
+        super(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), pos, state);
     }
 
     public void interact(Player player, InteractionHand hand, ItemStack stack, Direction side) {
