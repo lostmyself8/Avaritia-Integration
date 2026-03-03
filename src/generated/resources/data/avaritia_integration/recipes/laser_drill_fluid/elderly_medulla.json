@@ -1,0 +1,18 @@
+{
+  "type": "industrialforegoing:laser_drill_fluid",
+  "catalyst": {
+    "item": "industrialforegoing:laser_lens7"
+  },
+  "entity": "minecraft:elder_guardian",
+  "output": "{Amount:50,FluidName:\"avaritia_integration:elderly_medulla\"}",
+  "pointer": 0,
+  "rarity": [
+    {
+      "blacklist": {},
+      "depth_max": 256,
+      "depth_min": -64,
+      "weight": 8,
+      "whitelist": {}
+    }
+  ]
+}

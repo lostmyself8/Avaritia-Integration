@@ -1,0 +1,23 @@
+{
+  "type": "industrialforegoing:laser_drill_fluid",
+  "catalyst": {
+    "item": "industrialforegoing:laser_lens15"
+  },
+  "entity": "minecraft:empty",
+  "output": "{Amount:20,FluidName:\"avaritia_integration:void_matter\"}",
+  "pointer": 0,
+  "rarity": [
+    {
+      "blacklist": {},
+      "depth_max": 64,
+      "depth_min": -32,
+      "weight": 8,
+      "whitelist": {
+        "type": "minecraft:worldgen/biome",
+        "values": [
+          "minecraft:end_highlands"
+        ]
+      }
+    }
+  ]
+}

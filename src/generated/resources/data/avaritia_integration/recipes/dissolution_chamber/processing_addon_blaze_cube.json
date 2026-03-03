@@ -1,0 +1,36 @@
+{
+  "type": "industrialforegoing:dissolution_chamber",
+  "input": [
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "item": "avaritia_integration:blaze_cube_gear"
+    },
+    {
+      "item": "avaritia_integration:blaze_cube_gear"
+    },
+    {
+      "item": "minecraft:crafting_table"
+    },
+    {
+      "item": "minecraft:furnace"
+    }
+  ],
+  "inputFluid": "{Amount:1000,FluidName:\"industrialforegoing:ether_gas\"}",
+  "output": {
+    "count": 1,
+    "item": "avaritia_integration:processing_addon_blaze_cube",
+    "nbt": "{TitaniumAugment:{Processing:4.0f}}"
+  },
+  "processingTime": 100
+}

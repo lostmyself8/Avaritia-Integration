@@ -89,6 +89,7 @@
   "item.avaritia_integration.infinity_me_storage_cell_big": "极限无尽存储元件",
 
   "item.avaritia_integration.creative_augment_base": "创造升级模板",
+  "item.avaritia_integration.creative_integral_components": "创世整合组件",
 
   "item.avaritia_integration.creative_compressed_iron": "创造压缩铁锭",
 
@@ -96,6 +97,19 @@
 
   "item.avaritia_integration.heaven_arrow": "范围箭",
   "item.avaritia_integration.trace_arrow": "追踪箭",
+
+  "tooltip.avaritia_integration.cooldown_amount": "冷却数量",
+  "tooltip.avaritia_integration.cooldown_time": "冷却时间",
+  "addon.avaritia_integration.neutron": "§e中子",
+  "addon.avaritia_integration.blaze_cube": "§b炽骨立方",
+  "addon.avaritia_integration.crystal_matrix": "§b水晶矩阵",
+  "addon.avaritia_integration.infinity": "§d无尽",
+  "fluid_type.avaritia_integration.void_matter": "虚空物质",
+  "fluid_type.avaritia_integration.elderly_medulla": "远古髓质",
+  "block.avaritia_integration.void_matter": "虚空物质",
+  "block.avaritia_integration.elderly_medulla": "远古髓质",
+  "item.avaritia_integration.void_matter_bucket": "虚空物质桶",
+  "item.avaritia_integration.elderly_medulla_bucket": "远古髓质桶",
 
   "block.avaritia_integration.molten_blaze_fluid": "熔火之焰",
   "fluid.avaritia_integration.molten_blaze": "熔火之焰",
