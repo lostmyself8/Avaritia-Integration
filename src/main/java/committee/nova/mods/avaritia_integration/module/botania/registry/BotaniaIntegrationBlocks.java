@@ -18,7 +18,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.FloatingSpecialFlowerBlock;
-import vazkii.botania.common.block.mana.ManaPoolBlock;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -28,13 +27,13 @@ public final class BotaniaIntegrationBlocks {
 
     public static final BlockBehaviour.Properties SOARLEANDER_FLOWER_PROPS = BotaniaBlocks.FLOATING_PROPS.lightLevel(level -> 5);
 
-    public static final Block asgard_dandelion = new AsgardDandelionBlock(MobEffects.HUNGER, 0, BotaniaBlocks.FLOATING_PROPS, () -> BotaniaIntegrationBlockEntities.ASGARD_DANDELION);
-    public static final Block asgard_dandelion_floating = new FloatingSpecialFlowerBlock(BotaniaBlocks.FLOATING_PROPS, () -> BotaniaIntegrationBlockEntities.ASGARD_DANDELION);
+    public static final Block asgard_dandelion = new AsgardDandelionBlock(MobEffects.HUNGER, 0, BotaniaBlocks.FLOATING_PROPS, BotaniaIntegrationBlockEntities.ASGARD_DANDELION::get);
+    public static final Block asgard_dandelion_floating = new FloatingSpecialFlowerBlock(BotaniaBlocks.FLOATING_PROPS, BotaniaIntegrationBlockEntities.ASGARD_DANDELION::get);
     public static final Block potted_asgard_dandelion = flowerPot(asgard_dandelion, 15);
-    public static final Block soarleander = new SoarleanderBlock(MobEffects.WITHER, 1, SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
-    public static final Block soarleander_floating = new FloatingSpecialFlowerBlock(SOARLEANDER_FLOWER_PROPS, () -> BotaniaIntegrationBlockEntities.SOARLEANDER);
+    public static final Block soarleander = new SoarleanderBlock(MobEffects.WITHER, 1, SOARLEANDER_FLOWER_PROPS, BotaniaIntegrationBlockEntities.SOARLEANDER::get);
+    public static final Block soarleander_floating = new FloatingSpecialFlowerBlock(SOARLEANDER_FLOWER_PROPS, BotaniaIntegrationBlockEntities.SOARLEANDER::get);
     public static final Block potted_soarleander = flowerPot(soarleander, 5);
-    public static final Block infinity_mana_pool = new InfinityManaPoolBlock(ManaPoolBlock.Variant.CREATIVE, BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock).lightLevel(level -> 15));
+    public static final Block infinity_mana_pool = new InfinityManaPoolBlock(BlockBehaviour.Properties.copy(BotaniaBlocks.livingrock).lightLevel(level -> 15));
     public static final Block infinity_potato = new InfinityTinyPotatoBlock();
 
     public static final RegistryObject<Block> ASGARD_DANDELION = register("asgard_dandelion", () -> asgard_dandelion);

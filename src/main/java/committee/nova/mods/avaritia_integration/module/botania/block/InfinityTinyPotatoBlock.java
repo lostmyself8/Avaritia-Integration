@@ -138,6 +138,6 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
-        return createTickerHelper(type, BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO, InfinityTinyPotatoBlockEntity::commonTick);
+        return createTickerHelper(type, BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), InfinityTinyPotatoBlockEntity::commonTick);
     }
 }
