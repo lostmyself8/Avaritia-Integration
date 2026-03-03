@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.create.content.extreme_depot;
 
+import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
@@ -38,7 +39,7 @@ public class ExtremeDepotBlockEntity extends SmartBlockEntity {
     }
 
     public void setHeldItem(ItemStack item) {
-        ExtremeTransportedItemStack newStack = new ExtremeTransportedItemStack(item, 1024);
+        TransportedItemStack newStack = new TransportedItemStack(item);
         if (depotBehaviour.heldItem != null)
             newStack.angle = depotBehaviour.heldItem.angle;
         depotBehaviour.setHeldItem(newStack);

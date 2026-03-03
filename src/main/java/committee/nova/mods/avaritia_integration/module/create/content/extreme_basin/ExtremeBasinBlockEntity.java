@@ -68,7 +68,6 @@ import javax.annotation.Nonnull;
 import java.util.*;
 
 public class ExtremeBasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
-    //TODO 如果一个物品在工作盆里数量超过1024个，如果空位还够，投掷该物品进去不会自己吸取
     private boolean areFluidsMoving;
     LerpedFloat ingredientRotationSpeed;
     LerpedFloat ingredientRotation;

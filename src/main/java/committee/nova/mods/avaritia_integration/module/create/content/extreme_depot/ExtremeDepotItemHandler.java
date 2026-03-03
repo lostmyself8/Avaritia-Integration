@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.create.content.extreme_depot;
 
+import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
@@ -31,7 +32,7 @@ public class ExtremeDepotItemHandler implements IItemHandler {
         if (!behaviour.isOutputEmpty() && !behaviour.canMergeItems())
             return stack;
 
-        ItemStack remainder = behaviour.insert(new ExtremeTransportedItemStack(stack, 1024), simulate);
+        ItemStack remainder = behaviour.insert(new TransportedItemStack(stack), simulate);
         if (!simulate && remainder != stack)
             behaviour.blockEntity.notifyUpdate();
         return remainder;
@@ -42,7 +43,7 @@ public class ExtremeDepotItemHandler implements IItemHandler {
         if (slot != MAIN_SLOT)
             return behaviour.processingOutputBuffer.extractItem(slot - 1, amount, simulate);
 
-        ExtremeTransportedItemStack held = behaviour.heldItem;
+        TransportedItemStack held = behaviour.heldItem;
         if (held == null)
             return ItemStack.EMPTY;
         ItemStack stack = held.stack.copy();

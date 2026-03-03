@@ -63,6 +63,7 @@ public class CreateIntegrationJEI implements IModPlugin {
                 extremeMixing = builder(ExtremeBasinRecipe.class)
                 .addTypedRecipes(CreateIntegrationRecipeTypes.EXTREME_MIXING)
                 .catalyst(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER::get)
+                .catalyst(CreateIntegrationBlocks.EXTREME_BASIN::get)
                 .catalyst(AllBlocks.MECHANICAL_MIXER::get)
                 .catalyst(AllBlocks.BASIN::get)
                 .catalyst(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER::get)
@@ -107,22 +108,20 @@ public class CreateIntegrationJEI implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         allCategories.forEach(c -> c.registerCatalysts(registration));
 
-        //TODO 为机动原版JEI添加新机器
-        registration.getJeiHelpers().getRecipeType(AllRecipeTypes.MIXING.getId())
-                .ifPresent(type -> {
-                    registration.addRecipeCatalyst(
-                            CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(),
-                            type
-                    );
-                });
+        //TODO 有一些自动生成的配方暂时不能添加自定义catalyst
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(), AllRecipeTypes.MIXING.getId());
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(), AllRecipeTypes.PRESSING.getId(), AllRecipeTypes.COMPACTING.getId());
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), AllRecipeTypes.MIXING.getId(), AllRecipeTypes.COMPACTING.getId());
+    }
 
-        registration.getJeiHelpers().getRecipeType(AllRecipeTypes.PRESSING.getId())
-                .ifPresent(type -> {
-                    registration.addRecipeCatalyst(
-                            CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(),
-                            type
-                    );
-                });
+    private void addRecipeCatalyst(IRecipeCatalystRegistration registration, ItemLike item, ResourceLocation... recipeId) {
+        for (ResourceLocation id : recipeId) {
+            registration.getJeiHelpers().getRecipeType(id).ifPresent(type -> {
+                registration.addRecipeCatalyst(
+                        item,type
+                );
+            });
+        }
     }
 
     private class CategoryBuilder<T extends Recipe<?>> {

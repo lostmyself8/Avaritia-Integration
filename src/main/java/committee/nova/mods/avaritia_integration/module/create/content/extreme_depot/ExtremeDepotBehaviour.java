@@ -27,7 +27,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -39,12 +38,11 @@ import java.util.function.Supplier;
 
 public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
-    //TODO 写产物能够容纳1024堆叠物品
     public static final BehaviourType<ExtremeDepotBehaviour> TYPE = new BehaviourType<>();
 
-    ExtremeTransportedItemStack heldItem;
-    List<ExtremeTransportedItemStack> incoming;
-    ItemStackHandler processingOutputBuffer;
+    TransportedItemStack heldItem;
+    List<TransportedItemStack> incoming;
+    BigItemStackHandler processingOutputBuffer;
     ExtremeDepotItemHandler itemHandler;
     LazyOptional<ExtremeDepotItemHandler> lazyItemHandler;
     TransportedItemStackHandlerBehaviour transportedHandler;
@@ -57,7 +55,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
     public ExtremeDepotBehaviour(SmartBlockEntity be) {
         super(be);
-        maxStackSize = () -> heldItem != null ? heldItem.maxStackSize : 64;
+        maxStackSize = () -> 1024;
         canAcceptItems = () -> true;
         canFunnelsPullFrom = $ -> true;
         acceptedItems = $ -> true;
@@ -66,7 +64,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         incoming = new ArrayList<>();
         itemHandler = new ExtremeDepotItemHandler(this);
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        processingOutputBuffer = new ItemStackHandler(8) {
+        processingOutputBuffer = new BigItemStackHandler(8) {
             protected void onContentsChanged(int slot) {
                 be.notifyUpdate();
             }
@@ -93,8 +91,8 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
         Level world = blockEntity.getLevel();
 
-        for (Iterator<ExtremeTransportedItemStack> iterator = incoming.iterator(); iterator.hasNext(); ) {
-            ExtremeTransportedItemStack ts = iterator.next();
+        for (Iterator<TransportedItemStack> iterator = incoming.iterator(); iterator.hasNext(); ) {
+            TransportedItemStack ts = iterator.next();
             if (!tick(ts))
                 continue;
             if (world.isClientSide && !blockEntity.isVirtual())
@@ -103,10 +101,12 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
                 heldItem = ts;
             } else {
                 if (!ItemHelper.canItemStackAmountsStack(heldItem.stack, ts.stack)) {
-                    Vec3 vec = VecHelper.getCenterOf(blockEntity.getBlockPos());
-                    Containers.dropItemStack(blockEntity.getLevel(), vec.x, vec.y + .5f, vec.z, ts.stack);
+//                    Vec3 vec = VecHelper.getCenterOf(blockEntity.getBlockPos());
+//                    Containers.dropItemStack(blockEntity.getLevel(), vec.x, vec.y + .5f, vec.z, ts.stack);
                 } else {
-                    heldItem.stack.grow(ts.stack.getCount());
+                    int newCount = heldItem.stack.getCount() + ts.stack.getCount();
+                    heldItem.stack.setCount(newCount);
+//                    heldItem.stack.grow(ts.stack.getCount());
                 }
             }
             iterator.remove();
@@ -147,7 +147,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
             blockEntity.sendData();
     }
 
-    protected boolean tick(ExtremeTransportedItemStack heldItem) {
+    protected boolean tick(TransportedItemStack heldItem) {
         heldItem.prevBeltPosition = heldItem.beltPosition;
         heldItem.prevSideOffset = heldItem.sideOffset;
         float diff = .5f - heldItem.beltPosition;
@@ -203,7 +203,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         Level level = getWorld();
         BlockPos pos = getPos();
         ItemHelper.dropContents(level, pos, processingOutputBuffer);
-        for (ExtremeTransportedItemStack transportedItemStack : incoming)
+        for (TransportedItemStack transportedItemStack : incoming)
             Block.popResource(level, pos, transportedItemStack.stack);
         if (!getHeldItemStack().isEmpty())
             Block.popResource(level, pos, getHeldItemStack());
@@ -218,21 +218,21 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
     @Override
     public void write(CompoundTag compound, boolean clientPacket) {
         if (heldItem != null)
-            compound.put("HeldItem", heldItem.serializeNBT());
+            compound.put("HeldItem", intItemStackSave(heldItem));
         compound.put("OutputBuffer", processingOutputBuffer.serializeNBT());
         if (canMergeItems() && !incoming.isEmpty())
-            compound.put("Incoming", NBTHelper.writeCompoundList(incoming, ExtremeTransportedItemStack::serializeNBT));
+            compound.put("Incoming", NBTHelper.writeCompoundList(incoming, TransportedItemStack::serializeNBT));
     }
 
     @Override
     public void read(CompoundTag compound, boolean clientPacket) {
         heldItem = null;
         if (compound.contains("HeldItem"))
-            heldItem = ExtremeTransportedItemStack.read(compound.getCompound("HeldItem"));
+            heldItem = intItemStackRead(compound.getCompound("HeldItem"));
         processingOutputBuffer.deserializeNBT(compound.getCompound("OutputBuffer"));
         if (canMergeItems()) {
             ListTag list = compound.getList("Incoming", Tag.TAG_COMPOUND);
-            incoming = NBTHelper.readCompoundList(list, ExtremeTransportedItemStack::read);
+            incoming = NBTHelper.readCompoundList(list, TransportedItemStack::read);
         }
     }
 
@@ -263,14 +263,13 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
     public int getRemainingSpace() {
         int cumulativeStackSize = getPresentStackSize();
-        for (ExtremeTransportedItemStack transportedItemStack : incoming)
+        for (TransportedItemStack transportedItemStack : incoming)
             cumulativeStackSize += transportedItemStack.stack.getCount();
-        int fromGetter =
-                Math.min(maxStackSize.get() == 0 ? 64 : maxStackSize.get(), getHeldItemStack().getMaxStackSize());
-        return (fromGetter) - cumulativeStackSize;
+        int limit = maxStackSize.get() == 0 ? 64 : maxStackSize.get();
+        return limit - cumulativeStackSize;
     }
 
-    public ItemStack insert(ExtremeTransportedItemStack heldItem, boolean simulate) {
+    public ItemStack insert(TransportedItemStack heldItem, boolean simulate) {
         if (!canAcceptItems.get())
             return heldItem.stack;
         if (!acceptedItems.test(heldItem.stack))
@@ -288,7 +287,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
             if (remainingSpace < inserted.getCount()) {
                 returned = ItemHandlerHelper.copyStackWithSize(heldItem.stack, inserted.getCount() - remainingSpace);
                 if (!simulate) {
-                    ExtremeTransportedItemStack copy = heldItem.copy();
+                    TransportedItemStack copy = heldItem.copy();
                     copy.stack.setCount(remainingSpace);
                     if (this.heldItem != null)
                         incoming.add(copy);
@@ -307,7 +306,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         }
 
         ItemStack returned = ItemStack.EMPTY;
-        int maxCount = heldItem.stack.getMaxStackSize();
+        int maxCount = maxStackSize.get();
         boolean stackTooLarge = maxCount < heldItem.stack.getCount();
         if (stackTooLarge)
             returned = ItemHandlerHelper.copyStackWithSize(heldItem.stack, heldItem.stack.getCount() - maxCount);
@@ -332,11 +331,11 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         return returned;
     }
 
-    public void setHeldItem(ExtremeTransportedItemStack heldItem) {
-        this.heldItem = heldItem == null ? null : heldItem.copy();
+    public void setHeldItem(TransportedItemStack heldItem) {
+        this.heldItem = heldItem;
     }
 
-    public void addHeldItem(ExtremeTransportedItemStack incomingItem) {
+    public void addHeldItem(TransportedItemStack incomingItem) {
         if (this.heldItem == null || this.heldItem.stack.isEmpty()) {
             this.heldItem = incomingItem.copy();
             incomingItem.stack.setCount(0);
@@ -345,7 +344,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
         if (ItemStack.isSameItemSameTags(this.heldItem.stack, incomingItem.stack)) {
             int currentCount = this.heldItem.stack.getCount();
-            int maxCount = this.heldItem.maxStackSize;
+            int maxCount = maxStackSize.get();
             int roomLeft = maxCount - currentCount;
 
             if (roomLeft > 0) {
@@ -360,7 +359,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         this.heldItem = null;
     }
 
-    public void setCenteredHeldItem(ExtremeTransportedItemStack heldItem) {
+    public void setCenteredHeldItem(TransportedItemStack heldItem) {
         this.heldItem = heldItem;
         this.heldItem.beltPosition = 0.5f;
         this.heldItem.prevBeltPosition = 0.5f;
@@ -393,22 +392,21 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         transportedStack.insertedFrom = side;
         transportedStack.prevSideOffset = transportedStack.sideOffset;
         transportedStack.prevBeltPosition = transportedStack.beltPosition;
-        ItemStack remainder = insert(new ExtremeTransportedItemStack(transportedStack, 1024), simulate);
+        ItemStack remainder = insert(transportedStack, simulate);
         if (remainder.getCount() != size)
             blockEntity.notifyUpdate();
 
         return remainder;
     }
 
-    private void applyToAllItems(float maxDistanceFromCentre,
-                                 Function<TransportedItemStack, TransportedItemStackHandlerBehaviour.TransportedResult> processFunction) {
+    private void applyToAllItems(float maxDistanceFromCentre, Function<TransportedItemStack, TransportedItemStackHandlerBehaviour.TransportedResult> processFunction) {
         if (heldItem == null)
             return;
         if (.5f - heldItem.beltPosition > maxDistanceFromCentre)
             return;
 
         boolean dirty = false;
-        ExtremeTransportedItemStack transportedItemStack = heldItem;
+        TransportedItemStack transportedItemStack = heldItem;
         ItemStack stackBefore = transportedItemStack.stack.copy();
         TransportedItemStackHandlerBehaviour.TransportedResult result = processFunction.apply(transportedItemStack);
         if (result == null || result.didntChangeFrom(stackBefore))
@@ -417,16 +415,22 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
         dirty = true;
         heldItem = null;
         if (result.hasHeldOutput())
-            setCenteredHeldItem((ExtremeTransportedItemStack) result.getHeldOutput());
+            setCenteredHeldItem(result.getHeldOutput());
 
         for (TransportedItemStack added : result.getOutputs()) {
             if (getHeldItemStack().isEmpty()) {
-                setCenteredHeldItem((ExtremeTransportedItemStack) added);
+                setCenteredHeldItem(added);
                 continue;
             }
-            ItemStack remainder = ItemHandlerHelper.insertItemStacked(processingOutputBuffer, added.stack, false);
-            Vec3 vec = VecHelper.getCenterOf(blockEntity.getBlockPos());
-            Containers.dropItemStack(blockEntity.getLevel(), vec.x, vec.y + .5f, vec.z, remainder);
+            ItemStack remainder = processingOutputBuffer.insertItem(0, added.stack, false);
+            for (int i = 1; i < processingOutputBuffer.getSlots() && !remainder.isEmpty(); i++) {
+                remainder = processingOutputBuffer.insertItem(i, remainder, false);
+            }
+
+            if (!remainder.isEmpty()) {
+                Vec3 vec = VecHelper.getCenterOf(blockEntity.getBlockPos());
+                Containers.dropItemStack(blockEntity.getLevel(), vec.x, vec.y + .5f, vec.z, remainder);
+            }
         }
 
         if (dirty)
@@ -456,6 +460,38 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
 
     public boolean isItemValid(ItemStack stack) {
         return acceptedItems.test(stack);
+    }
+
+    private CompoundTag intItemStackSave(TransportedItemStack stack) {
+        CompoundTag itemTag = stack.serializeNBT();
+        if (itemTag.contains("Item")) {
+            CompoundTag itemTag2 = itemTag.getCompound("Item");
+            if (itemTag2.contains("Count")) {
+                itemTag2.remove("Count");
+                itemTag2.putInt("Count", stack.stack.getCount());
+            }
+        }
+
+        return itemTag;
+    }
+
+    private TransportedItemStack intItemStackRead(CompoundTag pCompoundTag) {
+        CompoundTag tempTag = pCompoundTag.copy();
+        int count = 1;
+        if (pCompoundTag.contains("Item")) {
+            CompoundTag itemTag = tempTag.getCompound("Item");
+            count = itemTag.getInt("Count");
+        }
+
+        if (tempTag.contains("Item")) {
+            CompoundTag itemTag = tempTag.getCompound("Item");
+            itemTag.putByte("Count", (byte) 1);
+        }
+
+        TransportedItemStack stack = TransportedItemStack.read(tempTag);
+
+        stack.stack.setCount(count);
+        return stack;
     }
 
 }

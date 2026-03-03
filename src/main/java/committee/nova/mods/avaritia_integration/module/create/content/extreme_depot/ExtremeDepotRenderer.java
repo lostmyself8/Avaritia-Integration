@@ -36,8 +36,8 @@ public class ExtremeDepotRenderer extends SafeBlockEntityRenderer<ExtremeDepotBl
     public static void renderItemsOf(SmartBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
                                      int light, int overlay, ExtremeDepotBehaviour depotBehaviour) {
 
-        ExtremeTransportedItemStack transported = depotBehaviour.heldItem;
-                var msr = TransformStack.of(ms);
+        TransportedItemStack transported = depotBehaviour.heldItem;
+        var msr = TransformStack.of(ms);
         Vec3 itemPosition = VecHelper.getCenterOf(be.getBlockPos());
 
         ms.pushPose();
@@ -99,8 +99,7 @@ public class ExtremeDepotRenderer extends SafeBlockEntityRenderer<ExtremeDepotBl
         ms.popPose();
     }
 
-    public static void renderItem(Level level, PoseStack ms, MultiBufferSource buffer, int light, int overlay,
-                                  ItemStack itemStack, int angle, Random r, Vec3 itemPosition, boolean alwaysUpright) {
+    public static void renderItem(Level level, PoseStack ms, MultiBufferSource buffer, int light, int overlay, ItemStack itemStack, int angle, Random r, Vec3 itemPosition, boolean alwaysUpright) {
         ItemRenderer itemRenderer = Minecraft.getInstance()
                 .getItemRenderer();
         var msr = TransformStack.of(ms);
