@@ -33,6 +33,7 @@ import vazkii.botania.api.BotaniaForgeClientCapabilities;
 import vazkii.botania.api.block.Wandable;
 import vazkii.botania.api.block_entity.BindableSpecialFlowerBlockEntity;
 import vazkii.botania.api.mana.ManaReceiver;
+import vazkii.botania.api.mana.spark.SparkAttachable;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
 import vazkii.botania.common.lib.ResourceLocationHelper;
 import vazkii.botania.forge.CapabilityUtil;
@@ -73,6 +74,7 @@ public final class BotaniaModule implements Module {
         if (be.getType() == BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get()) {
             e.addCapability(ResourceLocationHelper.prefix("mana_receiver"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.MANA_RECEIVER, (ManaReceiver) be));
             e.addCapability(ResourceLocationHelper.prefix("wandable"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.WANDABLE, (Wandable) be));
+            e.addCapability(ResourceLocationHelper.prefix("spark_attachable"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.SPARK_ATTACHABLE, (SparkAttachable) be));
         }
     }
 

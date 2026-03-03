@@ -20,14 +20,14 @@ public final class BotaniaIntegrationBlockEntities {
             "asgard_dandelion",
             () -> BlockEntityType.Builder.of(
                     AsgardDandelionBlockEntity::new,
-                    BotaniaIntegrationBlocks.asgard_dandelion
+                    BotaniaIntegrationBlocks.asgard_dandelion, BotaniaIntegrationBlocks.asgard_dandelion_floating
             ).build(null)
     );
     public static final RegistryObject<BlockEntityType<SoarleanderBlockEntity>> SOARLEANDER = register(
             "soarleander",
             () -> BlockEntityType.Builder.of(
                     SoarleanderBlockEntity::new,
-                    BotaniaIntegrationBlocks.soarleander
+                    BotaniaIntegrationBlocks.soarleander, BotaniaIntegrationBlocks.soarleander_floating
             ).build(null)
     );
     public static final RegistryObject<BlockEntityType<InfinityManaPoolBlockEntity>> INFINITY_MANA_POOL = register(

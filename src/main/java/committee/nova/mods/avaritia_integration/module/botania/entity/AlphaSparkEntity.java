@@ -51,7 +51,7 @@ import java.util.*;
 /**
  * @author cnlimiter
  */
-public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark{
+public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
     private static final int TRANSFER_RATE = 100000;
     private static final String TAG_UPGRADE = "upgrade";
     private static final EntityDataAccessor<Integer> UPGRADE = SynchedEntityData.defineId(AlphaSparkEntity.class, EntityDataSerializers.INT);

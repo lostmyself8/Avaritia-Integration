@@ -42,7 +42,7 @@ import java.util.Optional;
  */
 public class InfinityManaPoolBlock extends BotaniaWaterloggedBlock implements EntityBlock {
     private static final VoxelShape NORMAL_SHAPE;
-    private static final VoxelShape NORMAL_SHAPE_INTERACT = box((double) 0.0F, (double) 0.0F, (double) 0.0F, (double) 16.0F, (double) 8.0F, (double) 16.0F);
+    private static final VoxelShape NORMAL_SHAPE_INTERACT = box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
 
     public InfinityManaPoolBlock(BlockBehaviour.Properties builder) {
         super(builder);
@@ -54,15 +54,15 @@ public class InfinityManaPoolBlock extends BotaniaWaterloggedBlock implements En
         builder.add(BotaniaStateProperties.OPTIONAL_DYE_COLOR);
     }
 
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext ctx) {
         return NORMAL_SHAPE;
     }
 
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return NORMAL_SHAPE_INTERACT;
     }
 
-    public @NotNull VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    public @NotNull VoxelShape getInteractionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return NORMAL_SHAPE_INTERACT;
     }
 
@@ -113,7 +113,7 @@ public class InfinityManaPoolBlock extends BotaniaWaterloggedBlock implements En
         return createTickerHelper(type, BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(), level.isClientSide ? InfinityManaPoolBlockEntity::clientTick : InfinityManaPoolBlockEntity::serverTick);
     }
 
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (entity instanceof ItemEntity item) {
             InfinityManaPoolBlockEntity tile = (InfinityManaPoolBlockEntity) world.getBlockEntity(pos);
             tile.collideEntityItem(item);
@@ -121,21 +121,21 @@ public class InfinityManaPoolBlock extends BotaniaWaterloggedBlock implements En
 
     }
 
-    public @NotNull RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
-    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+    public int getAnalogOutputSignal(@NotNull BlockState state, Level world, @NotNull BlockPos pos) {
         InfinityManaPoolBlockEntity pool = (InfinityManaPoolBlockEntity) world.getBlockEntity(pos);
         return InfinityManaPoolBlockEntity.calculateComparatorLevel(pool.getCurrentMana(), pool.getMaxMana());
     }
 
     static {
-        VoxelShape cutout = box((double) 2.0F, (double) 2.0F, (double) 2.0F, (double) 14.0F, (double) 16.0F, (double) 14.0F);
+        VoxelShape cutout = box(2.0F, 2.0F, 2.0F, 14.0F, 16.0F, 14.0F);
         NORMAL_SHAPE = Shapes.join(NORMAL_SHAPE_INTERACT, cutout, BooleanOp.ONLY_FIRST);
     }
 }

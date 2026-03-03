@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.world.inventory.InventoryMenu;
 import vazkii.botania.client.render.entity.BaseSparkRenderer;
-import vazkii.botania.common.entity.ManaSparkEntity;
 
 import java.util.Objects;
 
