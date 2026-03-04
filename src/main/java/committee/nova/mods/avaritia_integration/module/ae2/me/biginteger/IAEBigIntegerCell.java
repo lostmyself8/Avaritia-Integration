@@ -3,9 +3,7 @@ package committee.nova.mods.avaritia_integration.module.ae2.me.biginteger;
 import appeng.api.stacks.GenericStack;
 import appeng.api.storage.cells.CellState;
 import appeng.api.upgrades.IUpgradeableItem;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
+import committee.nova.mods.avaritia_integration.module.ae2.registry.AE2IntegrationDataComponents;
 import net.minecraft.world.item.ItemStack;
 
 import java.math.BigInteger;
@@ -20,107 +18,64 @@ import java.util.List;
  *
  * @author Frostbite
  */
-public interface IAEBigIntegerCell extends IUpgradeableItem
-{
-    String CELL_STATE_TAG_NAME = "ae_universal_cell_state";
-    String CELL_BYTES_USAGE_BIG_TAG_NAME = "ae_universal_cell_bytes_usage_big";
-    String CELL_TYPES_USAGE_TAG_NAME = "ae_universal_cell_types_usage";
-    String CELL_SHOW_TOOLTIP_STACKS_TAG_NAME = "ae_universal_cell_show_tooltip_stacks";
+public interface IAEBigIntegerCell extends IUpgradeableItem {
 
     double getIdleDrain();
 
-    // === 以下辅助方法：由 Data Components 迁移为 NBT，行为保持一致 ===
-    static BigInteger getUsedBytes(ItemStack stack)
-    {
-        CompoundTag tag = stack.getTag();
-        if (tag == null) return BigInteger.ZERO;
-        if (tag.contains(CELL_BYTES_USAGE_BIG_TAG_NAME, Tag.TAG_BYTE_ARRAY))
-        {
-            byte[] arr = tag.getByteArray(CELL_BYTES_USAGE_BIG_TAG_NAME);
-            if (arr.length == 0) return BigInteger.ZERO;
-            return new BigInteger(arr);
-        }
-        return BigInteger.ZERO;
+    // === 以下辅助方法：从 NBT 迁移为 Data Components，行为保持一致 ===
+    static BigInteger getUsedBytes(ItemStack stack) {
+        BigInteger v = stack.get(AE2IntegrationDataComponents.CELL_BYTE_USAGE_BIG.get());
+        return v == null ? BigInteger.ZERO : v;
     }
 
-    static void setUsedBytes(ItemStack stack, BigInteger usedBytes)
-    {
-        CompoundTag tag = stack.getOrCreateTag();
-        if (usedBytes == null)
-        {
-            tag.remove(CELL_BYTES_USAGE_BIG_TAG_NAME);
-            return;
-        }
-        tag.putByteArray(CELL_BYTES_USAGE_BIG_TAG_NAME, usedBytes.toByteArray());
+    static void setUsedBytes(ItemStack stack, BigInteger usedBytes) {
+        stack.set(AE2IntegrationDataComponents.CELL_BYTE_USAGE_BIG.get(), usedBytes);
     }
 
-    static int getUsedTypes(ItemStack stack)
-    {
-        CompoundTag tag = stack.getTag();
-        if(tag == null) return 0;
-        if(tag.contains(CELL_TYPES_USAGE_TAG_NAME)) return tag.getInt(CELL_TYPES_USAGE_TAG_NAME);
-        return 0;
+    static int getUsedTypes(ItemStack stack) {
+        Integer v = stack.get(AE2IntegrationDataComponents.CELL_TYPES_USAGE.get());
+        return v == null ? 0 : v;
     }
 
-    static void setUsedTypes(ItemStack stack, int usedTypes)
-    {
-        CompoundTag tag = stack.getOrCreateTag();
-        tag.putInt(CELL_TYPES_USAGE_TAG_NAME, Math.max(0, usedTypes));
+    static void setUsedTypes(ItemStack stack, int usedTypes) {
+        stack.set(AE2IntegrationDataComponents.CELL_TYPES_USAGE.get(), Math.max(0, usedTypes));
     }
 
-    static CellState getCellState(ItemStack stack)
-    {
-        CompoundTag tag = stack.getTag();
-        if (tag == null) return CellState.EMPTY;
-        if (!tag.contains(CELL_STATE_TAG_NAME, Tag.TAG_STRING)) return CellState.EMPTY;
-        try
-        {
-            return CellState.valueOf(tag.getString(CELL_STATE_TAG_NAME));
-        }
-        catch (IllegalArgumentException ex)
-        {
+    static CellState getCellState(ItemStack stack) {
+        String s = stack.get(AE2IntegrationDataComponents.CELL_STATE.get());
+        if (s == null) return CellState.EMPTY;
+        try {
+            return CellState.valueOf(s);
+        } catch (IllegalArgumentException ex) {
             return CellState.EMPTY;
         }
     }
 
-    static void setCellState(ItemStack stack, CellState newState)
-    {
-        stack.getOrCreateTag().putString(CELL_STATE_TAG_NAME, newState.name());
+    static void setCellState(ItemStack stack, CellState newState) {
+        stack.set(AE2IntegrationDataComponents.CELL_STATE.get(), newState.name());
     }
 
-    static List<GenericStack> getTooltipShowStacks(ItemStack stack)
-    {
-        CompoundTag tag = stack.getTag();
-        if (tag == null) return List.of();
-
-        ListTag list = tag.getList(CELL_SHOW_TOOLTIP_STACKS_TAG_NAME, Tag.TAG_COMPOUND);
-        if (list.isEmpty()) return List.of();
-
-        List<GenericStack> out = new ArrayList<>(list.size());
-        for (int i = 0; i < list.size(); i++)
-        {
-            CompoundTag entry = list.getCompound(i);
-            GenericStack genericStack = GenericStack.readTag(entry);
-            if (genericStack != null) out.add(genericStack);
-        }
-        return Collections.unmodifiableList(out);
+    static List<GenericStack> getTooltipShowStacks(ItemStack stack) {
+        List<GenericStack> raw = stack.get(AE2IntegrationDataComponents.CELL_SHOW_TOOLTIP_STACKS.get());
+        if (raw == null || raw.isEmpty()) return List.of();
+        // 返回不可变拷贝，保持与原逻辑“只读视图”的语义
+        return Collections.unmodifiableList(new ArrayList<>(raw));
     }
 
-    static void setTooltipShowStacks(ItemStack stack, List<GenericStack> showStacks)
-    {
-        if (showStacks == null || showStacks.isEmpty())
-        {
-            CompoundTag tag = stack.getTag();
-            if (tag != null) tag.remove(CELL_SHOW_TOOLTIP_STACKS_TAG_NAME);
+    static void setTooltipShowStacks(ItemStack stack, List<GenericStack> showStacks) {
+        if (showStacks == null || showStacks.isEmpty()) {
+            stack.remove(AE2IntegrationDataComponents.CELL_SHOW_TOOLTIP_STACKS.get());
             return;
         }
-
-        ListTag list = new ListTag();
-        for (GenericStack gs : showStacks)
-        {
-            if (gs == null) continue;
-            list.add(GenericStack.writeTag(gs));
+        // 过滤掉可能的 null
+        List<GenericStack> cleaned = new ArrayList<>(showStacks.size());
+        for (GenericStack gs : showStacks) {
+            if (gs != null) cleaned.add(gs);
         }
-        stack.getOrCreateTag().put(CELL_SHOW_TOOLTIP_STACKS_TAG_NAME, list);
+        if (cleaned.isEmpty()) {
+            stack.remove(AE2IntegrationDataComponents.CELL_SHOW_TOOLTIP_STACKS.get());
+        } else {
+            stack.set(AE2IntegrationDataComponents.CELL_SHOW_TOOLTIP_STACKS.get(), cleaned);
+        }
     }
 }
