@@ -69,6 +69,14 @@ repositories {
 
     mavenCentral()
     maven {
+        // For Botania 1.21.1
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        name = "Curios"
+        url = uri("https://maven.theillusivec4.top/")
+    }
+    maven {
         url = "https://www.cursemaven.com"
         content {
             includeGroup "curse.maven"
@@ -106,6 +114,8 @@ dependencies {
     implementation "curse.maven:titanium-287342:${titanium_version}"
     //Industrial Foregoing
     implementation "curse.maven:industrial-foregoing-266515:${industrial_foregoing_version}"
+    //Botania
+    implementation "vazkii.botania:botania-neoforge-1.21.1:${botania_version}"
 
 }
 
