@@ -461,8 +461,8 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
 
             int width = 4 + Collections.max(Arrays.asList(
                     mc.font.width(networkColorName),
-                    RenderHelper.itemWithNameWidth(mc, sparkStack),
-                    RenderHelper.itemWithNameWidth(mc, augmentStack)
+                    RenderHelper.itemWithNameWidth(sparkStack, mc.font),
+                    RenderHelper.itemWithNameWidth(augmentStack, mc.font)
             ));
             int height = augmentStack.isEmpty() ? 30 : 50;
             int networkColorTextStart = mc.font.width(networkColorName) / 2;

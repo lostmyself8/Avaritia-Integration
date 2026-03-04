@@ -3,6 +3,7 @@ package committee.nova.mods.avaritia_integration.module.botania.entity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -98,7 +99,7 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
         for (LivingEntity living : entityList) {
             double sq = living.distanceToSqr(pos.getX(), pos.getY(), pos.getZ());
             if (sq < radius) {
-                for (MobEffect next : ForgeRegistries.MOB_EFFECTS.getValues()) {
+                for (MobEffect next : BuiltInRegistries.MOB_EFFECT.getValues()) {
                     if (next.isBeneficial())
                         living.addEffect(new MobEffectInstance(next, time, lv));
                 }
