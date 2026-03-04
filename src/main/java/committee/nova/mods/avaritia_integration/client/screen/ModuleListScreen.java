@@ -30,7 +30,7 @@ public class ModuleListScreen extends Screen {
         if (this.initialized) this.widget.updateSize(40, this.width - 40, 64, this.height - 32);
         else {
             this.initialized = true;
-            this.widget = new ModuleListWidget(this, this.minecraft, 40, this.width - 40, 64, this.height - 32, 24);
+            this.widget = new ModuleListWidget(this,this.minecraft, 40, this.width - 40, 64, this.height - 32);
             this.widget.update();
         }
         this.addWidget(this.widget);
@@ -53,7 +53,7 @@ public class ModuleListScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics context, int mouseX, int mouseY, float delta) {
-        super.renderBackground(context);
+        super.renderBackground(context, mouseX, mouseY, delta);
         this.tooltips = List.of();
         this.widget.render(context, mouseX, mouseY, delta);
         assert this.minecraft != null;

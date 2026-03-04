@@ -19,80 +19,124 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class IFBaseFluidInstance {
-    private final DeferredRegister<FluidType> fluidType;
-    private final DeferredRegister<Fluid> flowingFluid;
-    private final DeferredRegister<Fluid> sourceFluid;
-    private final DeferredRegister<Item> bucketFluid;
-    private final DeferredRegister<Block> blockFluid;
-    private final String fluid;
 
-    public IFBaseFluidInstance(DeferredRegister<Item> itemDeferredRegister, DeferredRegister<Block> blockDeferredRegister, DeferredRegister<Fluid> fluidDeferredRegister, DeferredRegister<FluidType> fluidTypeDeferredRegister, String fluid, FluidType.Properties fluidTypeProperties, IClientFluidTypeExtensions renderProperties) {
-        this.fluid = fluid;
-        this.sourceFluid = fluidDeferredRegister;
-        this.flowingFluid = fluidDeferredRegister;
-        this.fluidType = fluidTypeDeferredRegister;
-        this.bucketFluid = itemDeferredRegister.register(fluid + "_bucket", () -> {
-            return new BucketItem(this.sourceFluid, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1));
-        });
-        this.blockFluid = blockDeferredRegister.register(fluid, () -> {
-            return new LiquidBlock(() -> {
-                return (FlowingFluid)this.sourceFluid.get();
-            }, BlockBehaviour.Properties.of().mapColor(MapColor.WATER).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-        });
+    private final Supplier<FluidType> fluidType;
+    private final Supplier<Fluid> flowingFluid;
+    private final Supplier<Fluid> sourceFluid;
+    private final Supplier<Item> bucketFluid;
+    private final Supplier<LiquidBlock> blockFluid;
+
+    private final String fluidName;
+
+    public IFBaseFluidInstance(
+            DeferredRegister<Item> itemRegister,
+            DeferredRegister<Block> blockRegister,
+            DeferredRegister<Fluid> fluidRegister,
+            DeferredRegister<FluidType> fluidTypeRegister,
+            String name,
+            FluidType.Properties fluidTypeProperties,
+            IClientFluidTypeExtensions renderProperties
+    ) {
+        this.fluidName = name;
+
+        this.fluidType = fluidTypeRegister.register(name, () ->
+                new FluidType(fluidTypeProperties) {
+                    @Override
+                    public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                        consumer.accept(renderProperties);
+                    }
+                });
+
+        this.sourceFluid = fluidRegister.register(name + "_source",
+                () -> new Source(this));
+
+        this.flowingFluid = fluidRegister.register(name + "_flowing",
+                () -> new Flowing(this));
+
+        this.blockFluid = blockRegister.register(name,
+                () -> new LiquidBlock(
+                        (FlowingFluid) sourceFluid.get(),
+                        BlockBehaviour.Properties.of()
+                                .noCollission()
+                                .strength(100f)
+                                .noLootTable()
+                ));
+
+        this.bucketFluid = itemRegister.register(name + "_bucket",
+                () -> new BucketItem(
+                        sourceFluid.get(),
+                        new Item.Properties().stacksTo(1)
+                ));
+
     }
 
-
-    public DeferredRegister<FluidType> getFluidType() {
-        return this.fluidType;
+    public FluidType getFluidType() {
+        return fluidType.get();
     }
 
-    public DeferredRegister<Fluid> getFlowingFluid() {
-        return this.flowingFluid;
+    public Fluid getFlowingFluid() {
+        return flowingFluid.get();
     }
 
     public Supplier<Fluid> getSourceFluid() {
-        return this.sourceFluid;
+        return sourceFluid;
     }
 
-    public DeferredRegister<Item> getBucketFluid() {
-        return this.bucketFluid;
+
+    public Item getBucketFluid() {
+        return bucketFluid.get();
     }
 
-    public DeferredRegister<Block> getBlockFluid() {
-        return this.blockFluid;
+    public LiquidBlock getBlockFluid() {
+        return blockFluid.get();
     }
 
-    public String getFluid() {
-        return this.fluid;
+    public String getFluidName() {
+        return fluidName;
     }
 
-    public static class Source<T extends IFBaseFluidInstance> extends IFBaseFluid {
-        public Source(T instance) {
+
+    public static class Source extends IFBaseFluid {
+        public Source(IFBaseFluidInstance instance) {
             super(instance);
         }
 
-        public int getAmount(@Nonnull FluidState state) {
+        @Override
+        public int getAmount(FluidState state) {
             return 8;
         }
 
-        public boolean isSource(@Nonnull FluidState state) {
+        @Override
+        public boolean isSource(FluidState state) {
             return true;
         }
     }
 
-    public static class Flowing<T extends IFBaseFluidInstance> extends IFBaseFluid {
-        public Flowing(T instance) {
+
+    public static class Flowing extends IFBaseFluid {
+
+        public Flowing(IFBaseFluidInstance instance) {
             super(instance);
-            this.registerDefaultState(this.getStateDefinition().any().setValue(LEVEL, 7));
+            this.registerDefaultState(
+                    this.getStateDefinition().any().setValue(LEVEL, 7)
+            );
         }
 
-        protected void createFluidStateDefinition(StateDefinition.@NotNull Builder<Fluid, FluidState> builder) {
+        @Override
+        protected void createFluidStateDefinition(
+                StateDefinition.Builder<Fluid, FluidState> builder) {
             super.createFluidStateDefinition(builder);
             builder.add(LEVEL);
         }
 
-        public int getAmount(@Nonnull FluidState fluidState) {
-            return fluidState.getValue(LEVEL);
+        @Override
+        public int getAmount(FluidState state) {
+            return state.getValue(LEVEL);
+        }
+
+        @Override
+        public boolean isSource(FluidState state) {
+            return false;
         }
     }
 }

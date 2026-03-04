@@ -5,13 +5,13 @@ import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.util.ConfigLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
@@ -178,7 +178,7 @@ public final class ModuleManager {
             return this.dependencies.stream().filter(x -> x.state != ErrorType.NONE).findAny().isEmpty() ? EnableState.ENABLED : EnableState.ERROR;
         }
 
-        public Component getTranslateKey() {
+        public MutableComponent getTranslateKey() {
             return Component.translatable("module.%s.name.%s".formatted(AvaritiaIntegration.MOD_ID, this.id));
         }
 

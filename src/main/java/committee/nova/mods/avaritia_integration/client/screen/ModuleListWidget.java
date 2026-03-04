@@ -4,7 +4,6 @@ import committee.nova.mods.avaritia_integration.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
-import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -13,11 +12,14 @@ import org.jetbrains.annotations.NotNull;
 public class ModuleListWidget extends ObjectSelectionList<ModuleListWidget.ModuleEntry> {
     private final ModuleListScreen screen;
 
-    public ModuleListWidget(ModuleListScreen screen, Minecraft client, int left, int right, int top, int bottom, int entryHeight) {
-        super(client, right - left, bottom - top, top, bottom, entryHeight);
+    public ModuleListWidget(ModuleListScreen screen, Minecraft client, int left, int right, int top, int bottom) {
+        super(client, right - left, bottom - top, top, bottom);
         this.screen = screen;
-        this.setRenderTopAndBottom(false);
         this.updateSize(left, right, top, bottom);
+    }
+
+    void updateSize(int left, int right, int top, int bottom) {
+
     }
 
     public void update() {
@@ -25,14 +27,6 @@ public class ModuleListWidget extends ObjectSelectionList<ModuleListWidget.Modul
         ModuleManager.getAllModules().forEach(x -> this.addEntry(new ModuleEntry(this.screen, x)));
     }
 
-
-    @Override
-    public void updateSize(int left, int right, int top, int bottom) {
-        this.x0 = left;
-        this.x1 = right;
-        this.y0 = top;
-        this.y1 = bottom;
-    }
 
     @Override
     public int getRowWidth() {
@@ -79,7 +73,7 @@ public class ModuleListWidget extends ObjectSelectionList<ModuleListWidget.Modul
 
         @Override
         public @NotNull Component getNarration() {
-            return Component.nullToEmpty("");
+            return Component.translatable(this.data.getTranslateKey().toString());
         }
     }
 }

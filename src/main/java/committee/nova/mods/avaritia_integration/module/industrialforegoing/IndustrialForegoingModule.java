@@ -14,6 +14,7 @@ import committee.nova.mods.avaritia_integration.module.industrialforegoing.regis
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 
 @ModuleEntry(id = IndustrialForegoingModule.MOD_ID, target = @ModMeta(IndustrialForegoingModule.MOD_ID))
@@ -44,7 +45,7 @@ public final class IndustrialForegoingModule implements Module {
                 output.accept(stack);
             }
         });
-        output.accept(IndustrialForegoingIntegrationFluids.ELDERLY_MEDULLA.getBucketFluid().get());
-        output.accept(IndustrialForegoingIntegrationFluids.VOID_MATTER.getBucketFluid().get());
+        output.accept(IndustrialForegoingIntegrationFluids.ELDERLY_MEDULLA.getBucketFluid());
+        output.accept(IndustrialForegoingIntegrationFluids.VOID_MATTER.getBucketFluid());
     }
 }

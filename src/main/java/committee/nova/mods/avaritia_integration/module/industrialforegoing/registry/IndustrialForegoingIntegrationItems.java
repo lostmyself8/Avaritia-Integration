@@ -16,10 +16,10 @@ import java.util.function.Supplier;
 public class IndustrialForegoingIntegrationItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AvaritiaIntegration.MOD_ID);
 
-    public static final HashMap<String, DeferredItem<AddonItem>> ADDONS = registryAddons();
+    public static final HashMap<String, Supplier<? extends AddonItem>> ADDONS = registryAddons();
 
-    private static HashMap<String, DeferredItem<AddonItem>> registryAddons(){
-        HashMap<String, DeferredItem<AddonItem>> map = new HashMap<>();
+    private static HashMap<String,Supplier<? extends AddonItem>> registryAddons(){
+        HashMap<String,Supplier<? extends AddonItem>> map = new HashMap<>();
         AddonInfo.create(3,AIItems.BLAZE_CUBE_GEAR, ModuleCore.ETHER.getSourceFluid(),1000,100,"blaze_cube").registry(map,ITEMS);
         AddonInfo.create(5,AIItems.CRYSTAL_MATRIX_GEAR,IndustrialForegoingIntegrationFluids.ELDERLY_MEDULLA.getSourceFluid(),1000,200,"crystal_matrix").registry(map,ITEMS);
         AddonInfo.create(8,ModItems.neutron_gear,IndustrialForegoingIntegrationFluids.VOID_MATTER.getSourceFluid(),1000,300,"neutron").registry(map,ITEMS);

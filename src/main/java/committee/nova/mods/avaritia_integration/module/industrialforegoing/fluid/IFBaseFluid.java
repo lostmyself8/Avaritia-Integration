@@ -30,7 +30,7 @@ public class IFBaseFluid extends FlowingFluid {
 
     @Nonnull
     public Fluid getFlowing() {
-        return this.baseFluidInstance.getFlowingFluid().get();
+        return this.baseFluidInstance.getFlowingFluid();
     }
 
     @Nonnull
@@ -64,7 +64,7 @@ public class IFBaseFluid extends FlowingFluid {
 
     @Nonnull
     public Item getBucket() {
-        return this.baseFluidInstance.getBucketFluid().get();
+        return this.baseFluidInstance.getBucketFluid();
     }
 
     @ParametersAreNonnullByDefault
@@ -82,7 +82,7 @@ public class IFBaseFluid extends FlowingFluid {
 
     @Nonnull
     protected BlockState createLegacyBlock(@Nonnull FluidState state) {
-        return this.baseFluidInstance.getBlockFluid().get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
+        return this.baseFluidInstance.getBlockFluid().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
     public boolean isSource(@Nonnull FluidState state) {
@@ -94,10 +94,10 @@ public class IFBaseFluid extends FlowingFluid {
     }
 
     public boolean isSame(@NotNull Fluid fluidIn) {
-        return fluidIn == this.baseFluidInstance.getFlowingFluid().get() || fluidIn == this.baseFluidInstance.getSourceFluid().get();
+        return fluidIn == this.baseFluidInstance.getFlowingFluid() || fluidIn == this.baseFluidInstance.getSourceFluid();
     }
 
     public FluidType getFluidType() {
-        return this.baseFluidInstance.getFluidType().get();
+        return this.baseFluidInstance.getFluidType();
     }
 }
