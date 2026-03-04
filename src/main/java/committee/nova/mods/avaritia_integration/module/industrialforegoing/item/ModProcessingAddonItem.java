@@ -1,11 +1,9 @@
 package committee.nova.mods.avaritia_integration.module.industrialforegoing.item;
 
 import com.buuz135.industrial.item.addon.ProcessingAddonItem;
-import com.hrznstudio.titanium.api.augment.IAugmentType;
 import com.hrznstudio.titanium.item.AugmentWrapper;
 import com.hrznstudio.titanium.item.BasicItem;
 import net.minecraft.ChatFormatting;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ModProcessingAddonItem extends AddonItem{
     public ModProcessingAddonItem(int tier, Component materialName) {

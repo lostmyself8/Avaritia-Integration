@@ -8,7 +8,8 @@ import com.hrznstudio.titanium.api.augment.AugmentTypes;
 import com.hrznstudio.titanium.api.augment.IAugmentType;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationFluids;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -18,11 +19,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,13 +58,15 @@ public class AddonInfo {
         laserDrillFluidRecipes.add(new LaserDrillFluidRecipe(new FluidStack(IndustrialForegoingIntegrationFluids.VOID_MATTER.getSourceFluid().get(),20),15,LaserDrillFluidRecipe.EMPTY, new LaserDrillRarity(new ResourceKey[]{Biomes.END_HIGHLANDS}, new ResourceKey[0], -32, 64, 8)));
     }
 
-    public void registry(HashMap<String, RegistryObject<AddonItem>> map, DeferredRegister<Item> register){
+    public void registry(HashMap<String, DeferredItem<AddonItem>> map, DeferredRegister<Item> register){
         String speed = getId(AugmentTypes.SPEED);
         String efficiency = getId(AugmentTypes.EFFICIENCY);
         String processing = getId(ProcessingAddonItem.PROCESSING);
         map.put(speed,register.register(speed,() -> new ModSpeedAddonItem(tier, Component.translatable(getDescription())){
+
+
             @Override
-            public void registerRecipe(Consumer<FinishedRecipe> consumer) {
+            public void registerRecipe(RecipeOutput consumer) {
                 dissolutionChamberRecipe(this.getDefaultInstance(),new Ingredient.Value[]{
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
@@ -79,7 +81,7 @@ public class AddonInfo {
         }));
         map.put(efficiency,register.register(efficiency,() -> new ModEfficiencyAddonItem(tier, Component.translatable(getDescription())){
             @Override
-            public void registerRecipe(Consumer<FinishedRecipe> consumer) {
+            public void registerRecipe(RecipeOutput consumer) {
                 dissolutionChamberRecipe(this.getDefaultInstance(),new Ingredient.Value[]{
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
@@ -94,7 +96,7 @@ public class AddonInfo {
         }));
         map.put(processing,register.register(processing,() -> new ModProcessingAddonItem(tier, Component.translatable(getDescription())){
             @Override
-            public void registerRecipe(Consumer<FinishedRecipe> consumer) {
+            public void registerRecipe(RecipeOutput consumer) {
                 dissolutionChamberRecipe(this.getDefaultInstance(),new Ingredient.Value[]{
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
                         new Ingredient.TagValue(Tags.Items.DUSTS_REDSTONE),
@@ -118,7 +120,7 @@ public class AddonInfo {
     }
 
     private static void dissolutionChamberRecipe(ItemStack result, Ingredient.Value[] inputs, FluidStack inputFluid, int processingTime){
-        var recipe = new DissolutionChamberRecipe(AvaritiaIntegration.rl(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(result.getItem())).getPath()),inputs,inputFluid,processingTime,result,FluidStack.EMPTY);
+        var recipe = new DissolutionChamberRecipe(AvaritiaIntegration.rl(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(result.getItem())).getPath()),inputs,inputFluid,processingTime,result,FluidStack.EMPTY);
         dissolutionChamberRecipes.add(recipe);
     }
 }
