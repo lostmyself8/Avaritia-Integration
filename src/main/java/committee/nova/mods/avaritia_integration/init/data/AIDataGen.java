@@ -1,8 +1,6 @@
 package committee.nova.mods.avaritia_integration.init.data;
 
-import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.init.data.provider.AIRecipes;
-import committee.nova.mods.avaritia_integration.module.industrialforegoing.recipe.IndustrialForegoingIntegrationSerializableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
