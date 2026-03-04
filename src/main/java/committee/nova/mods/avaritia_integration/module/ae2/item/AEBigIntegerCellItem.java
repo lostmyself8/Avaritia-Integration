@@ -60,11 +60,7 @@ public class AEBigIntegerCellItem extends Item implements IAEBigIntegerCell, ICe
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack,
-                                @Nullable Level pLevel,
-                                @NotNull List<Component> lines,
-                                @NotNull TooltipFlag pIsAdvanced)
-    {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag tooltipFlag) {
         if (Platform.isClient())
         {
             BigInteger used = IAEBigIntegerCell.getUsedBytes(stack);

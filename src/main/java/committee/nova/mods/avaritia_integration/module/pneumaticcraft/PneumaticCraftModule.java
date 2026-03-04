@@ -5,7 +5,7 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.pneumaticcraft.registry.PneumaticCraftIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 @ModuleEntry(id = PneumaticCraftModule.MOD_ID, target = @ModMeta(PneumaticCraftModule.MOD_ID))
 public final class PneumaticCraftModule implements Module {

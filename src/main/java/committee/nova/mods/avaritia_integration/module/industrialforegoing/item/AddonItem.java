@@ -6,7 +6,7 @@ import com.hrznstudio.titanium.component.inventory.SidedInventoryComponent;
 import com.hrznstudio.titanium.item.BasicItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -35,9 +35,10 @@ public abstract class AddonItem extends Item implements IRecipeProvider {
     }
 
     @Override
-    public void registerRecipe(Consumer<FinishedRecipe> consumer) {
+    public void registerRecipe(RecipeOutput recipeOutput) {
 
     }
+
 
     public @NotNull InteractionResult useOn(UseOnContext context) {
         if (!context.getLevel().isClientSide) {
@@ -63,8 +64,8 @@ public abstract class AddonItem extends Item implements IRecipeProvider {
     }
 
     @Override
-    public final void appendHoverText(@NotNull ItemStack stack, @Nullable Level worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         if (this.hasTooltipDetails(null)) {
             this.addTooltipDetails(null, stack, tooltip, flagIn.isAdvanced());
         }
@@ -82,6 +83,7 @@ public abstract class AddonItem extends Item implements IRecipeProvider {
         }
 
     }
+
 
     public void addTooltipDetails(@Nullable BasicItem.Key key, ItemStack stack, List<Component> tooltip, boolean advanced) {
     }

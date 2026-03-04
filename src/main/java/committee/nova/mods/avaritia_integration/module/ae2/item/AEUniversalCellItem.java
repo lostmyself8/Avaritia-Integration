@@ -71,11 +71,7 @@ public abstract class AEUniversalCellItem extends Item implements IAEUniversalCe
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack,
-                                @Nullable Level pLevel,
-                                @NotNull List<Component> lines,
-                                @NotNull TooltipFlag pIsAdvanced)
-    {
+    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> lines, TooltipFlag tooltipFlag)  {
         if (Platform.isClient())
         {
             long used = IAEUniversalCell.getUsedBytes(pStack);
@@ -84,6 +80,7 @@ public abstract class AEUniversalCellItem extends Item implements IAEUniversalCe
             lines.add(AEUniversalTooltips.typesUsed(typesUsed, getTotalTypes()));
         }
     }
+
 
     @Override
     public @NotNull Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack)

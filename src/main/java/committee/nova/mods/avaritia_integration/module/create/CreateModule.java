@@ -5,7 +5,7 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 @ModuleEntry(id = CreateModule.MOD_ID, target = @ModMeta(CreateModule.MOD_ID))
 public final class CreateModule implements Module {

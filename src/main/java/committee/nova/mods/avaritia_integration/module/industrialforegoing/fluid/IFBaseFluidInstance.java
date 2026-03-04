@@ -9,38 +9,28 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.*;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class IFBaseFluidInstance {
-    private final RegistryObject<FluidType> fluidType;
-    private final RegistryObject<Fluid> flowingFluid;
-    private final RegistryObject<Fluid> sourceFluid;
-    private final RegistryObject<Item> bucketFluid;
-    private final RegistryObject<Block> blockFluid;
+    private final DeferredRegister<FluidType> fluidType;
+    private final DeferredRegister<Fluid> flowingFluid;
+    private final DeferredRegister<Fluid> sourceFluid;
+    private final DeferredRegister<Item> bucketFluid;
+    private final DeferredRegister<Block> blockFluid;
     private final String fluid;
 
     public IFBaseFluidInstance(DeferredRegister<Item> itemDeferredRegister, DeferredRegister<Block> blockDeferredRegister, DeferredRegister<Fluid> fluidDeferredRegister, DeferredRegister<FluidType> fluidTypeDeferredRegister, String fluid, FluidType.Properties fluidTypeProperties, IClientFluidTypeExtensions renderProperties) {
         this.fluid = fluid;
-        this.sourceFluid = fluidDeferredRegister.register(fluid,() -> {
-            return new Source<>(this);
-        });
-        this.flowingFluid = fluidDeferredRegister.register(fluid + "_flowing",() -> {
-            return new Flowing<>(this);
-        });
-        this.fluidType = fluidTypeDeferredRegister.register(fluid, () -> {
-            return new FluidType(fluidTypeProperties) {
-                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                    consumer.accept(renderProperties);
-                }
-            };
-        });
+        this.sourceFluid = fluidDeferredRegister;
+        this.flowingFluid = fluidDeferredRegister;
+        this.fluidType = fluidTypeDeferredRegister;
         this.bucketFluid = itemDeferredRegister.register(fluid + "_bucket", () -> {
             return new BucketItem(this.sourceFluid, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1));
         });
@@ -52,23 +42,23 @@ public class IFBaseFluidInstance {
     }
 
 
-    public RegistryObject<FluidType> getFluidType() {
+    public DeferredRegister<FluidType> getFluidType() {
         return this.fluidType;
     }
 
-    public RegistryObject<Fluid> getFlowingFluid() {
+    public DeferredRegister<Fluid> getFlowingFluid() {
         return this.flowingFluid;
     }
 
-    public RegistryObject<Fluid> getSourceFluid() {
+    public Supplier<Fluid> getSourceFluid() {
         return this.sourceFluid;
     }
 
-    public RegistryObject<Item> getBucketFluid() {
+    public DeferredRegister<Item> getBucketFluid() {
         return this.bucketFluid;
     }
 
-    public RegistryObject<Block> getBlockFluid() {
+    public DeferredRegister<Block> getBlockFluid() {
         return this.blockFluid;
     }
 

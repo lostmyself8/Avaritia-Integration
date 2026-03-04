@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -97,7 +96,7 @@ public class IFBaseFluid extends FlowingFluid {
         return fluidIn == this.baseFluidInstance.getFlowingFluid().get() || fluidIn == this.baseFluidInstance.getSourceFluid().get();
     }
 
-    public @NotNull FluidType getFluidType() {
+    public net.neoforged.neoforge.fluids.FluidType getFluidType() {
         return this.baseFluidInstance.getFluidType().get();
     }
 }

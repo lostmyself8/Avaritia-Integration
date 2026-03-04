@@ -14,7 +14,7 @@ import committee.nova.mods.avaritia_integration.module.industrialforegoing.regis
 import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 @ModuleEntry(id = IndustrialForegoingModule.MOD_ID, target = @ModMeta(IndustrialForegoingModule.MOD_ID))
 public final class IndustrialForegoingModule implements Module {

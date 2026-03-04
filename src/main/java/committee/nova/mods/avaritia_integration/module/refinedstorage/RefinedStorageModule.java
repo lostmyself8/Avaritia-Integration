@@ -5,7 +5,7 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.refinedstorage.registry.RefinedStorageIntegrationItems;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 @ModuleEntry(id = RefinedStorageModule.MOD_ID, target = @ModMeta(RefinedStorageModule.MOD_ID))
 public final class RefinedStorageModule implements Module {
