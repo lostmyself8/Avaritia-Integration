@@ -8,8 +8,8 @@ import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
-import committee.nova.mods.avaritia_integration.module.create.config.CreateIntegrationConfigs;
 import committee.nova.mods.avaritia_integration.module.create.content.BoilerHeaters;
+import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationDataGen;
 import committee.nova.mods.avaritia_integration.module.create.registry.*;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,6 +29,7 @@ public final class CreateModule implements Module {
         REGISTRATE.registerEventListeners(registryBus);
         CreateIntegrationItems.REGISTRY.register(registryBus);
 
+        CreateIntegrationMountedStorageTypes.register();
         CreateIntegrationBlocks.register();
         CreateIntegrationBlockEntityTypes.register();
         CreateIntegrationItems.register();
@@ -50,18 +51,19 @@ public final class CreateModule implements Module {
 
     @Override
     public void registerEvent(IEventBus modBus, IEventBus gameBus) {
-        modBus.addListener(CreateIntegrationConfigs::onLoad);
-        modBus.addListener(CreateIntegrationConfigs::onReload);
+        modBus.addListener(CreateIntegrationDataGen::gatherData);
+//        modBus.addListener(CreateIntegrationConfigs::onLoad);
+//        modBus.addListener(CreateIntegrationConfigs::onReload);
     }
 
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(CreateIntegrationItems.CREATIVE_MECHANISM.get());
         output.accept(CreateIntegrationItems.CREATIVE_COMPOUND.get());
-        output.accept(CreateIntegrationItems.STAR_BLAZE_CAKE.get());
-        output.accept(CreateIntegrationItems.STAR_BLAZE_CAKE_BASE.get());
-        output.accept(CreateIntegrationItems.BLAZE_BLAZE_CAKE.get());
-        output.accept(CreateIntegrationItems.BLAZE_BLAZE_CAKE_BASE.get());
+        output.accept(CreateIntegrationItems.STAR_CAKE.get());
+        output.accept(CreateIntegrationItems.STAR_CAKE_BASE.get());
+        output.accept(CreateIntegrationItems.IGNIS_CAKE.get());
+        output.accept(CreateIntegrationItems.IGNIS_CAKE_BASE.get());
 
         output.accept(CreateIntegrationBlocks.EXTREME_BLAZE_BURNER.asItem());
         output.accept(CreateIntegrationBlocks.CRYSTAL_MATRIX_CASING.asItem());

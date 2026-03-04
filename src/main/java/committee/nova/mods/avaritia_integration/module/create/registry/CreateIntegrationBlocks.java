@@ -1,7 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
 import com.simibubi.create.AllDisplaySources;
-import com.simibubi.create.AllMountedStorageTypes;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.behaviour.interaction.ConductorBlockInteractionBehavior;
@@ -11,13 +10,16 @@ import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.logistics.depot.MountedDepotInteractionBehaviour;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
-import com.simibubi.create.content.processing.basin.BasinGenerator;
 import com.simibubi.create.content.processing.basin.BasinMovementBehaviour;
 import com.simibubi.create.content.processing.burner.BlazeBurnerMovementBehaviour;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
+import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationAssetLookup;
+import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationBlockStateGen;
+import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationBuilderTransformers;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinBlock;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_basin.ExtremeBasinGenerator;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlock;
@@ -57,17 +59,17 @@ public class CreateIntegrationBlocks {
 
         CRYSTAL_MATRIX_CASING = REGISTRATE.block("crystal_matrix_casing", CasingBlock::new)
                 .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
-                .transform(BuilderTransformers.casing(() -> CreateIntegrationSpriteShifts.CRYSTAL_MATRIX_CASING))
+                .transform(CreateIntegrationBuilderTransformers.casing(() -> CreateIntegrationSpriteShifts.CRYSTAL_MATRIX_CASING))
                 .register();
 
         NEUTRON_MECHANICAL_PRESS = REGISTRATE.block("neutron_mechanical_press", NeutronMechanicalPressBlock::new)
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLACK))
                 .transform(TagGen.axeOrPickaxe())
-                .blockstate(BlockStateGen.horizontalBlockProvider(true))
+                .blockstate(CreateIntegrationBlockStateGen.horizontalBlockProvider(true))
                 .onRegister(CreateIntegrationStress.setImpact(16.0))
                 .item(AssemblyOperatorBlockItem::new)
-                .transform(ModelGen.customItemModel())
+                .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
 
         EXTREME_BASIN = REGISTRATE.block("extreme_basin", ExtremeBasinBlock::new)
@@ -75,7 +77,7 @@ public class CreateIntegrationBlocks {
                 .properties(p -> p.mapColor(MapColor.COLOR_GRAY)
                         .sound(SoundType.NETHERITE_BLOCK))
                 .transform(TagGen.pickaxeOnly())
-                .blockstate(new BasinGenerator()::generate)
+                .blockstate(new ExtremeBasinGenerator()::generate)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .onRegister(MovementBehaviour.movementBehaviour(new BasinMovementBehaviour()))
                 .item()
@@ -86,27 +88,25 @@ public class CreateIntegrationBlocks {
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.noOcclusion().mapColor(MapColor.STONE))
                 .transform(TagGen.axeOrPickaxe())
-                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), CreateIntegrationAssetLookup.partialBaseModel(c, p)))
                 .addLayer(() -> RenderType::cutoutMipped)
                 .onRegister(CreateIntegrationStress.setImpact(16.0))
                 .item(MatrixMechanicalMixerBlockItem::new)
-                .transform(ModelGen.customItemModel())
+                .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
 
+        //TODO 黄铜漏斗等自动化方面有一些问题
         EXTREME_DEPOT = REGISTRATE.block("extreme_depot", ExtremeDepotBlock::new)
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
                 .transform(TagGen.axeOrPickaxe())
-                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), CreateIntegrationAssetLookup.partialBaseModel(c, p)))
 //                .transform(DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES))
                 .onRegister(block -> {
                     DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES);
                 })
                 .onRegister(MovingInteractionBehaviour.interactionBehaviour(new MountedDepotInteractionBehaviour()))
-//                .transform(MountedItemStorageType.mountedItemStorage(AllMountedStorageTypes.DEPOT))
-                .onRegister(block -> {
-                    MountedItemStorageType.mountedItemStorage(AllMountedStorageTypes.DEPOT);
-                })
+                .transform(MountedItemStorageType.mountedItemStorage(CreateIntegrationMountedStorageTypes.EXTREME_DEPOT))
                 .item()
                 .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();

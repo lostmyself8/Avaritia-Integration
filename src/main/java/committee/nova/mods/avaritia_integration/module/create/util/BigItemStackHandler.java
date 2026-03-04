@@ -1,4 +1,4 @@
-package committee.nova.mods.avaritia_integration.module.create.content.extreme_depot;
+package committee.nova.mods.avaritia_integration.module.create.util;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;

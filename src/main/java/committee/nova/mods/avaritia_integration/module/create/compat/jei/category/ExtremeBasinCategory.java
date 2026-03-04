@@ -95,11 +95,11 @@ public class ExtremeBasinCategory extends CreateRecipeCategory<ExtremeBasinRecip
         if (requiredHeat == ExtremeHeatCondition.STAR) {
             builder
                     .addSlot(RecipeIngredientRole.CATALYST, 153, 81)
-                    .addItemStack(CreateIntegrationItems.STAR_BLAZE_CAKE.asStack());
+                    .addItemStack(CreateIntegrationItems.STAR_CAKE.asStack());
         } else if (requiredHeat == ExtremeHeatCondition.BLAZE) {
             builder
                     .addSlot(RecipeIngredientRole.CATALYST, 153, 81)
-                    .addItemStack(CreateIntegrationItems.BLAZE_BLAZE_CAKE.asStack());
+                    .addItemStack(CreateIntegrationItems.IGNIS_CAKE.asStack());
         }
     }
 

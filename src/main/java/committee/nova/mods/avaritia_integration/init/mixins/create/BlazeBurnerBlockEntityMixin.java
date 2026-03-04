@@ -21,7 +21,7 @@ public abstract class BlazeBurnerBlockEntityMixin {
     @Inject(method = "tryUpdateFuel", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/AllTags$AllItemTags;matches(Lnet/minecraft/world/item/ItemStack;)Z", ordinal = 0), cancellable = true, remap = false)
     private void applyStarFuel(ItemStack itemStack, boolean forceOverflow, boolean simulate, CallbackInfoReturnable<Boolean> cir) {
         BlazeBurnerBlockEntity self = (BlazeBurnerBlockEntity) (Object) this;
-        if (CreateIntegrationItems.STAR_BLAZE_CAKE.isIn(itemStack)) {
+        if (CreateIntegrationItems.STAR_CAKE.isIn(itemStack)) {
             if (simulate) cir.setReturnValue(true);
 
             this.remainingBurnTime = Integer.MAX_VALUE;

@@ -22,22 +22,20 @@ public final class CreateIntegrationItems {
     public static final RegistryObject<Item> CREATIVE_MECHANISM = register("creative_mechanism", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
     public static final RegistryObject<Item> CREATIVE_COMPOUND = register("creative_compound", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
 
-    //TODO star_cake
-    public static final ItemEntry<Item> STAR_BLAZE_CAKE_BASE = REGISTRATE.item("star_blaze_cake_base", Item::new)
+    public static final ItemEntry<Item> STAR_CAKE_BASE = REGISTRATE.item("star_cake_base", Item::new)
             .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
             .register();
-    public static final ItemEntry<CombustibleItem> STAR_BLAZE_CAKE = REGISTRATE.item("star_blaze_cake", CombustibleItem::new)
+    public static final ItemEntry<CombustibleItem> STAR_CAKE = REGISTRATE.item("star_cake", CombustibleItem::new)
             .tag(CreateIntegrationTags.ItemTags.BLAZE_BURNER_FUEL_STAR.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
             .onRegister(i -> i.setBurnTime(Integer.MAX_VALUE))
             .register();
-    //TODO 把blaze_blaze替换为ignis -> ignis_cake
-    public static final ItemEntry<Item> BLAZE_BLAZE_CAKE_BASE = REGISTRATE.item("blaze_blaze_cake_base", Item::new)
+    public static final ItemEntry<Item> IGNIS_CAKE_BASE = REGISTRATE.item("ignis_cake_base", Item::new)
             .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
             .register();
-    public static final ItemEntry<CombustibleItem> BLAZE_BLAZE_CAKE = REGISTRATE.item("blaze_blaze_cake", CombustibleItem::new)
+    public static final ItemEntry<CombustibleItem> IGNIS_CAKE = REGISTRATE.item("ignis_cake", CombustibleItem::new)
             .tag(CreateIntegrationTags.ItemTags.BLAZE_BURNER_FUEL_BLAZE.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
             .model((c, p) -> p.getExistingFile(p.modLoc("item/" + c.getName())))
             .onRegister(i -> i.setBurnTime(65536))

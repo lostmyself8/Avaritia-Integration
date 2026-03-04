@@ -321,7 +321,7 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity implements I
         int newBurnTime = 0;
 
         //TODO 是否需要标签驱动?
-        if (CreateIntegrationItems.BLAZE_BLAZE_CAKE.isIn(itemStack)) {
+        if (CreateIntegrationItems.IGNIS_CAKE.isIn(itemStack)) {
             newBurnTime = 36000;
             newFuel = FuelType.BLAZE;
         } else if (itemStack.getItem() == ModItems.blaze_cube.get()) {
@@ -330,7 +330,7 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity implements I
         } else if (CreateIntegrationTags.ItemTags.BLAZE_BURNER_FUEL_BLAZE.matches(itemStack)) {
             newBurnTime = 6000;
             newFuel = FuelType.BLAZE;
-        } else if (CreateIntegrationItems.STAR_BLAZE_CAKE.isIn(itemStack)) {
+        } else if (CreateIntegrationItems.STAR_CAKE.isIn(itemStack)) {
             newBurnTime = 36000;
             newFuel = FuelType.STAR;
         } else if (itemStack.getItem() == ModItems.star_fuel.get()) {
