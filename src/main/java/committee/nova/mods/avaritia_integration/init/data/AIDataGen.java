@@ -22,7 +22,6 @@ public class AIDataGen {
         CompletableFuture<HolderLookup.Provider> future = event.getLookupProvider();
         if (event.includeServer()) {
             generator.addProvider(true, new AIRecipes(output, future));
-            generator.addProvider(true, new IndustrialForegoingIntegrationSerializableProvider(generator, AvaritiaIntegration.MOD_ID));
         }
     }
 }
