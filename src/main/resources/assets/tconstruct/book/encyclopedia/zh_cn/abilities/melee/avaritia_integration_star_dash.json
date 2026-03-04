@@ -1,0 +1,13 @@
+{
+  "modifier_id": "avaritia_integration:star_dash",
+  "text": [
+    {
+      "text": "攻击时提高伤害并有概率爆炸或发射弹射物；温度越高，伤害和触发爆炸的概率越高，额外发射弹射物的概率越低"
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "无等级上限",
+    "每级需要1个能力槽"
+  ]
+}

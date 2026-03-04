@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#tconstruct:molten_crystal_matrix",
+    "#tconstruct:molten_neutron",
+    "#tconstruct:molten_infinity"
+  ]
+}
