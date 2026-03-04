@@ -9,6 +9,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+//TODO:未完成,流体注册有问题
 public class IndustrialForegoingIntegrationFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, AvaritiaIntegration.MOD_ID);
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(BuiltInRegistries.FLUID.getDefaultKey(), AvaritiaIntegration.MOD_ID);
