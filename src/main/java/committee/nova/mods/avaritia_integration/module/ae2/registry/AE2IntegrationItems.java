@@ -29,7 +29,6 @@ public final class AE2IntegrationItems {
     public static final DeferredItem<Item> INFINITY_ME_STORAGE_CELL_BIG = register("infinity_me_storage_cell_big",
             () -> {
                 if (ModList.get().isLoaded(AE2Module.MOD_ID))
-                    // 现在不能右键拆元件，因为我不知道具体要用谁当它的存储组件，等准备好之后分别用存储组件和外壳替换这两个null
                     return new AEBigIntegerCellItem(new Item.Properties().stacksTo(1).rarity(ModRarities.EPIC), 64);
                 else
                     return new BaseItem(p -> p.rarity(ModRarities.EPIC));
