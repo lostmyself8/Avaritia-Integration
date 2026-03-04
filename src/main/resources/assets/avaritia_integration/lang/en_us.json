@@ -111,6 +111,11 @@
   "item.avaritia_integration.void_matter_bucket": "Void Matter Bucket",
   "item.avaritia_integration.elderly_medulla_bucket": "Elderly Medulla Bucket",
 
+  "crop.avaritia_integration.blaze_cube": "Blaze Cube",
+  "crop.avaritia_integration.crystal_matrix": "Crystal Matrix",
+  "crop.avaritia_integration.infinity": "Infinity",
+  "block.avaritia_integration.infinity_crux": "Infinity Crux",
+
   "block.avaritia_integration.molten_blaze_fluid": "Molten Blaze",
   "fluid.avaritia_integration.molten_blaze": "Molten Blaze",
   "fluid.avaritia_integration.flowing_molten_blaze": "Flowing Molten Blaze",

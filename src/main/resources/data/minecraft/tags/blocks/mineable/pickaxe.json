@@ -12,6 +12,10 @@
     {
       "id": "avaritia_integration:fake_end_portal_frame",
       "required": false
+    },
+    {
+      "id": "avaritia_integration:infinity_crux",
+      "required": false
     }
   ]
 }

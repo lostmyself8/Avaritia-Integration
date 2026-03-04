@@ -156,6 +156,12 @@ dependencies {
     implementation fg.deobf("curse.maven:industrial-foregoing-266515:${industrial_foregoing_version}")
     //Thermal Core
     implementation fg.deobf("com.teamcofh:thermal_core:${minecraft_version}-${thermalCoreVersion}.+")
+    //Mystical Agriculture
+    implementation fg.deobf("curse.maven:mystical-agriculture-246640:${mysticalAgricultureVersion}")
+    //Mystical Agradditions
+    implementation fg.deobf("curse.maven:mystical-agradditions-256247:${mysticalAgradditionsVersion}")
+    //Cucumber
+    implementation fg.deobf("curse.maven:cucumber-272335:${cucumberVersion}")
     //Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:[0.4.1,0.5.0)"))

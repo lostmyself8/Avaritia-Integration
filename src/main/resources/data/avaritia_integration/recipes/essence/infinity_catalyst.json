@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "modid": "mysticalagradditions",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "mysticalagriculture:infinity_essence"
+    }
+  },
+  "pattern": [
+    " a ",
+    "aaa",
+    " a "
+  ],
+  "result": {
+    "item": "avaritia:infinity_catalyst"
+  },
+  "show_notification": true
+}
