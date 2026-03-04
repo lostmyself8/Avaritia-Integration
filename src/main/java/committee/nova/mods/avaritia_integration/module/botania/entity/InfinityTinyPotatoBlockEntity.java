@@ -21,9 +21,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.FireworkRocketItem.Shape;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.FireworkExplosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,23 +33,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.botania.api.internal.VanillaPacketDispatcher;
 import vazkii.botania.common.BotaniaStats;
 import vazkii.botania.common.block.BotaniaBlocks;
-import vazkii.botania.common.block.decor.TinyPotatoBlock;
+import vazkii.botania.common.block.TinyPotatoBlock;
 import vazkii.botania.common.handler.BotaniaSounds;
 import vazkii.botania.common.helper.PlayerHelper;
 import vazkii.botania.common.helper.VecHelper;
-import vazkii.botania.common.lib.ResourceLocationHelper;
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.*;
 
-import static vazkii.botania.common.lib.ResourceLocationHelper.prefix;
 
 public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameable {
     private static final ResourceLocation BIRTHDAY_ADVANCEMENT = ResourceLocationHelper.prefix("challenge/tiny_potato_birthday");
@@ -173,7 +170,7 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
 
                 if (messageIndex == messageTimes.size() - 1) {
                     CompoundTag explosion = new CompoundTag();
-                    explosion.putByte("Type", (byte) Shape.LARGE_BALL.getId());
+                    explosion.putByte("Type", (byte) FireworkExplosion.Shape.LARGE_BALL.getId());
                     explosion.putBoolean("Flicker", true);
                     explosion.putBoolean("Trail", true);
                     explosion.putIntArray("Colors", List.of(cakeColor.getFireworkColor(), 13787301, 14987213, 16711422, 5754616));

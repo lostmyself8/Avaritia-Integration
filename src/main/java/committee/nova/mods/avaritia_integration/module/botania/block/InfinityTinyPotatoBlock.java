@@ -85,6 +85,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof InfinityTinyPotatoBlockEntity potatoTile) {
+            InteractionHand hand = player.getUsedItemHand();
             ItemStack heldItem = player.getItemInHand(hand);
             potatoTile.interact(player, hand, heldItem, hit.getDirection());
 

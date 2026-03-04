@@ -534,6 +534,7 @@ public class InfinityManaPoolBlockEntity extends BotaniaBlockEntity implements M
         }
 
         public void renderHUD(GuiGraphics gui, Window window, Font font, float partialTick) {
+            Minecraft mc = Minecraft.getInstance();
             ItemStack poolStack = new ItemStack(this.pool.getBlockState().getBlock());
             String name = poolStack.getHoverName().getString();
             int centerX = mc.getWindow().getGuiScaledWidth() / 2;

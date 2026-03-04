@@ -1,8 +1,10 @@
 package committee.nova.mods.avaritia_integration.module.botania.entity;
 
+import com.mojang.blaze3d.platform.Window;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationEntities;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -448,7 +450,8 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
 
     public record WandHud(AlphaSparkEntity entity) implements WandHUD {
         @Override
-        public void renderHUD(GuiGraphics gui, Minecraft mc) {
+        public void renderHUD(GuiGraphics gui, Window window, Font font, float partialTick) {
+            Minecraft mc = Minecraft.getInstance();
             ItemStack sparkStack = new ItemStack(entity.getSparkItem());
             ItemStack augmentStack = SparkAugmentItem.getByType(entity.getUpgrade());
             DyeColor networkColor = entity.getNetwork();
@@ -473,6 +476,7 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
             RenderHelper.renderItemWithNameCentered(gui, mc, augmentStack, centerY + 28, textColor);
             gui.drawString(mc.font, networkColorName, centerX - networkColorTextStart, centerY + (augmentStack.isEmpty() ? 28 : 46), textColor);
         }
+
     }
 
 }

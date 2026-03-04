@@ -30,7 +30,7 @@ public class AlphaSparkItem extends Item {
     public static boolean attachSpark(Level world, BlockPos pos, ItemStack stack) {
         var attach = XplatAbstractions.INSTANCE.findSparkAttachable(world, pos, world.getBlockState(pos), world.getBlockEntity(pos), Direction.UP);
         if (attach != null) {
-            if (attach.canAttachSpark(stack) && attach.getAttachedSpark() == null) {
+            if (attach.canAttachSpark(stack) && attach.getAttachedSpark(world, pos) == null) {
                 if (!world.isClientSide) {
                     stack.shrink(1);
                     AlphaSparkEntity spark = new AlphaSparkEntity(world);
