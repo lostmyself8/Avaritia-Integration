@@ -8,11 +8,11 @@ import java.math.BigInteger;
 
 import static appeng.core.localization.Tooltips.*;
 
-/** 在原有的bytesUsed和typesUsed添加了无限字节的字符支持 */
-public class AEUniversalTooltips
-{
-    public static Component bytesUsed(long bytes, long max)
-    {
+/**
+ * 在原有的bytesUsed和typesUsed添加了无限字节的字符支持
+ */
+public class AEUniversalTooltips {
+    public static Component bytesUsed(long bytes, long max) {
         if (max <= 0) {
             // 无限：当前用量按比例着色时取 0（更偏绿），上限显示为绿色“∞”
             MutableComponent inf = Component.literal("∞").withStyle(GREEN);
@@ -38,8 +38,7 @@ public class AEUniversalTooltips
         );
     }
 
-    public static Component bytesUsed(BigInteger bytes, long max)
-    {
+    public static Component bytesUsed(BigInteger bytes, long max) {
         MutableComponent bytesString = Component.literal(bytes.toString()).withStyle(GREEN).withStyle(colorFromRatio(0.0, false));
 
         if (max <= 0) {
@@ -66,8 +65,7 @@ public class AEUniversalTooltips
         );
     }
 
-    public static Component typesUsed(long types, long max)
-    {
+    public static Component typesUsed(long types, long max) {
         if (max <= 0) {
             // 无限：当前类型数按比例着色时取 0（更偏绿），上限显示为绿色“∞”
             MutableComponent inf = Component.literal("∞").withStyle(GREEN);

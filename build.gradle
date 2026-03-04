@@ -67,6 +67,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
 
+    mavenCentral()
     maven {
         url = "https://www.cursemaven.com"
         content {
@@ -92,9 +93,9 @@ dependencies {
     //Ender IO
     implementation "curse.maven:ender-io-64578:${ender_io_version}"
     //Applied Energistics
-    implementation "curse.maven:applied-energistics-2-223794:${applied_energistics_version}"
+    implementation "org.appliedenergistics:appliedenergistics2:${applied_energistics_version}"
     //GuideME
-    implementation "curse.maven:guideme-1173950:${guideme_version}"
+    implementation "org.appliedenergistics:guideme:${guideme_version}"
     //Patchouli
     implementation "curse.maven:patchouli-306770:${patchouli_version}"
     //Curios
