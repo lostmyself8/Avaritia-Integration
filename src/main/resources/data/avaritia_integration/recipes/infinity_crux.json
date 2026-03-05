@@ -14,6 +14,9 @@
     "E": {
       "item": "mysticalagriculture:awakened_supremium_essence"
     },
+    "A": {
+      "item": "mysticalagradditions:insanium_essence"
+    },
     "C": {
       "item": "avaritia:infinity_catalyst"
     },
@@ -22,9 +25,9 @@
     }
   },
   "pattern": [
-    "EIE",
+    "AIE",
     "CNC",
-    "EIE"
+    "EIA"
   ],
   "result": {
     "item": "avaritia_integration:infinity_crux"

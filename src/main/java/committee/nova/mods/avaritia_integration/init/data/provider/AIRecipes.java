@@ -196,5 +196,23 @@ public class AIRecipes extends RecipeProvider implements IConditionBuilder {
 
         //Industrial Foregoing
         IndustrialForegoingIntegrationItems.ADDONS.values().forEach(addon -> addon.get().registerRecipe(consumer));
+
+        //Mystical Agradditions
+        ModShapedRecipeBuilder.shaped(RecipeCategory.MISC, com.blakebr0.mysticalagradditions.init.ModItems.CREATIVE_ESSENCE.get())
+                .pattern("  e e e  ")
+                .pattern(" e  e  e ")
+                .pattern(" e eee e ")
+                .pattern(" eeiiiee ")
+                .pattern(" eigggie ")
+                .pattern("eeigcgiee")
+                .pattern("eeigggiee")
+                .pattern(" eeiiiee ")
+                .pattern("   eee   ")
+                .define('g', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_GEMSTONE.get())
+                .define('i', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_INGOT.get())
+                .define('e', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_ESSENCE.get())
+                .define('c', ModItems.infinity_catalyst.get())
+                .showNotification(true)
+                .unlockedBy("has_item",has(ModItems.infinity_catalyst.get())).save(consumer);
     }
 }
