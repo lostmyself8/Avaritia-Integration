@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "modid": "mysticalagradditions",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "mysticalagriculture:blaze_cube_essence"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "a a",
+    "aaa"
+  ],
+  "result": {
+    "item": "avaritia:blaze_cube"
+  },
+  "show_notification": true
+}
