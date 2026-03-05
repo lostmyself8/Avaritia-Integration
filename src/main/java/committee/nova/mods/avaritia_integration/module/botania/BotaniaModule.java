@@ -5,11 +5,13 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.botania.block.behavor.AlphaSparkBehavior;
 import committee.nova.mods.avaritia_integration.module.botania.entity.AlphaSparkEntity;
+import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityManaPoolBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationEntities;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.botania.render.AlphaSparkRender;
+import committee.nova.mods.avaritia_integration.module.botania.render.InfinityManaPoolBlockEntityRender;
 import committee.nova.mods.avaritia_integration.module.botania.render.InfinityTinyPotatoBlockEntityRender;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -26,7 +28,6 @@ import vazkii.botania.api.BotaniaForgeCapabilities;
 import vazkii.botania.api.BotaniaForgeClientCapabilities;
 import vazkii.botania.api.block_entity.BindableSpecialFlowerBlockEntity;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
-import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
 
 @ModuleEntry(id = BotaniaModule.MOD_ID, target = @ModMeta(BotaniaModule.MOD_ID))
 public final class BotaniaModule implements Module {
@@ -83,6 +84,7 @@ public final class BotaniaModule implements Module {
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.ASGARD_DANDELION.get(), SpecialFlowerBlockEntityRenderer::new);
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.SOARLEANDER.get(), SpecialFlowerBlockEntityRenderer::new);
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), InfinityTinyPotatoBlockEntityRender::new);
+        BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(), InfinityManaPoolBlockEntityRender::new);
         ItemBlockRenderTypes.setRenderLayer(BotaniaIntegrationBlocks.ASGARD_DANDELION.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BotaniaIntegrationBlocks.ASGARD_DANDELION_FLOATING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BotaniaIntegrationBlocks.SOARLEANDER.get(), RenderType.cutout());
@@ -109,7 +111,7 @@ public final class BotaniaModule implements Module {
         e.registerBlockEntity(
                 BotaniaForgeClientCapabilities.BLOCK_WAND_HUD,
                 BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(),
-                (be, unused) -> new ManaPoolBlockEntity.WandHud(be)
+                (be, unused) -> new InfinityManaPoolBlockEntity.WandHud(be)
         );
     }
 

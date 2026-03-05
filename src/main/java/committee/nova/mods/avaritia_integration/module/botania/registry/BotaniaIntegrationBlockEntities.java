@@ -2,15 +2,14 @@ package committee.nova.mods.avaritia_integration.module.botania.registry;
 
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.botania.entity.AsgardDandelionBlockEntity;
+import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityManaPoolBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityTinyPotatoBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.entity.SoarleanderBlockEntity;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
 
 import java.util.function.Supplier;
 
@@ -31,10 +30,10 @@ public final class BotaniaIntegrationBlockEntities {
                     BotaniaIntegrationBlocks.SOARLEANDER.get(), BotaniaIntegrationBlocks.SOARLEANDER_FLOATING.get()
             ).build(null)
     );
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ManaPoolBlockEntity>> INFINITY_MANA_POOL = register(
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InfinityManaPoolBlockEntity>> INFINITY_MANA_POOL = register(
             "infinity_mana_pool",
             () -> BlockEntityType.Builder.of(
-                    ManaPoolBlockEntity::new,
+                    InfinityManaPoolBlockEntity::new,
                     BotaniaIntegrationBlocks.INFINITY_MANA_POOL.get()
             ).build(null)
     );
