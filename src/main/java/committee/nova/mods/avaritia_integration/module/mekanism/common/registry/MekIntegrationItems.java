@@ -19,6 +19,10 @@ public class MekIntegrationItems {
 
     public static final ItemRegistryObject<ItemEnergized> INFINITY_ENERGY_TABLET = ITEMS.register("infinity_energy_tablet", () -> new ItemEnergized(() -> FloatingLong.create(Integer.MAX_VALUE), () -> FloatingLong.create(Integer.MAX_VALUE), BasicEnergyContainer.alwaysTrue, BasicEnergyContainer.alwaysTrue, new Item.Properties().rarity(Rarity.EPIC)));
     public static final ItemRegistryObject<ItemEnergized> NEUTRON_ENERGY_TABLET = ITEMS.register("neutron_energy_tablet", () -> new ItemEnergized(() -> FloatingLong.create(Integer.MAX_VALUE), () -> FloatingLong.create(Integer.MAX_VALUE), BasicEnergyContainer.alwaysTrue, BasicEnergyContainer.alwaysTrue, new Item.Properties().rarity(Rarity.RARE)));
-    public static final ItemRegistryObject<Item> INFINITY_SOLAR_PANEL = ITEMS.register("infinity_solar_panel");
-    public static final ItemRegistryObject<Item> NEUTRON_SOLAR_PANEL = ITEMS.register("neutron_solar_panel");
+    public static final ItemRegistryObject<Item> INFINITY_CONTROL_CIRCUIT = ITEMS.register("infinity_control_circuit", Rarity.EPIC);
+    public static final ItemRegistryObject<Item> NEUTRON_CONTROL_CIRCUIT = ITEMS.register("neutron_control_circuit", Rarity.EPIC);
+    public static final ItemRegistryObject<Item> ALLOY_INFINITY = ITEMS.register("alloy_infinity", Rarity.EPIC);
+    public static final ItemRegistryObject<Item> ALLOY_NEUTRON = ITEMS.register("alloy_neutron", Rarity.EPIC);
+    public static final ItemRegistryObject<Item> ENRICHED_INFINITY = ITEMS.register("enriched_infinity", Rarity.EPIC);
+    public static final ItemRegistryObject<Item> ENRICHED_NEUTRON = ITEMS.register("enriched_neutron", Rarity.EPIC);
 }

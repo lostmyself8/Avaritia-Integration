@@ -62,6 +62,12 @@
 
   "item.avaritia_integration.infinity_energy_tablet": "无尽能量版",
   "item.avaritia_integration.neutron_energy_tablet": "中子能量版",
+  "item.avaritia_integration.infinity_control_circuit": "永恒无尽控制电路",
+  "item.avaritia_integration.neutron_control_circuit": "中子辐射控制电路",
+  "item.avaritia_integration.alloy_infinity": "无尽合金",
+  "item.avaritia_integration.alloy_neutron": "中子合金",
+  "item.avaritia_integration.enriched_infinity": "富集无尽",
+  "item.avaritia_integration.enriched_neutron": "富集中子",
   "item.avaritia_integration.infinity_solar_panel": "无尽太阳能板",
   "item.avaritia_integration.neutron_solar_panel": "中子太阳能板",
 
@@ -123,6 +129,9 @@
   "container.avaritia_integration.neutron_solar_generator": "中子太阳能发电机",
   "container.avaritia_integration.infinity_advanced_solar_generator": "无尽高级太阳能发电机",
   "container.avaritia_integration.neutron_advanced_solar_generator": "中子高级太阳能发电机",
+
+  "infuse_type.avaritia_integration.infinity": "永恒无尽",
+  "infuse_type.avaritia_integration.neutron": "中子辐照",
 
   "screen.avaritia_integration.module.title": "无尽：集成 模块管理",
   "screen.avaritia_integration.module.warning": "在这里做出的任何更改均需要重启才能生效",

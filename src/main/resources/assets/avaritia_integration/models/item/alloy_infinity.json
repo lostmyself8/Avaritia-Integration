@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "avaritia_integration:item/infinity/infinity_energy_tablet",
+    "layer0": "avaritia_integration:item/infinity/alloy_infinity",
     "halo": "avaritia:misc/halo"
   },
   "loader": "avaritia:halo",

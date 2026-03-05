@@ -1,0 +1,17 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "mekanism:enriching",
+  "input": {
+    "ingredient": {
+      "tag": "forge:dusts/infinity"
+    }
+  },
+  "output": {
+    "item": "avaritia_integration:enriched_infinity"
+  }
+}

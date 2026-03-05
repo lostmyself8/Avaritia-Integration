@@ -1,0 +1,40 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanismgenerators"
+    }
+  ],
+  "type": "avaritia:shaped_table",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "P": {
+      "item": "mekanismgenerators:solar_panel"
+    },
+    "N": {
+      "tag": "mekanism:alloys/neutron"
+    },
+    "O": {
+      "tag": "forge:ingots/osmium"
+    }
+  },
+  "pattern": [
+    "         ",
+    "         ",
+    "         ",
+    "GGGGGGGGG",
+    "NNNPPPNNN",
+    "OOOOOOOOO",
+    "         ",
+    "         ",
+    "         "
+  ],
+  "result": {
+    "item": "avaritia_integration:neutron_solar_panel"
+  },
+  "show_notification": true,
+  "tier": 4
+}

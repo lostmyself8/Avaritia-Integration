@@ -62,6 +62,12 @@
 
   "item.avaritia_integration.infinity_energy_tablet": "Infinity Energy Tablet",
   "item.avaritia_integration.neutron_energy_tablet": "Neutron Energy Tablet",
+  "item.avaritia_integration.infinity_control_circuit": "Infinity Control Circuit",
+  "item.avaritia_integration.neutron_control_circuit": "Neutron Control Circuit",
+  "item.avaritia_integration.alloy_infinity": "Infinity Alloy",
+  "item.avaritia_integration.alloy_neutron": "Neutron Alloy",
+  "item.avaritia_integration.enriched_infinity": "Enriched Infinity",
+  "item.avaritia_integration.enriched_neutron": "Enriched Neutron",
   "item.avaritia_integration.infinity_solar_panel": "Infinity Solar Panel",
   "item.avaritia_integration.neutron_solar_panel": "Neutron Solar Panel",
 
@@ -123,6 +129,9 @@
   "container.avaritia_integration.neutron_solar_generator": "Neutron SolarGenerator",
   "container.avaritia_integration.infinity_advanced_solar_generator": "Infinity Advanced Solar Generator",
   "container.avaritia_integration.neutron_advanced_solar_generator": "Neutron Advanced SolarGenerator",
+
+  "infuse_type.avaritia_integration.infinity": "Infinity",
+  "infuse_type.avaritia_integration.neutron": "Neutron",
 
   "screen.avaritia_integration.module.title": "Avaritia: Integration Modules",
   "screen.avaritia_integration.module.warning": "All changes make here need to restart game to take effect",
