@@ -16,6 +16,10 @@
     {
       "id": "avaritia_integration:infinity_crux",
       "required": false
+    },
+    {
+      "id": "avaritia_integration:crystal_matrix_crux",
+      "required": false
     }
   ]
 }

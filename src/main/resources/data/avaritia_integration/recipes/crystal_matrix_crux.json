@@ -9,25 +9,22 @@
   "category": "misc",
   "key": {
     "I": {
-      "tag": "forge:ingots/infinity"
+      "tag": "forge:ingots/crystal_matrix"
     },
     "E": {
       "item": "mysticalagriculture:awakened_supremium_essence"
     },
-    "C": {
-      "item": "avaritia:infinity_catalyst"
-    },
-    "N": {
-      "item": "mysticalagradditions:neutronium_crux"
+    "M": {
+      "item": "mysticalagradditions:nether_star_crux"
     }
   },
   "pattern": [
     "EIE",
-    "CNC",
+    "IMI",
     "EIE"
   ],
   "result": {
-    "item": "avaritia_integration:infinity_crux"
+    "item": "avaritia_integration:crystal_matrix_crux"
   },
   "show_notification": true
 }

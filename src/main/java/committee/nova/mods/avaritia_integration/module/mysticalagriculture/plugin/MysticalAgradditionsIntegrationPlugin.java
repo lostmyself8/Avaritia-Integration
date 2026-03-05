@@ -27,6 +27,7 @@ public class MysticalAgradditionsIntegrationPlugin implements IMysticalAgricultu
     @Override
     public void onPostRegisterCrops(ICropRegistry registry) {
         MysticalAgradditionsIntegrationCrops.INFINITY.setCruxBlock(MysticalAgradditionsIntegrationBlocks.INFINITY_CRUX);
+        MysticalAgradditionsIntegrationCrops.CRYSTAL_MATRIX.setCruxBlock(MysticalAgradditionsIntegrationBlocks.CRYSTAL_MATRIX_CRUX);
     }
 
     private static Crop withRequiredMods(Crop crop, String... mods) {

@@ -29,5 +29,6 @@ public class MysticalAgradditionsModule implements Module {
         output.accept(MysticalAgradditionsIntegrationCrops.INFINITY.getSeedsItem());
         output.accept(MysticalAgradditionsIntegrationCrops.INFINITY.getEssenceItem());
         output.accept(MysticalAgradditionsIntegrationItems.INFINITY_CRUX.get());
+        output.accept(MysticalAgradditionsIntegrationItems.CRYSTAL_MATRIX_CRUX.get());
     }
 }
