@@ -4,12 +4,11 @@ import committee.nova.mods.avaritia_integration.module.botania.entity.AlphaSpark
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import vazkii.botania.client.render.entity.BaseSparkRenderer;
 
 import java.util.Objects;
-
-import static vazkii.botania.common.lib.ResourceLocationHelper.prefix;
 
 /**
  * @author cnlimiter
@@ -23,10 +22,10 @@ public class AlphaSparkRender extends BaseSparkRenderer<AlphaSparkEntity> {
     public AlphaSparkRender(EntityRendererProvider.Context ctx) {
         super(ctx);
         var atlas = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
-        this.dispersiveIcon = Objects.requireNonNull(atlas.apply(prefix("item/spark_upgrade_rune_dispersive")));
-        this.dominantIcon = Objects.requireNonNull(atlas.apply(prefix("item/spark_upgrade_rune_dominant")));
-        this.recessiveIcon = Objects.requireNonNull(atlas.apply(prefix("item/spark_upgrade_rune_recessive")));
-        this.isolatedIcon = Objects.requireNonNull(atlas.apply(prefix("item/spark_upgrade_rune_isolated")));
+        this.dispersiveIcon = Objects.requireNonNull(atlas.apply(ResourceLocation.fromNamespaceAndPath("botania", "item/spark_upgrade_rune_dispersive")));
+        this.dominantIcon = Objects.requireNonNull(atlas.apply(ResourceLocation.fromNamespaceAndPath("botania", "item/spark_upgrade_rune_dominant")));
+        this.recessiveIcon = Objects.requireNonNull(atlas.apply(ResourceLocation.fromNamespaceAndPath("botania", "item/spark_upgrade_rune_recessive")));
+        this.isolatedIcon = Objects.requireNonNull(atlas.apply(ResourceLocation.fromNamespaceAndPath("botania", "item/spark_upgrade_rune_isolated")));
     }
 
     @Override

@@ -3,6 +3,7 @@ package committee.nova.mods.avaritia_integration.module.botania.block;
 import committee.nova.mods.avaritia_integration.module.botania.entity.SoarleanderBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,7 +20,7 @@ import vazkii.botania.common.block.flower.SpecialFlowerBlock;
 import java.util.function.Supplier;
 
 public class SoarleanderBlock extends SpecialFlowerBlock {
-    public SoarleanderBlock(MobEffect stewEffect, int stewDuration, BlockBehaviour.Properties props, Supplier<BlockEntityType<? extends SpecialFlowerBlockEntity>> blockEntityType) {
+    public SoarleanderBlock(Holder<MobEffect> stewEffect, int stewDuration, BlockBehaviour.Properties props, Supplier<BlockEntityType<? extends SpecialFlowerBlockEntity>> blockEntityType) {
         super(stewEffect, stewDuration, props, blockEntityType);
     }
 

@@ -1,11 +1,12 @@
 package committee.nova.mods.avaritia_integration.module.botania.entity;
 
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.FireworkExplosion;
+import net.minecraft.world.item.component.Fireworks;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -50,7 +52,7 @@ import java.util.*;
 
 
 public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameable {
-    private static final ResourceLocation BIRTHDAY_ADVANCEMENT = ResourceLocationHelper.prefix("challenge/tiny_potato_birthday");
+    private static final ResourceLocation BIRTHDAY_ADVANCEMENT = ResourceLocation.fromNamespaceAndPath("botania", "challenge/tiny_potato_birthday");
     private static final boolean IS_BIRTHDAY = isTinyPotatoBirthday();
     private static final String TAG_NAME = "name";
     private static final int JUMP_EVENT = 0;
@@ -78,7 +80,7 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
                 this.level.playSound(null, this.worldPosition, BotaniaSounds.doit, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
             player.awardStat(BotaniaStats.TINY_POTATOES_PETTED);
-            PlayerHelper.grantCriterion((ServerPlayer) player, prefix("main/tiny_potato_pet"), "code_triggered");
+            PlayerHelper.grantCriterion((ServerPlayer) player, ResourceLocation.fromNamespaceAndPath("botania", "main/tiny_potato_pet"), "code_triggered");
         }
     }
 
@@ -94,13 +96,16 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
         int radius = 10;
         int time = 3600;
         int lv = 1;
-        AABB bb = new AABB(pos.offset(-radius, -2, -radius), pos.offset(radius, 2, radius));
+        AABB bb = new AABB(
+                Vec3.atLowerCornerOf(pos.offset(-radius, -2, -radius)),
+                Vec3.atLowerCornerOf(pos.offset(radius, 2, radius))
+        );
         List<LivingEntity> entityList = world.getEntitiesOfClass(LivingEntity.class, bb);
         for (LivingEntity living : entityList) {
             double sq = living.distanceToSqr(pos.getX(), pos.getY(), pos.getZ());
             if (sq < radius) {
-                for (MobEffect next : BuiltInRegistries.MOB_EFFECT.getValues()) {
-                    if (next.isBeneficial())
+                for (Holder<MobEffect> next : BuiltInRegistries.MOB_EFFECT.holders().toList()) {
+                    if (next.value().isBeneficial())
                         living.addEffect(new MobEffectInstance(next, time, lv));
                 }
             }
@@ -170,17 +175,24 @@ public class InfinityTinyPotatoBlockEntity extends BlockEntity implements Nameab
                 }
 
                 if (messageIndex == messageTimes.size() - 1) {
-                    CompoundTag explosion = new CompoundTag();
-                    explosion.putByte("Type", (byte) FireworkExplosion.Shape.LARGE_BALL.getId());
-                    explosion.putBoolean("Flicker", true);
-                    explosion.putBoolean("Trail", true);
-                    explosion.putIntArray("Colors", List.of(cakeColor.getFireworkColor(), 13787301, 14987213, 16711422, 5754616));
-                    ListTag explosions = new ListTag();
-                    explosions.add(explosion);
+                    FireworkExplosion explosion = new FireworkExplosion(
+                            FireworkExplosion.Shape.LARGE_BALL,
+                            new IntArrayList(new int[]{
+                                    cakeColor.getFireworkColor(),
+                                    13787301,
+                                    14987213,
+                                    16711422,
+                                    5754616
+                            }),
+                            new IntArrayList(),
+                            true,
+                            true
+                    );
                     ItemStack rocket = new ItemStack(Items.FIREWORK_ROCKET);
-                    CompoundTag rocketFireworks = rocket.getOrCreateTagElement("Fireworks");
-                    rocketFireworks.putByte("Flight", (byte) 0);
-                    rocketFireworks.put("Explosions", explosions);
+                    rocket.set(DataComponents.FIREWORKS, new Fireworks(
+                            0,
+                            List.of(explosion)
+                    ));
                     this.level.addFreshEntity(new FireworkRocketEntity(this.level, (double) facingPos.getX() + 0.5, (double) facingPos.getY() + 0.5, (double) facingPos.getZ() + 0.5, rocket));
                     this.level.removeBlock(facingPos, false);
                     this.level.levelEvent(2001, facingPos, Block.getId(facingState));

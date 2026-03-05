@@ -3,6 +3,7 @@ package committee.nova.mods.avaritia_integration.module.botania.block;
 import committee.nova.mods.avaritia_integration.module.botania.entity.AsgardDandelionBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,7 +19,7 @@ import vazkii.botania.common.block.flower.SpecialFlowerBlock;
 import java.util.function.Supplier;
 
 public class AsgardDandelionBlock extends SpecialFlowerBlock {
-    public AsgardDandelionBlock(MobEffect stewEffect, int stewDuration, Properties props, Supplier<BlockEntityType<? extends SpecialFlowerBlockEntity>> blockEntityType) {
+    public AsgardDandelionBlock(Holder<MobEffect> stewEffect, int stewDuration, Properties props, Supplier<BlockEntityType<? extends SpecialFlowerBlockEntity>> blockEntityType) {
         super(stewEffect, stewDuration, props, blockEntityType);
     }
 

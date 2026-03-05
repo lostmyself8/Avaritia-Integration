@@ -3,7 +3,6 @@ package committee.nova.mods.avaritia_integration.module.botania.entity;
 import com.mojang.blaze3d.platform.Window;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationEntities;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Direction;
@@ -25,7 +24,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.block.WandHUD;
@@ -71,17 +69,15 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
     }
 
     public AlphaSparkEntity(Level world) {
-        this(BotaniaIntegrationEntities.ALPHA_SPARK, world);
+        this(BotaniaIntegrationEntities.ALPHA_SPARK_ENTITIES.get(), world);
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        entityData.define(UPGRADE, 0);
+        builder.define(UPGRADE, 0);
     }
 
-
-    @NotNull
     @Override
     public ItemStack getPickResult() {
         return new ItemStack(getSparkItem());
@@ -134,7 +130,7 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
                             continue;
                         }
 
-                        if (manaItem.canReceiveManaFromItem(input)) {
+                        if (manaItem.acceptDispatchedManaFromItem(input)) {
                             Map<ManaItem, Integer> receivingStacks;
                             boolean add = false;
                             if (!receivingPlayers.containsKey(player)) {
@@ -266,7 +262,7 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
 
     private void particlesTowards(Entity e) {
         XplatAbstractions.INSTANCE.sendToTracking(this, new BotaniaEffectPacket(EffectType.SPARK_MANA_FLOW, getX(), getY(), getZ(),
-                getId(), e.getId(), ColorHelper.getColorValue(getNetwork())));
+                getId(), e.getId(), getNetwork().getTextureDiffuseColor()));
     }
 
     public static void particleBeam(Player player, Entity e1, Entity e2) {
@@ -348,17 +344,18 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
     }
 
     @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag cmp) {
+    protected void readAdditionalSaveData(CompoundTag cmp) {
         super.readAdditionalSaveData(cmp);
         setUpgrade(SparkUpgradeType.values()[cmp.getInt(TAG_UPGRADE)]);
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag cmp) {
+    protected void addAdditionalSaveData(CompoundTag cmp) {
         super.addAdditionalSaveData(cmp);
         cmp.putInt(TAG_UPGRADE, getUpgrade().ordinal());
     }
 
+    @Nullable
     @Override
     public SparkAttachable getAttachedTile() {
         return XplatAbstractions.INSTANCE.findSparkAttachable(level(), getAttachPos(), level().getBlockState(getAttachPos()), level().getBlockEntity(getAttachPos()), Direction.UP);
@@ -445,13 +442,12 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
         }
 
         SparkAttachable attachable = getAttachedTile();
-        return attachable != null && attachable.areIncomingTranfersDone();
+        return attachable != null && attachable.areIncomingTransfersDone();
     }
 
     public record WandHud(AlphaSparkEntity entity) implements WandHUD {
         @Override
         public void renderHUD(GuiGraphics gui, Window window, Font font, float partialTick) {
-            Minecraft mc = Minecraft.getInstance();
             ItemStack sparkStack = new ItemStack(entity.getSparkItem());
             ItemStack augmentStack = SparkAugmentItem.getByType(entity.getUpgrade());
             DyeColor networkColor = entity.getNetwork();
@@ -460,23 +456,21 @@ public class AlphaSparkEntity extends SparkBaseEntity implements ManaSpark {
             int textColor = ColorHelper.getColorLegibleOnGrayBackground(networkColor);
 
             int width = 4 + Collections.max(Arrays.asList(
-                    mc.font.width(networkColorName),
-                    RenderHelper.itemWithNameWidth(sparkStack, mc.font),
-                    RenderHelper.itemWithNameWidth(augmentStack, mc.font)
+                    font.width(networkColorName),
+                    RenderHelper.itemWithNameWidth(sparkStack, font),
+                    RenderHelper.itemWithNameWidth(augmentStack, font)
             ));
             int height = augmentStack.isEmpty() ? 30 : 50;
-            int networkColorTextStart = mc.font.width(networkColorName) / 2;
+            int networkColorTextStart = font.width(networkColorName) / 2;
 
-            int centerX = mc.getWindow().getGuiScaledWidth() / 2;
-            int centerY = mc.getWindow().getGuiScaledHeight() / 2;
+            int centerX = window.getGuiScaledWidth() / 2;
+            int centerY = window.getGuiScaledHeight() / 2;
 
             RenderHelper.renderHUDBox(gui, centerX - width / 2, centerY + 8, centerX + width / 2, centerY + 8 + height);
 
-            RenderHelper.renderItemWithNameCentered(gui, mc, sparkStack, centerY + 10, textColor);
-            RenderHelper.renderItemWithNameCentered(gui, mc, augmentStack, centerY + 28, textColor);
-            gui.drawString(mc.font, networkColorName, centerX - networkColorTextStart, centerY + (augmentStack.isEmpty() ? 28 : 46), textColor);
+            RenderHelper.renderItemWithNameCentered(gui, window, font, sparkStack, centerY + 10, textColor);
+            RenderHelper.renderItemWithNameCentered(gui, window, font, augmentStack, centerY + 28, textColor);
+            gui.drawString(font, networkColorName, centerX - networkColorTextStart, centerY + (augmentStack.isEmpty() ? 28 : 46), textColor);
         }
-
     }
-
 }

@@ -4,6 +4,7 @@ import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityTi
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
@@ -122,7 +123,7 @@ public class InfinityTinyPotatoBlock extends BotaniaWaterloggedBlock implements 
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity living, ItemStack stack) {
-        if (stack.hasCustomHoverName() && world.getBlockEntity(pos) instanceof TinyPotatoBlockEntity tater) {
+        if (stack.has(DataComponents.CUSTOM_NAME) && world.getBlockEntity(pos) instanceof TinyPotatoBlockEntity tater) {
             tater.name = stack.getHoverName();
         }
     }

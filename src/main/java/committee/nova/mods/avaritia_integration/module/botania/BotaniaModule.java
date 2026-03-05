@@ -5,35 +5,28 @@ import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.botania.block.behavor.AlphaSparkBehavior;
 import committee.nova.mods.avaritia_integration.module.botania.entity.AlphaSparkEntity;
-import committee.nova.mods.avaritia_integration.module.botania.entity.AsgardDandelionBlockEntity;
-import committee.nova.mods.avaritia_integration.module.botania.entity.InfinityManaPoolBlockEntity;
-import committee.nova.mods.avaritia_integration.module.botania.entity.SoarleanderBlockEntity;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlockEntities;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationEntities;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.botania.render.AlphaSparkRender;
-import committee.nova.mods.avaritia_integration.module.botania.render.InfinityManaPoolBlockEntityRenderer;
 import committee.nova.mods.avaritia_integration.module.botania.render.InfinityTinyPotatoBlockEntityRender;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import vazkii.botania.api.BotaniaForgeCapabilities;
 import vazkii.botania.api.BotaniaForgeClientCapabilities;
-import vazkii.botania.api.block.Wandable;
 import vazkii.botania.api.block_entity.BindableSpecialFlowerBlockEntity;
-import vazkii.botania.api.mana.ManaReceiver;
-import vazkii.botania.api.mana.spark.SparkAttachable;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
+import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
 
 @ModuleEntry(id = BotaniaModule.MOD_ID, target = @ModMeta(BotaniaModule.MOD_ID))
 public final class BotaniaModule implements Module {
@@ -55,30 +48,38 @@ public final class BotaniaModule implements Module {
 
     @Override
     public void registerEvent(IEventBus modBus, IEventBus gameBus) {
-        gameBus.addListener(BotaniaModule::addDispenserBehaviours);
-        gameBus.addGenericListener(BlockEntity.class, BotaniaModule::attachCommonCapability);
+        modBus.addListener(BotaniaModule::addDispenserBehaviours);
+        modBus.addListener(BotaniaModule::registerCapabilities);
     }
 
     public static void addDispenserBehaviours(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            DispenserBlock.registerBehavior(BotaniaIntegrationItems.alpha_spark, new AlphaSparkBehavior());
+            DispenserBlock.registerBehavior(BotaniaIntegrationItems.ALPHA_SPARK.get(), new AlphaSparkBehavior());
         });
     }
 
 
-    public static void attachCommonCapability(AttachCapabilitiesEvent<BlockEntity> e) {
-        BlockEntity be = e.getObject();
-        if (be.getType() == BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get()) {
-            e.addCapability(ResourceLocationHelper.prefix("mana_receiver"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.MANA_RECEIVER, (ManaReceiver) be));
-            e.addCapability(ResourceLocationHelper.prefix("wandable"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.WANDABLE, (Wandable) be));
-            e.addCapability(ResourceLocationHelper.prefix("spark_attachable"), CapabilityUtil.makeProvider(BotaniaForgeCapabilities.SPARK_ATTACHABLE, (SparkAttachable) be));
-        }
+    public static void registerCapabilities(RegisterCapabilitiesEvent e) {
+        e.registerBlockEntity(
+                BotaniaForgeCapabilities.MANA_RECEIVER,
+                BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(),
+                (be, direction) -> be
+        );
+        e.registerBlockEntity(
+                BotaniaForgeCapabilities.WANDABLE,
+                BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(),
+                (be, direction) -> be
+        );
+        e.registerBlockEntity(
+                BotaniaForgeCapabilities.SPARK_ATTACHABLE,
+                BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(),
+                (be, direction) -> be
+        );
     }
 
     @Override
     public void processClient() {
-        EntityRenderers.register(BotaniaIntegrationEntities.ALPHA_SPARK, AlphaSparkRender::new);
-        BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(), InfinityManaPoolBlockEntityRenderer::new);
+        EntityRenderers.register(BotaniaIntegrationEntities.ALPHA_SPARK_ENTITIES.get(), AlphaSparkRender::new);
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.ASGARD_DANDELION.get(), SpecialFlowerBlockEntityRenderer::new);
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.SOARLEANDER.get(), SpecialFlowerBlockEntityRenderer::new);
         BlockEntityRenderers.register(BotaniaIntegrationBlockEntities.INFINITY_TINY_POTATO.get(), InfinityTinyPotatoBlockEntityRender::new);
@@ -90,24 +91,34 @@ public final class BotaniaModule implements Module {
 
     @Override
     public void registerClientEvent(IEventBus modBus, IEventBus gameBus) {
-        gameBus.addGenericListener(BlockEntity.class, BotaniaModule::attachBlockEntityClientCapability);
-        gameBus.addGenericListener(Entity.class, BotaniaModule::attachEntityClientCapabilities);
+        modBus.addListener(BotaniaModule::registerBlockEntityClientCapability);
+        modBus.addListener(BotaniaModule::registerEntityClientCapabilities);
     }
 
-    public static void attachBlockEntityClientCapability(AttachCapabilitiesEvent<BlockEntity> e) {
-        BlockEntity be = e.getObject();
-        if (be instanceof AsgardDandelionBlockEntity tile)
-            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new BindableSpecialFlowerBlockEntity.BindableFlowerWandHud<>(tile)));
-        if (be instanceof SoarleanderBlockEntity tile)
-            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new BindableSpecialFlowerBlockEntity.BindableFlowerWandHud<>(tile)));
-        if (be instanceof InfinityManaPoolBlockEntity tile)
-            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new InfinityManaPoolBlockEntity.WandHud(tile)));
+    public static void registerBlockEntityClientCapability(RegisterCapabilitiesEvent e) {
+        e.registerBlockEntity(
+                BotaniaForgeClientCapabilities.BLOCK_WAND_HUD,
+                BotaniaIntegrationBlockEntities.ASGARD_DANDELION.get(),
+                (be, unused) -> new BindableSpecialFlowerBlockEntity.BindableFlowerWandHud<>(be)
+        );
+        e.registerBlockEntity(
+                BotaniaForgeClientCapabilities.BLOCK_WAND_HUD,
+                BotaniaIntegrationBlockEntities.SOARLEANDER.get(),
+                (be, unused) -> new BindableSpecialFlowerBlockEntity.BindableFlowerWandHud<>(be)
+        );
+        e.registerBlockEntity(
+                BotaniaForgeClientCapabilities.BLOCK_WAND_HUD,
+                BotaniaIntegrationBlockEntities.INFINITY_MANA_POOL.get(),
+                (be, unused) -> new ManaPoolBlockEntity.WandHud(be)
+        );
     }
 
-    private static void attachEntityClientCapabilities(AttachCapabilitiesEvent<Entity> e) {
-        var entity = e.getObject();
-        if (entity instanceof AlphaSparkEntity alphaSparkEntity)
-            e.addCapability(ResourceLocationHelper.prefix("wand_hud"), CapabilityUtil.makeProvider(BotaniaForgeClientCapabilities.WAND_HUD, new AlphaSparkEntity.WandHud(alphaSparkEntity)));
+    private static void registerEntityClientCapabilities(RegisterCapabilitiesEvent e) {
+        e.registerEntity(
+                BotaniaForgeClientCapabilities.ENTITY_WAND_HUD,
+                BotaniaIntegrationEntities.ALPHA_SPARK_ENTITIES.get(),
+                (entity, unused) -> new AlphaSparkEntity.WandHud(entity)
+        );
     }
 
     @Override
