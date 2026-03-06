@@ -1,0 +1,34 @@
+{
+  "type": "avaritia:shaped_table",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "avaritia:neutron_nugget"
+    },
+    "d": {
+      "item": "avaritia:neutron_ingot"
+    },
+    "r": {
+      "item": "avaritia:infinity_ingot"
+    },
+    "s": {
+      "item": "avaritia:infinity_catalyst"
+    }
+  },
+  "pattern": [
+    "   rrr   ",
+    "  rrrrr  ",
+    "  rrsrr  ",
+    "  rrrrr  ",
+    "   rrr   ",
+    " aa d aa ",
+    "aaaadaaaa",
+    " aa d aa ",
+    "    d    "
+  ],
+  "result": {
+    "item": "avaritia_integration:asgard_dandelion"
+  },
+  "show_notification": true,
+  "tier": 4
+}

@@ -19,5 +19,6 @@ public final class ThermalExpansionModule implements Module {
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(ThermalExpansionIntegrationItems.CREATIVE_AUGMENT_BASE.get());
+        output.accept(ThermalExpansionIntegrationItems.CREATIVE_INTEGRAL_COMPONENTS.get());
     }
 }

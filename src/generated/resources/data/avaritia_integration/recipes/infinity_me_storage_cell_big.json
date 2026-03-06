@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "avaritia_integration:infinity_me_storage_component"
+    },
+    "q": {
+      "item": "avaritia_integration:infinity_me_storage_cell"
+    }
+  },
+  "pattern": [
+    "aq"
+  ],
+  "result": {
+    "item": "avaritia_integration:infinity_me_storage_cell_big"
+  },
+  "show_notification": true
+}

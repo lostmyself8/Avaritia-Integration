@@ -1,0 +1,25 @@
+{
+  "type": "avaritia_integration:extreme_mixing",
+  "heatRequirement": "star",
+  "ingredients": [
+    {
+      "item": "create:shadow_steel"
+    },
+    {
+      "item": "create:refined_radiance"
+    },
+    {
+      "item": "avaritia:enhancement_core"
+    },
+    {
+      "item": "avaritia:neutron_pile",
+      "count": 64
+    }
+  ],
+  "results": [
+    {
+      "item": "avaritia_integration:creative_compound",
+      "count": 2
+    }
+  ]
+}

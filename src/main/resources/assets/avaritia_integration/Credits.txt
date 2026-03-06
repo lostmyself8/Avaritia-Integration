@@ -1,0 +1,2 @@
+Infinity material texture form RCXcrafter's Materialis mod
+https://github.com/RCXcrafter/Materialis/tree/1.18/src/main/resources/assets/materialis/textures/material

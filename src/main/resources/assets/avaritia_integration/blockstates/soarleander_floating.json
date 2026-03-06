@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "avaritia_integration:block/soarleander_floating"
+      "model": "avaritia_integration:block/botania/soarleander_floating"
     }
   }
 }

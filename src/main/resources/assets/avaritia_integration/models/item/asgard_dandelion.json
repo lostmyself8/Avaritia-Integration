@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "avaritia_integration:item/items/asgard_dandelion"
+    "layer0": "avaritia_integration:item/botania/asgard_dandelion"
   }
 }

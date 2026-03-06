@@ -37,6 +37,6 @@ public final class SlashBladeModule implements Module {
 
     @Override
     public void collectCreativeTabItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(SlashBladeIntegrationItems.STREDGEUNIVERSE.get());
+        output.accept(SlashBladeIntegrationItems.STREDGEUNIVERSE.get().getDefaultInstance());
     }
 }
