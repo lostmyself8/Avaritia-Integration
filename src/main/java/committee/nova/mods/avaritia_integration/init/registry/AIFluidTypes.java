@@ -9,10 +9,14 @@ import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.joml.Vector3f;
 
 public class AIFluidTypes {
-    public static final DeferredRegister<FluidType> REGISTRY = DeferredRegister.create(BuiltInRegistries.FLUID.getDefaultKey(), AvaritiaIntegration.MOD_ID);
+
+    public static final DeferredRegister<FluidType> REGISTRY =
+            DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, AvaritiaIntegration.MOD_ID);
+
 
     public static final DeferredHolder<FluidType, FluidType> molten_blaze = REGISTRY.register("molten_blaze",
             ()->new BaseFluidType("molten_blaze", new Vector3f(253f/225f,192f/225f,69f/255f),
