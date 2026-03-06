@@ -1,0 +1,22 @@
+{
+  "type": "avaritia_integration:extreme_mixing",
+  "heatRequirement": "blaze",
+  "ingredients": [
+    {
+      "item": "create:powdered_obsidian",
+      "count": 3
+    },
+    {
+      "item": "minecraft:glowstone_dust",
+      "count": 3
+    },
+    {
+      "item": "create:polished_rose_quartz"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:chromatic_compound"
+    }
+  ]
+}

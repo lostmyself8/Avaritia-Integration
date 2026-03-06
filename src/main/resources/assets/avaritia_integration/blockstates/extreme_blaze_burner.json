@@ -1,0 +1,304 @@
+{
+  "variants": {
+    "blaze=fading,extreme_blaze=blaze,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=fading,extreme_blaze=blaze,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=fading,extreme_blaze=blaze,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=fading,extreme_blaze=blaze,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=fading,extreme_blaze=fading,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=fading,extreme_blaze=fading,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=fading,extreme_blaze=fading,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=fading,extreme_blaze=fading,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=fading,extreme_blaze=smouldering,facing=east": {
+      "model": "create:block/blaze_burner/block",
+      "y": 90
+    },
+    "blaze=fading,extreme_blaze=smouldering,facing=north": {
+      "model": "create:block/blaze_burner/block"
+    },
+    "blaze=fading,extreme_blaze=smouldering,facing=south": {
+      "model": "create:block/blaze_burner/block",
+      "y": 180
+    },
+    "blaze=fading,extreme_blaze=smouldering,facing=west": {
+      "model": "create:block/blaze_burner/block",
+      "y": 270
+    },
+    "blaze=fading,extreme_blaze=star,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 90
+    },
+    "blaze=fading,extreme_blaze=star,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star"
+    },
+    "blaze=fading,extreme_blaze=star,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 180
+    },
+    "blaze=fading,extreme_blaze=star,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 270
+    },
+    "blaze=kindled,extreme_blaze=blaze,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=kindled,extreme_blaze=blaze,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=kindled,extreme_blaze=blaze,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=kindled,extreme_blaze=blaze,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=kindled,extreme_blaze=fading,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=kindled,extreme_blaze=fading,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=kindled,extreme_blaze=fading,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=kindled,extreme_blaze=fading,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=kindled,extreme_blaze=smouldering,facing=east": {
+      "model": "create:block/blaze_burner/block",
+      "y": 90
+    },
+    "blaze=kindled,extreme_blaze=smouldering,facing=north": {
+      "model": "create:block/blaze_burner/block"
+    },
+    "blaze=kindled,extreme_blaze=smouldering,facing=south": {
+      "model": "create:block/blaze_burner/block",
+      "y": 180
+    },
+    "blaze=kindled,extreme_blaze=smouldering,facing=west": {
+      "model": "create:block/blaze_burner/block",
+      "y": 270
+    },
+    "blaze=kindled,extreme_blaze=star,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 90
+    },
+    "blaze=kindled,extreme_blaze=star,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star"
+    },
+    "blaze=kindled,extreme_blaze=star,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 180
+    },
+    "blaze=kindled,extreme_blaze=star,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 270
+    },
+    "blaze=none,extreme_blaze=blaze,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=none,extreme_blaze=blaze,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=none,extreme_blaze=blaze,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=none,extreme_blaze=blaze,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=none,extreme_blaze=fading,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=none,extreme_blaze=fading,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=none,extreme_blaze=fading,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=none,extreme_blaze=fading,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=none,extreme_blaze=smouldering,facing=east": {
+      "model": "create:block/blaze_burner/block",
+      "y": 90
+    },
+    "blaze=none,extreme_blaze=smouldering,facing=north": {
+      "model": "create:block/blaze_burner/block"
+    },
+    "blaze=none,extreme_blaze=smouldering,facing=south": {
+      "model": "create:block/blaze_burner/block",
+      "y": 180
+    },
+    "blaze=none,extreme_blaze=smouldering,facing=west": {
+      "model": "create:block/blaze_burner/block",
+      "y": 270
+    },
+    "blaze=none,extreme_blaze=star,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 90
+    },
+    "blaze=none,extreme_blaze=star,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star"
+    },
+    "blaze=none,extreme_blaze=star,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 180
+    },
+    "blaze=none,extreme_blaze=star,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 270
+    },
+    "blaze=seething,extreme_blaze=blaze,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=seething,extreme_blaze=blaze,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=seething,extreme_blaze=blaze,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=seething,extreme_blaze=blaze,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=seething,extreme_blaze=fading,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=seething,extreme_blaze=fading,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=seething,extreme_blaze=fading,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=seething,extreme_blaze=fading,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=seething,extreme_blaze=smouldering,facing=east": {
+      "model": "create:block/blaze_burner/block",
+      "y": 90
+    },
+    "blaze=seething,extreme_blaze=smouldering,facing=north": {
+      "model": "create:block/blaze_burner/block"
+    },
+    "blaze=seething,extreme_blaze=smouldering,facing=south": {
+      "model": "create:block/blaze_burner/block",
+      "y": 180
+    },
+    "blaze=seething,extreme_blaze=smouldering,facing=west": {
+      "model": "create:block/blaze_burner/block",
+      "y": 270
+    },
+    "blaze=seething,extreme_blaze=star,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 90
+    },
+    "blaze=seething,extreme_blaze=star,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star"
+    },
+    "blaze=seething,extreme_blaze=star,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 180
+    },
+    "blaze=seething,extreme_blaze=star,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 270
+    },
+    "blaze=smouldering,extreme_blaze=blaze,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=smouldering,extreme_blaze=blaze,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=smouldering,extreme_blaze=blaze,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=smouldering,extreme_blaze=blaze,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=smouldering,extreme_blaze=fading,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 90
+    },
+    "blaze=smouldering,extreme_blaze=fading,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze"
+    },
+    "blaze=smouldering,extreme_blaze=fading,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 180
+    },
+    "blaze=smouldering,extreme_blaze=fading,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_blaze",
+      "y": 270
+    },
+    "blaze=smouldering,extreme_blaze=smouldering,facing=east": {
+      "model": "create:block/blaze_burner/block",
+      "y": 90
+    },
+    "blaze=smouldering,extreme_blaze=smouldering,facing=north": {
+      "model": "create:block/blaze_burner/block"
+    },
+    "blaze=smouldering,extreme_blaze=smouldering,facing=south": {
+      "model": "create:block/blaze_burner/block",
+      "y": 180
+    },
+    "blaze=smouldering,extreme_blaze=smouldering,facing=west": {
+      "model": "create:block/blaze_burner/block",
+      "y": 270
+    },
+    "blaze=smouldering,extreme_blaze=star,facing=east": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 90
+    },
+    "blaze=smouldering,extreme_blaze=star,facing=north": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star"
+    },
+    "blaze=smouldering,extreme_blaze=star,facing=south": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 180
+    },
+    "blaze=smouldering,extreme_blaze=star,facing=west": {
+      "model": "avaritia_integration:block/create/extreme_blaze_burner/block/block_star",
+      "y": 270
+    }
+  }
+}

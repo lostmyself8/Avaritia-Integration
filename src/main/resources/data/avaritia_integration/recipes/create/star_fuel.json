@@ -1,0 +1,9 @@
+{
+  "type":"avaritia_integration:liquid_burning",
+  "input": {
+    "fluid": "avaritia_integration:molten_star",
+    "amount": 100
+  },
+  "burnTime": 6000,
+  "starheated": true
+}
