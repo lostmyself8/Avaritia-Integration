@@ -2,6 +2,6 @@
   "parent": "minecraft:block/block",
   "loader": "botania:floating_flower",
   "flower": {
-    "parent": "avaritia_integration:block/asgard_dandelion"
+    "parent": "avaritia_integration:block/botania/asgard_dandelion"
   }
 }

@@ -1,0 +1,36 @@
+{
+  "type": "industrialforegoing:dissolution_chamber",
+  "input": [
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "item": "avaritia:neutron_gear"
+    },
+    {
+      "item": "avaritia:neutron_gear"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "inputFluid": "{Amount:1000,FluidName:\"avaritia_integration:void_matter\"}",
+  "output": {
+    "count": 1,
+    "item": "avaritia_integration:speed_addon_neutron",
+    "nbt": "{TitaniumAugment:{Speed:9.0f}}"
+  },
+  "processingTime": 300
+}

@@ -1,0 +1,36 @@
+{
+  "type": "industrialforegoing:dissolution_chamber",
+  "input": [
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "tag": "forge:glass_panes"
+    },
+    {
+      "item": "avaritia_integration:infinity_gear"
+    },
+    {
+      "item": "avaritia_integration:infinity_gear"
+    },
+    {
+      "tag": "forge:rods/blaze"
+    },
+    {
+      "tag": "forge:rods/blaze"
+    }
+  ],
+  "inputFluid": "{Amount:2000,FluidName:\"avaritia_integration:void_matter\"}",
+  "output": {
+    "count": 1,
+    "item": "avaritia_integration:efficiency_addon_infinity",
+    "nbt": "{TitaniumAugment:{Efficiency:-0.20000005f}}"
+  },
+  "processingTime": 400
+}

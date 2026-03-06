@@ -18,5 +18,13 @@
     "avaritia_integration:neutron_mechanical_press",
     "avaritia_integration:extreme_basin",
     "avaritia_integration:matrix_mechanical_mixer"
+    {
+      "id": "avaritia_integration:infinity_crux",
+      "required": false
+    },
+    {
+      "id": "avaritia_integration:crystal_matrix_crux",
+      "required": false
+    }
   ]
 }

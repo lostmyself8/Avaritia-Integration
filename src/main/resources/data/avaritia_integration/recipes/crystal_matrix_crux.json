@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "modid": "mysticalagradditions",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/crystal_matrix"
+    },
+    "E": {
+      "item": "mysticalagradditions:insanium_essence"
+    },
+    "M": {
+      "item": "mysticalagradditions:nether_star_crux"
+    }
+  },
+  "pattern": [
+    "EIE",
+    "IMI",
+    "EIE"
+  ],
+  "result": {
+    "item": "avaritia_integration:crystal_matrix_crux"
+  },
+  "show_notification": true
+}

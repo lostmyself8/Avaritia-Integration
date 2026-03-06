@@ -108,6 +108,9 @@ repositories {
     }
     maven { // location of the maven for Flywheel and Ponder
         url = "https://maven.createmod.net"
+    maven {
+        name = "Thermal Maven"
+        url = uri("https://maven.covers1624.net/")
     }
 }
 
@@ -158,6 +161,18 @@ dependencies {
     //TConstruct
     implementation fg.deobf("slimeknights.mantle:Mantle:1.20.1-1.11.95")
     implementation fg.deobf("slimeknights.tconstruct:TConstruct:1.20.1-3.11.0.148")
+    //Titanium
+    implementation fg.deobf("curse.maven:titanium-287342:${titanium_version}")
+    //Industrial Foregoing
+    implementation fg.deobf("curse.maven:industrial-foregoing-266515:${industrial_foregoing_version}")
+    //Thermal Core
+    implementation fg.deobf("com.teamcofh:thermal_core:${minecraft_version}-${thermalCoreVersion}.+")
+    //Mystical Agriculture
+    implementation fg.deobf("curse.maven:mystical-agriculture-246640:${mysticalAgricultureVersion}")
+    //Mystical Agradditions
+    implementation fg.deobf("curse.maven:mystical-agradditions-256247:${mysticalAgradditionsVersion}")
+    //Cucumber
+    implementation fg.deobf("curse.maven:cucumber-272335:${cucumberVersion}")
     //Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:[0.4.1,0.5.0)"))

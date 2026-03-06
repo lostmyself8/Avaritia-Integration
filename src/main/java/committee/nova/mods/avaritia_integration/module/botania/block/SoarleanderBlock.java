@@ -30,6 +30,6 @@ public class SoarleanderBlock extends ForgeSpecialFlowerBlock {
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return BotaniaBlock.createTickerHelper(type, BotaniaIntegrationBlockEntities.SOARLEANDER, SoarleanderBlockEntity::commonTick);
+        return BotaniaBlock.createTickerHelper(type, BotaniaIntegrationBlockEntities.SOARLEANDER.get(), SoarleanderBlockEntity::commonTick);
     }
 }

@@ -29,6 +29,6 @@ public class AsgardDandelionBlock extends ForgeSpecialFlowerBlock {
 
     @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return BotaniaBlock.createTickerHelper(type, BotaniaIntegrationBlockEntities.ASGARD_DANDELION, AsgardDandelionBlockEntity::commonTick);
+        return BotaniaBlock.createTickerHelper(type, BotaniaIntegrationBlockEntities.ASGARD_DANDELION.get(), AsgardDandelionBlockEntity::commonTick);
     }
 }

@@ -10,6 +10,7 @@ import committee.nova.mods.avaritia_integration.module.bloodmagic.registry.Blood
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationBlocks;
 import committee.nova.mods.avaritia_integration.module.botania.registry.BotaniaIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.enderio.registry.EnderIOIntegrationItems;
+import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
 import committee.nova.mods.avaritia_integration.module.slashblade.registry.SlashBladeIntegrationItems;
 import mods.flammpfeil.slashblade.init.SBItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -191,5 +192,27 @@ public class AIRecipes extends RecipeProvider implements IConditionBuilder {
                 .define('d', ModItems.neutron_ingot.get())
                 .showNotification(true)
                 .unlockedBy("has_item", has(ModItems.infinity_ingot.get())).save(consumer);
+
+
+        //Industrial Foregoing
+        IndustrialForegoingIntegrationItems.ADDONS.values().forEach(addon -> addon.get().registerRecipe(consumer));
+
+        //Mystical Agradditions
+        ModShapedRecipeBuilder.shaped(RecipeCategory.MISC, com.blakebr0.mysticalagradditions.init.ModItems.CREATIVE_ESSENCE.get())
+                .pattern("  e e e  ")
+                .pattern(" e  e  e ")
+                .pattern(" e eee e ")
+                .pattern(" eeiiiee ")
+                .pattern(" eigggie ")
+                .pattern("eeigcgiee")
+                .pattern("eeigggiee")
+                .pattern(" eeiiiee ")
+                .pattern("   eee   ")
+                .define('g', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_GEMSTONE.get())
+                .define('i', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_INGOT.get())
+                .define('e', com.blakebr0.mysticalagradditions.init.ModItems.INSANIUM_ESSENCE.get())
+                .define('c', ModItems.infinity_catalyst.get())
+                .showNotification(true)
+                .unlockedBy("has_item",has(ModItems.infinity_catalyst.get())).save(consumer);
     }
 }

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "modid": "mysticalagradditions",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/infinity"
+    },
+    "E": {
+      "item": "mysticalagriculture:awakened_supremium_essence"
+    },
+    "A": {
+      "item": "mysticalagradditions:insanium_essence"
+    },
+    "C": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "N": {
+      "item": "mysticalagradditions:neutronium_crux"
+    }
+  },
+  "pattern": [
+    "AIE",
+    "CNC",
+    "EIA"
+  ],
+  "result": {
+    "item": "avaritia_integration:infinity_crux"
+  },
+  "show_notification": true
+}
