@@ -1,0 +1,8 @@
+{
+  "values": [
+    {
+      "id": "avaritia_integration:neutron",
+      "required": false
+    }
+  ]
+}

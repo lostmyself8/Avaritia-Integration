@@ -1,0 +1,59 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "avaritia:shaped_table",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:circuits/basic"
+    },
+    "D": {
+      "tag": "forge:circuits/advanced"
+    },
+    "E": {
+      "tag": "forge:circuits/elite"
+    },
+    "U": {
+      "tag": "forge:circuits/ultimate"
+    },
+    "Z": {
+      "tag": "mekanism:alloys/basic"
+    },
+    "Y": {
+      "tag": "mekanism:alloys/infused"
+    },
+    "X": {
+      "tag": "mekanism:alloys/reinforced"
+    },
+    "W": {
+      "tag": "mekanism:alloys/atomic"
+    },
+    "C": {
+      "item": "avaritia:neutron_gear"
+    },
+    "A": {
+      "tag": "mekanism:alloys/neutron"
+    }
+  },
+  "pattern": [
+    "         ",
+    " AAAAAAA ",
+    " ABBBDDA ",
+    " ABWWXDA ",
+    " AUZCXDA ",
+    " AUZYYEA ",
+    " AUUEEEA ",
+    " AAAAAAA ",
+    "         "
+  ],
+  "result": {
+    "count": 4,
+    "item": "avaritia_integration:neutron_control_circuit"
+  },
+  "show_notification": true,
+  "tier": 4
+}

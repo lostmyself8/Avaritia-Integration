@@ -30,4 +30,5 @@ public class AvaritiaIntegration {
     public static ResourceLocation rl(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
+
 }

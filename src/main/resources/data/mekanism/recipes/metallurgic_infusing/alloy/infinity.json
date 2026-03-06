@@ -1,0 +1,21 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "mekanism:metallurgic_infusing",
+  "chemicalInput": {
+    "amount": 40,
+    "tag": "mekanism:infinity"
+  },
+  "itemInput": {
+    "ingredient": {
+      "tag": "mekanism:alloys/neutron"
+    }
+  },
+  "output": {
+    "item": "avaritia_integration:alloy_infinity"
+  }
+}

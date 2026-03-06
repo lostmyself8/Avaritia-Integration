@@ -1,0 +1,15 @@
+{
+  "type": "avaritia_integration:compressor",
+  "input": {
+    "amount": 1000,
+    "ingredient": {
+      "tag": "forge:gems/quartz"
+    }
+  },
+  "output": {
+    "item": "avaritia:singularity",
+    "nbt": {
+      "Id": "avaritia:quartz"
+    }
+  }
+}
