@@ -1,19 +1,14 @@
 package committee.nova.mods.avaritia_integration.module.botania.registry;
 
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
-import committee.nova.mods.avaritia_integration.module.botania.entity.*;
+import committee.nova.mods.avaritia_integration.module.botania.entity.AlphaSparkEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import vazkii.botania.common.entity.ManaSparkEntity;
-import vazkii.botania.common.lib.LibEntityNames;
-import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.function.Supplier;
 

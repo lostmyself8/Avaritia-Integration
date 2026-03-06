@@ -1,5 +1,7 @@
 package committee.nova.mods.avaritia_integration.module.tconstruct.modifiers;
 
+import committee.nova.mods.avaritia_integration.init.registry.AIFluidTypes;
+import committee.nova.mods.avaritia_integration.init.registry.AIFluids;
 import committee.nova.mods.avaritia_integration.module.tconstruct.registry.TicIntegrationFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,7 +34,7 @@ public class StarDashModifier extends Modifier implements MeleeDamageModifierHoo
             int shots = 1 + 2 * modifier.getLevel();
             float startAngle = ModifiableLauncherItem.getAngleStart(shots);
             for (int shotIndex = 0; shotIndex < modifier.getLevel()*2+1; shotIndex++) {
-                FluidEffectProjectile spit = new FluidEffectProjectile(level, living, new FluidStack(TicIntegrationFluids.molten_star.get(), 50), modifier.getLevel());
+                FluidEffectProjectile spit = new FluidEffectProjectile(level, living, new FluidStack(AIFluids.source_molten_star.get().getSource(), 50), modifier.getLevel());
                 Vec3 upVector = living.getUpVector(1.0f);
                 float angle = startAngle + (10 * shotIndex);
                 Vector3f targetVector = living.getViewVector(1.0f).toVector3f().rotate((new Quaternionf()).setAngleAxis(angle * Math.PI / 180F, upVector.x, upVector.y, upVector.z));

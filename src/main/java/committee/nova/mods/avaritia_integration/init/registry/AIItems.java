@@ -3,6 +3,7 @@ package committee.nova.mods.avaritia_integration.init.registry;
 import committee.nova.mods.avaritia.api.common.item.BaseItem;
 import committee.nova.mods.avaritia.init.registry.ModRarities;
 import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,6 +31,7 @@ public class AIItems {
     public static final RegistryObject<Item> BLAZE_CUBE_SCREW = register("blaze_cube_screw", () -> new BaseItem(pro -> pro.rarity(ModRarities.UNCOMMON)));
     public static final RegistryObject<Item> BLAZE_CUBE_SPRING = register("blaze_cube_spring", () -> new BaseItem(pro -> pro.rarity(ModRarities.UNCOMMON)));
     public static final RegistryObject<Item> BLAZE_CUBE_WIRE = register("blaze_cube_wire", () -> new BaseItem(pro -> pro.rarity(ModRarities.UNCOMMON)));
+    public static final RegistryObject<Item> MOLTEN_BLAZE_BUCKET = register("molten_blaze_bucket", () -> new BucketItem(AIFluids.source_molten_blaze, new Item.Properties().stacksTo(1).rarity(ModRarities.UNCOMMON)));
     //crystal_matrix
     public static final RegistryObject<Item> CRYSTAL_MATRIX_BOLT = register("crystal_matrix_bolt", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
     public static final RegistryObject<Item> CRYSTAL_MATRIX_DENSE_PLATE = register("crystal_matrix_dense_plate", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
@@ -44,6 +46,7 @@ public class AIItems {
     public static final RegistryObject<Item> CRYSTAL_MATRIX_SCREW = register("crystal_matrix_screw", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
     public static final RegistryObject<Item> CRYSTAL_MATRIX_SPRING = register("crystal_matrix_spring", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
     public static final RegistryObject<Item> CRYSTAL_MATRIX_WIRE = register("crystal_matrix_wire", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
+    public static final RegistryObject<Item> MOLTEN_CRYSTAL_MATRIX_BUCKET = register("molten_crystal_matrix_bucket", () -> new BucketItem(AIFluids.source_molten_crystal_matrix, new Item.Properties().stacksTo(1).rarity(ModRarities.RARE)));
     //infinity
     public static final RegistryObject<Item> INFINITY_BOLT = register("infinity_bolt", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
     public static final RegistryObject<Item> INFINITY_DENSE_PLATE = register("infinity_dense_plate", () -> new BaseItem(pro -> pro.rarity(ModRarities.EPIC)));
@@ -69,6 +72,9 @@ public class AIItems {
     public static final RegistryObject<Item> NEUTRON_SCREW = register("neutron_screw", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
     public static final RegistryObject<Item> NEUTRON_SPRING = register("neutron_spring", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
     public static final RegistryObject<Item> NEUTRON_WIRE = register("neutron_wire", () -> new BaseItem(pro -> pro.rarity(ModRarities.RARE)));
+    public static final RegistryObject<Item> MOLTEN_NEUTRON_BUCKET = register("molten_neutron_bucket", () -> new BucketItem(AIFluids.source_molten_neutron, new Item.Properties().stacksTo(1).rarity(ModRarities.RARE)));
+
+    public static final RegistryObject<Item> MOLTEN_STAR_BUCKET = register("molten_star_bucket", () -> new BucketItem(AIFluids.source_molten_star, new Item.Properties().stacksTo(1).rarity(ModRarities.RARE)));
 
     public static <T extends Item> RegistryObject<T> register(String id, Supplier<T> obj) {
         RegistryObject<T> r = REGISTRY.register(id, obj);
