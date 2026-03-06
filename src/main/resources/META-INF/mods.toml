@@ -24,9 +24,9 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${ mod_id }]]
-modId = "tconstruct"
-mandatory = false
-versionRange = "${tconstruct_range}"
-ordering = "NONE"
-side = "BOTH"
+[[dependencies.${mod_id}]]
+modId="mekanism"
+mandatory=true
+versionRange="[10.4.15]"
+ordering="AFTER"
+side="BOTH"

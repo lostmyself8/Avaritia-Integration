@@ -1,0 +1,40 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanismgenerators"
+    }
+  ],
+  "type": "avaritia:shaped_table",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "P": {
+      "item": "avaritia_integration:neutron_solar_panel"
+    },
+    "I": {
+      "tag": "mekanism:alloys/infinity"
+    },
+    "O": {
+      "tag": "forge:ingots/osmium"
+    }
+  },
+  "pattern": [
+    "         ",
+    "         ",
+    "         ",
+    "GGGGGGGGG",
+    "IIIPPPIII",
+    "OOOOOOOOO",
+    "         ",
+    "         ",
+    "         "
+  ],
+  "result": {
+    "item": "avaritia_integration:infinity_solar_panel"
+  },
+  "show_notification": true,
+  "tier": 4
+}
