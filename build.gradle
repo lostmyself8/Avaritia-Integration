@@ -111,6 +111,7 @@ repositories {
     }
     maven { // location of the maven for Flywheel and Ponder
         url = "https://maven.createmod.net"
+    }
     maven {
         name = "Thermal Maven"
         url = uri("https://maven.covers1624.net/")
