@@ -95,7 +95,6 @@ public class CreateIntegrationBlocks {
                 .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
 
-        //TODO 黄铜漏斗等自动化方面有一些问题
         EXTREME_DEPOT = REGISTRATE.block("extreme_depot", ExtremeDepotBlock::new)
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
