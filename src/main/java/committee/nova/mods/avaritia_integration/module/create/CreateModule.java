@@ -29,6 +29,7 @@ public final class CreateModule implements Module {
         REGISTRATE.registerEventListeners(registryBus);
         CreateIntegrationItems.REGISTRY.register(registryBus);
 
+        CreateIntegrationDisplaySources.register();
         CreateIntegrationMountedStorageTypes.register();
         CreateIntegrationBlocks.register();
         CreateIntegrationBlockEntityTypes.register();

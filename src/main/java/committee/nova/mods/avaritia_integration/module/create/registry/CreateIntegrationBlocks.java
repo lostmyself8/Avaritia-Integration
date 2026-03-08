@@ -100,10 +100,7 @@ public class CreateIntegrationBlocks {
                 .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
                 .transform(TagGen.axeOrPickaxe())
                 .blockstate((c, p) -> p.simpleBlock(c.getEntry(), CreateIntegrationAssetLookup.partialBaseModel(c, p)))
-//                .transform(DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES))
-                .onRegister(block -> {
-                    DisplaySource.displaySource(AllDisplaySources.ITEM_NAMES);
-                })
+                .transform(DisplaySource.displaySource(CreateIntegrationDisplaySources.ITEM_NAMES))
                 .onRegister(MovingInteractionBehaviour.interactionBehaviour(new MountedDepotInteractionBehaviour()))
                 .transform(MountedItemStorageType.mountedItemStorage(CreateIntegrationMountedStorageTypes.EXTREME_DEPOT))
                 .item()

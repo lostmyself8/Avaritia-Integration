@@ -130,8 +130,8 @@
   "item.avaritia_integration.creative_compound": "Creative Compound",
   "item.avaritia_integration.ignis_cake": "Ignis Cake",
   "item.avaritia_integration.ignis_cake_base": "Ignis Cake Base",
-  "item.avaritia_integration.star_cake": "Star Blaze Cake",
-  "item.avaritia_integration.star_cake_base": "Star Blaze Cake Base",
+  "item.avaritia_integration.star_cake": "Star Cake",
+  "item.avaritia_integration.star_cake_base": "Star Cake Base",
   "block.avaritia_integration.crystal_matrix_casing": "Crystal Matrix Casing",
   "block.avaritia_integration.extreme_basin": "Extreme Basin",
   "block.avaritia_integration.extreme_blaze_burner": "Extreme Blaze Burner",
@@ -143,6 +143,7 @@
   "avaritia_integration.recipe.extreme_heat_requirement.normal": "Normal-Heated",
   "avaritia_integration.recipe.extreme_heat_requirement.blaze": "Blaze-Heated",
   "avaritia_integration.recipe.extreme_heat_requirement.star": "Star-Heated",
+  "avaritia_integration.display_source.combine_item_names": "Combine Item Names",
 
   "item.avaritia_integration.infinity_me_storage_component": "Infinity ME Storage Component",
   "item.avaritia_integration.infinity_me_storage_cell": "Infinity ME Storage Cell",
