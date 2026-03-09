@@ -72,5 +72,6 @@ public final class CreateModule implements Module {
         output.accept(CreateIntegrationBlocks.EXTREME_BASIN.asItem());
         output.accept(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem());
         output.accept(CreateIntegrationBlocks.EXTREME_DEPOT.asItem());
+        output.accept(CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem());
     }
 }

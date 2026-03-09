@@ -10,6 +10,9 @@ import committee.nova.mods.avaritia_integration.module.create.content.extreme_bu
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerVisual;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotRenderer;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeEncasedFanBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeEncasedFanRenderer;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeFanVisual;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerBlockRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.matrix_mixer.MatrixMechanicalMixerVisual;
@@ -24,6 +27,7 @@ public class CreateIntegrationBlockEntityTypes {
     public static final BlockEntityEntry<ExtremeBasinBlockEntity> EXTREME_BASIN;
     public static final BlockEntityEntry<MatrixMechanicalMixerBlockEntity> MATRIX_MECHANICAL_MIXER;
     public static final BlockEntityEntry<ExtremeDepotBlockEntity> EXTREME_DEPOT;
+    public static final BlockEntityEntry<ExtremeEncasedFanBlockEntity> EXTREME_ENCASED_FAN;
 
     public static void register() {
     }
@@ -52,6 +56,12 @@ public class CreateIntegrationBlockEntityTypes {
         EXTREME_DEPOT = REGISTRATE.blockEntity("extreme_depot", ExtremeDepotBlockEntity::new)
                 .validBlocks(CreateIntegrationBlocks.EXTREME_DEPOT)
                 .renderer(() -> ExtremeDepotRenderer::new)
+                .register();
+
+        EXTREME_ENCASED_FAN = REGISTRATE.blockEntity("extreme_encased_fan", ExtremeEncasedFanBlockEntity::new)
+                .visual(() -> ExtremeFanVisual::new, false)
+                .validBlocks(CreateIntegrationBlocks.EXTREME_ENCASED_FAN)
+                .renderer(() -> ExtremeEncasedFanRenderer::new)
                 .register();
     }
 }

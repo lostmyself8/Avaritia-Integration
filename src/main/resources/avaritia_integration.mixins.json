@@ -8,6 +8,7 @@
     "create.BlazeBurnerBlockEntityMixin",
     "create.MechanicalMixerBlockEntityMixin",
     "create.RegistrateDisplayItemsGeneratorMixin",
+    "create.accessor.AirCurrentAccessor",
     "create.accessor.BasinOperatingBlockEntityAccessor",
     "create.accessor.ItemStackHandlerAccessor",
     "mekanism.MekanismLangMixin",

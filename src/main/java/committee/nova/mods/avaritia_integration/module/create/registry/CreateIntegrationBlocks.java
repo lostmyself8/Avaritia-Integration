@@ -15,6 +15,7 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerMovementBehaviou
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeEncasedFanBlock;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationAssetLookup;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationBlockStateGen;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationBuilderTransformers;
@@ -37,6 +38,7 @@ public class CreateIntegrationBlocks {
     public static final BlockEntry<ExtremeBasinBlock> EXTREME_BASIN;
     public static final BlockEntry<MatrixMechanicalMixerBlock> MATRIX_MECHANICAL_MIXER;
     public static final BlockEntry<ExtremeDepotBlock> EXTREME_DEPOT;
+    public static final BlockEntry<ExtremeEncasedFanBlock> EXTREME_ENCASED_FAN;
 
     public static void register() {
     }
@@ -103,6 +105,17 @@ public class CreateIntegrationBlocks {
                 .transform(DisplaySource.displaySource(CreateIntegrationDisplaySources.ITEM_NAMES))
                 .onRegister(MovingInteractionBehaviour.interactionBehaviour(new MountedDepotInteractionBehaviour()))
                 .transform(MountedItemStorageType.mountedItemStorage(CreateIntegrationMountedStorageTypes.EXTREME_DEPOT))
+                .item()
+                .transform(ModelGen.customItemModel("create", "_", "block"))
+                .register();
+
+        EXTREME_ENCASED_FAN = REGISTRATE.block("extreme_encased_fan", ExtremeEncasedFanBlock::new)
+                .initialProperties(SharedProperties::stone)
+                .properties(p -> p.mapColor(MapColor.PODZOL))
+                .blockstate(BlockStateGen.directionalBlockProvider(true))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .transform(TagGen.axeOrPickaxe())
+                .onRegister(CreateIntegrationStress.setImpact(8.0))
                 .item()
                 .transform(ModelGen.customItemModel("create", "_", "block"))
                 .register();
