@@ -1,6 +1,5 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
-import com.simibubi.create.AllDisplaySources;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.behaviour.interaction.ConductorBlockInteractionBehavior;
@@ -15,6 +14,8 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerMovementBehaviou
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher.ExtremeCrushingWheelBlock;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher.ExtremeCrushingWheelControllerBlock;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeEncasedFanBlock;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationAssetLookup;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationBlockStateGen;
@@ -28,7 +29,9 @@ import committee.nova.mods.avaritia_integration.module.create.content.matrix_mix
 import committee.nova.mods.avaritia_integration.module.create.content.neutron_press.NeutronMechanicalPressBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 public class CreateIntegrationBlocks {
     private static final CreateRegistrate REGISTRATE = CreateModule.REGISTRATE;
@@ -39,6 +42,8 @@ public class CreateIntegrationBlocks {
     public static final BlockEntry<MatrixMechanicalMixerBlock> MATRIX_MECHANICAL_MIXER;
     public static final BlockEntry<ExtremeDepotBlock> EXTREME_DEPOT;
     public static final BlockEntry<ExtremeEncasedFanBlock> EXTREME_ENCASED_FAN;
+    public static final BlockEntry<ExtremeCrushingWheelBlock> EXTREME_CRUSHING_WHEEL;
+    public static final BlockEntry<ExtremeCrushingWheelControllerBlock> EXTREME_CRUSHING_WHEEL_CONTROLLER;
 
     public static void register() {
     }
@@ -112,12 +117,35 @@ public class CreateIntegrationBlocks {
         EXTREME_ENCASED_FAN = REGISTRATE.block("extreme_encased_fan", ExtremeEncasedFanBlock::new)
                 .initialProperties(SharedProperties::stone)
                 .properties(p -> p.mapColor(MapColor.PODZOL))
-                .blockstate(BlockStateGen.directionalBlockProvider(true))
+                .blockstate(CreateIntegrationBlockStateGen.directionalBlockProvider(true))
                 .addLayer(() -> RenderType::cutoutMipped)
                 .transform(TagGen.axeOrPickaxe())
                 .onRegister(CreateIntegrationStress.setImpact(8.0))
                 .item()
                 .transform(ModelGen.customItemModel("create", "_", "block"))
+                .register();
+
+        EXTREME_CRUSHING_WHEEL = REGISTRATE.block("extreme_crushing_wheel", ExtremeCrushingWheelBlock::new)
+                .properties(p -> p.mapColor(MapColor.METAL))
+                .initialProperties(SharedProperties::stone)
+                .properties(BlockBehaviour.Properties::noOcclusion)
+                .transform(TagGen.pickaxeOnly())
+                .blockstate((c, p) -> CreateIntegrationBlockStateGen.axisBlock(c, p, s -> CreateIntegrationAssetLookup.partialBaseModel(c, p)))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .onRegister(CreateIntegrationStress.setImpact(24.0))
+                .item()
+                .transform(ModelGen.customItemModel("create", "_", "block"))
+                .register();
+
+        EXTREME_CRUSHING_WHEEL_CONTROLLER = REGISTRATE.block("extreme_crushing_wheel_controller", ExtremeCrushingWheelControllerBlock::new)
+                .properties(p -> p.mapColor(MapColor.STONE)
+                        .noOcclusion()
+                        .noLootTable()
+                        .air()
+                        .noCollission()
+                        .pushReaction(PushReaction.BLOCK))
+                .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                        .forAllStatesExcept(BlockStateGen.mapToAir(p), ExtremeCrushingWheelControllerBlock.FACING))
                 .register();
     }
 }

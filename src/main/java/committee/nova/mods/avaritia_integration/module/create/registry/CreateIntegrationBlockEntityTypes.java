@@ -1,5 +1,7 @@
 package committee.nova.mods.avaritia_integration.module.create.registry;
 
+import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
+import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import committee.nova.mods.avaritia_integration.module.create.CreateModule;
@@ -8,6 +10,8 @@ import committee.nova.mods.avaritia_integration.module.create.content.extreme_ba
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_burner.ExtremeBlazeBurnerVisual;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher.ExtremeCrushingWheelBlockEntity;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher.ExtremeCrushingWheelControllerBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_depot.ExtremeDepotRenderer;
 import committee.nova.mods.avaritia_integration.module.create.content.extreme_fan.ExtremeEncasedFanBlockEntity;
@@ -28,6 +32,8 @@ public class CreateIntegrationBlockEntityTypes {
     public static final BlockEntityEntry<MatrixMechanicalMixerBlockEntity> MATRIX_MECHANICAL_MIXER;
     public static final BlockEntityEntry<ExtremeDepotBlockEntity> EXTREME_DEPOT;
     public static final BlockEntityEntry<ExtremeEncasedFanBlockEntity> EXTREME_ENCASED_FAN;
+    public static final BlockEntityEntry<ExtremeCrushingWheelBlockEntity> EXTREME_CRUSHING_WHEEL;
+    public static final BlockEntityEntry<ExtremeCrushingWheelControllerBlockEntity> EXTREME_CRUSHING_WHEEL_CONTROLLER;
 
     public static void register() {
     }
@@ -62,6 +68,16 @@ public class CreateIntegrationBlockEntityTypes {
                 .visual(() -> ExtremeFanVisual::new, false)
                 .validBlocks(CreateIntegrationBlocks.EXTREME_ENCASED_FAN)
                 .renderer(() -> ExtremeEncasedFanRenderer::new)
+                .register();
+
+        EXTREME_CRUSHING_WHEEL = REGISTRATE.blockEntity("extreme_crushing_wheel", ExtremeCrushingWheelBlockEntity::new)
+                .visual(() -> SingleAxisRotatingVisual.of(CreateIntegrationPartialModels.EXTREME_CRUSHING_WHEEL), false)
+                .validBlocks(CreateIntegrationBlocks.EXTREME_CRUSHING_WHEEL)
+                .renderer(() -> KineticBlockEntityRenderer::new)
+                .register();
+
+        EXTREME_CRUSHING_WHEEL_CONTROLLER = REGISTRATE.blockEntity("extreme_crushing_wheel_controller", ExtremeCrushingWheelControllerBlockEntity::new)
+                .validBlocks(CreateIntegrationBlocks.EXTREME_CRUSHING_WHEEL_CONTROLLER)
                 .register();
     }
 }

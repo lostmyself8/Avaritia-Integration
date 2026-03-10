@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityVisual;
 import com.simibubi.create.content.kinetics.base.RotatingInstance;
 import com.simibubi.create.foundation.render.AllInstanceTypes;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationPartialModels;
 import dev.engine_room.flywheel.api.instance.Instance;
 import dev.engine_room.flywheel.api.visualization.VisualizationContext;
 import dev.engine_room.flywheel.lib.model.Models;
@@ -27,7 +28,7 @@ public class ExtremeFanVisual extends KineticBlockEntityVisual<ExtremeEncasedFan
         opposite = direction.getOpposite();
         shaft = instancerProvider().instancer(AllInstanceTypes.ROTATING, Models.partial(AllPartialModels.SHAFT_HALF))
                 .createInstance();
-        fan = instancerProvider().instancer(AllInstanceTypes.ROTATING, Models.partial(AllPartialModels.ENCASED_FAN_INNER))
+        fan = instancerProvider().instancer(AllInstanceTypes.ROTATING, Models.partial(CreateIntegrationPartialModels.EXTREME_ENCASED_FAN_INNER))
                 .createInstance();
 
         shaft.setup(blockEntity)

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
+import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationPartialModels;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
@@ -35,7 +36,7 @@ public class ExtremeEncasedFanRenderer extends KineticBlockEntityRenderer<Extrem
         SuperByteBuffer shaftHalf =
                 CachedBuffers.partialFacing(AllPartialModels.SHAFT_HALF, be.getBlockState(), direction.getOpposite());
         SuperByteBuffer fanInner =
-                CachedBuffers.partialFacing(AllPartialModels.ENCASED_FAN_INNER, be.getBlockState(), direction.getOpposite());
+                CachedBuffers.partialFacing(CreateIntegrationPartialModels.EXTREME_ENCASED_FAN_INNER, be.getBlockState(), direction.getOpposite());
 
         float time = AnimationTickHolder.getRenderTime(be.getLevel());
         float speed = be.getSpeed() * 5;
