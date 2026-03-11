@@ -2,11 +2,16 @@ package committee.nova.mods.avaritia_integration.module.create.compat.jei;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.Create;
 import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.compat.jei.DoubleItemIcon;
 import com.simibubi.create.compat.jei.EmptyBackground;
 import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
+import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
+import com.simibubi.create.content.processing.basin.BasinRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.simibubi.create.infrastructure.config.CRecipes;
@@ -20,6 +25,7 @@ import committee.nova.mods.avaritia_integration.module.create.registry.CreateInt
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -31,8 +37,10 @@ import net.createmod.catnip.config.ConfigBase;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.minecraft.world.level.ItemLike;
 
 import javax.annotation.Nonnull;
@@ -108,10 +116,27 @@ public class CreateIntegrationJEI implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         allCategories.forEach(c -> c.registerCatalysts(registration));
 
-        //TODO 有一些自动生成的配方暂时不能添加自定义catalyst
-        addRecipeCatalyst(registration, CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(), AllRecipeTypes.MIXING.getId());
-        addRecipeCatalyst(registration, CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(), AllRecipeTypes.PRESSING.getId(), AllRecipeTypes.COMPACTING.getId());
-        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), AllRecipeTypes.MIXING.getId(), AllRecipeTypes.COMPACTING.getId());
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(), Create.asResource("mixing"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(), Create.asResource("automatic_shapeless"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem(), Create.asResource("automatic_brewing"), BasinRecipe.class);
+
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(), Create.asResource("pressing"), PressingRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(), Create.asResource("packing"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.NEUTRON_MECHANICAL_PRESS.asItem(), Create.asResource("automatic_packing"), BasinRecipe.class);
+
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), Create.asResource("mixing"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), Create.asResource("automatic_shapeless"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), Create.asResource("automatic_brewing"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), Create.asResource("packing"), BasinRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_BASIN.asItem(), Create.asResource("automatic_packing"), BasinRecipe.class);
+
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem(), Create.asResource("fan_washing"), SplashingRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem(), Create.asResource("fan_haunting"), HauntingRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem(), Create.asResource("fan_smoking"), SmokingRecipe.class);
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem(), Create.asResource("fan_blasting"), AbstractCookingRecipe.class);
+
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_CRUSHING_WHEEL.asItem(), AllRecipeTypes.CRUSHING.getId());
+        addRecipeCatalyst(registration, CreateIntegrationBlocks.EXTREME_DEPOT.asItem(), AllRecipeTypes.DEPLOYING.getId());
     }
 
     private void addRecipeCatalyst(IRecipeCatalystRegistration registration, ItemLike item, ResourceLocation... recipeId) {
@@ -122,6 +147,14 @@ public class CreateIntegrationJEI implements IModPlugin {
                 );
             });
         }
+    }
+
+    private <T extends Recipe<?>> void addRecipeCatalyst(IRecipeCatalystRegistration registration, ItemLike item, ResourceLocation recipeId, Class<? extends T> recipeClass) {
+        registration.getJeiHelpers().getRecipeType(recipeId, recipeClass).ifPresent(type -> {
+            registration.addRecipeCatalyst(
+                    item,type
+            );
+        });
     }
 
     private class CategoryBuilder<T extends Recipe<?>> {
