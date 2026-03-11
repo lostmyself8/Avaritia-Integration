@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,11 +21,11 @@ import java.util.function.Supplier;
 
 public class IFBaseFluidInstance {
 
-    private final Supplier<FluidType> fluidType;
-    private final Supplier<Fluid> flowingFluid;
-    private final Supplier<Fluid> sourceFluid;
-    private final Supplier<Item> bucketFluid;
-    private final Supplier<LiquidBlock> blockFluid;
+    private final DeferredHolder<FluidType, FluidType> fluidType;
+    private final DeferredHolder<Fluid, Fluid> flowingFluid;
+    private final DeferredHolder<Fluid, Fluid> sourceFluid;
+    private final DeferredHolder<Item, Item> bucketFluid;
+    private final DeferredHolder<Block, Block> blockFluid;
 
     private final String fluidName;
 
@@ -42,7 +43,8 @@ public class IFBaseFluidInstance {
         this.fluidType = fluidTypeRegister.register(name, () ->
                 new FluidType(fluidTypeProperties) {
                     @Override
-                    public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                    @SuppressWarnings("removal")
+                    public void initializeClient(@NotNull Consumer<IClientFluidTypeExtensions> consumer) {
                         consumer.accept(renderProperties);
                     }
                 });
@@ -57,28 +59,31 @@ public class IFBaseFluidInstance {
                 () -> new LiquidBlock(
                         (FlowingFluid) sourceFluid.get(),
                         BlockBehaviour.Properties.of()
+                                .replaceable()
                                 .noCollission()
                                 .strength(100f)
+                                .pushReaction(PushReaction.DESTROY)
+                                .liquid().sound(SoundType.EMPTY)
                                 .noLootTable()
                 ));
 
         this.bucketFluid = itemRegister.register(name + "_bucket",
                 () -> new BucketItem(
                         sourceFluid.get(),
-                        new Item.Properties().stacksTo(1)
+                        new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)
                 ));
 
     }
 
-    public FluidType getFluidType() {
-        return fluidType.get();
+    public DeferredHolder<FluidType,FluidType> getFluidType() {
+        return fluidType;
     }
 
-    public Fluid getFlowingFluid() {
-        return flowingFluid.get();
+    public DeferredHolder<Fluid,Fluid> getFlowingFluid() {
+        return flowingFluid;
     }
 
-    public Supplier<Fluid> getSourceFluid() {
+    public DeferredHolder<Fluid,Fluid> getSourceFluid() {
         return sourceFluid;
     }
 
@@ -87,7 +92,7 @@ public class IFBaseFluidInstance {
         return bucketFluid.get();
     }
 
-    public LiquidBlock getBlockFluid() {
+    public Block getBlockFluid() {
         return blockFluid.get();
     }
 
@@ -102,12 +107,12 @@ public class IFBaseFluidInstance {
         }
 
         @Override
-        public int getAmount(FluidState state) {
+        public int getAmount(@NotNull FluidState state) {
             return 8;
         }
 
         @Override
-        public boolean isSource(FluidState state) {
+        public boolean isSource(@NotNull FluidState state) {
             return true;
         }
     }
@@ -130,12 +135,12 @@ public class IFBaseFluidInstance {
         }
 
         @Override
-        public int getAmount(FluidState state) {
+        public int getAmount(@NotNull FluidState state) {
             return state.getValue(LEVEL);
         }
 
         @Override
-        public boolean isSource(FluidState state) {
+        public boolean isSource(@NotNull FluidState state) {
             return false;
         }
     }

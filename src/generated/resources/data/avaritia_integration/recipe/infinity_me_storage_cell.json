@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "avaritia_integration:infinity_me_storage_component"
+    },
+    "q": {
+      "item": "ae2:fluid_cell_housing"
+    },
+    "s": {
+      "item": "ae2:item_cell_housing"
+    }
+  },
+  "pattern": [
+    "aq",
+    "s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "avaritia_integration:infinity_me_storage_cell"
+  }
+}

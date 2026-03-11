@@ -2,26 +2,30 @@ package committee.nova.mods.avaritia_integration.init.data.provider;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import committee.nova.mods.avaritia.init.data.provider.recipe.ModExtremeSmithingRecipeBuilder;
+import com.buuz135.industrial.recipe.LaserDrillFluidRecipe;
+import com.buuz135.industrial.recipe.LaserDrillRarity;
+import com.buuz135.industrial.recipe.data.EntityData;
+import com.hrznstudio.titanium.api.IRecipeProvider;
 import committee.nova.mods.avaritia.init.data.provider.recipe.ModShapedRecipeBuilder;
 import committee.nova.mods.avaritia.init.registry.ModItems;
+import committee.nova.mods.avaritia_integration.AvaritiaIntegration;
 import committee.nova.mods.avaritia_integration.module.ae2.registry.AE2IntegrationItems;
 import committee.nova.mods.avaritia_integration.module.enderio.registry.EnderIOIntegrationItems;
-import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationItems;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import committee.nova.mods.avaritia_integration.module.industrialforegoing.registry.IndustrialForegoingIntegrationFluids;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class AIRecipes extends RecipeProvider implements IConditionBuilder {
 
@@ -88,5 +92,15 @@ public class AIRecipes extends RecipeProvider implements IConditionBuilder {
                 .define('q', AE2IntegrationItems.INFINITY_ME_STORAGE_CELL.get())
                 .unlockedBy("has_item", has(ModItems.neutron_ingot.get())).save(consumer);
 
+        BuiltInRegistries.ITEM.stream().filter(item -> BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(AvaritiaIntegration.MOD_ID)).forEach(item -> {
+            if(item instanceof IRecipeProvider provider){
+                provider.registerRecipe(consumer);
+            }
+        });
+
+        var elderlyMedullaRecipe = new LaserDrillFluidRecipe(SizedFluidIngredient.of(IndustrialForegoingIntegrationFluids.ELDERLY_MEDULLA.getSourceFluid().get(),50),7, Optional.of(EntityData.of(EntityType.ELDER_GUARDIAN)), new LaserDrillRarity(new LaserDrillRarity.BiomeRarity(new ArrayList<>(), new ArrayList<>()), new LaserDrillRarity.DimensionRarity(new ArrayList<>(),new ArrayList<>()),-64, 256, 8));
+        var voidMatterRecipe = new LaserDrillFluidRecipe(SizedFluidIngredient.of(IndustrialForegoingIntegrationFluids.VOID_MATTER.getSourceFluid().get(),20),15, Optional.empty(), new LaserDrillRarity(new LaserDrillRarity.BiomeRarity(LaserDrillRarity.BiomeRarity.END, new ArrayList<>()), new LaserDrillRarity.DimensionRarity(new ArrayList<>(),new ArrayList<>()),-32, 64, 8));
+        LaserDrillFluidRecipe.createRecipe(consumer,"elderly_medulla","industrialforegoing",elderlyMedullaRecipe);
+        LaserDrillFluidRecipe.createRecipe(consumer,"void_matter","industrialforegoing",voidMatterRecipe);
     }
 }

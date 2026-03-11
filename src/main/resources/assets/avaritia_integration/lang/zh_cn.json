@@ -110,6 +110,10 @@
   "block.avaritia_integration.elderly_medulla": "远古髓质",
   "item.avaritia_integration.void_matter_bucket": "虚空物质桶",
   "item.avaritia_integration.elderly_medulla_bucket": "远古髓质桶",
+  "item.avaritia_integration.energy_addon_blaze_cube": "插件: 能量 Tier §b炽骨立方",
+  "item.avaritia_integration.energy_addon_crystal_matrix": "插件: 能量 Tier §b水晶矩阵",
+  "item.avaritia_integration.energy_addon_neutron": "插件: 能量 Tier §e中子",
+  "item.avaritia_integration.energy_addon_infinity": "插件: 能量 Tier §d无尽",
 
   "block.avaritia_integration.molten_blaze_fluid": "熔火之焰",
   "fluid.avaritia_integration.molten_blaze": "熔火之焰",
