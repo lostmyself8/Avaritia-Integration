@@ -25,6 +25,7 @@ public class BaseFluidType extends FluidType {
     }
 
     @Override
+    @SuppressWarnings("removal")
     public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
         super.initializeClient(consumer);
         consumer.accept(new IClientFluidTypeExtensions() {

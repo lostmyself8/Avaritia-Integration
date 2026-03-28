@@ -16,7 +16,6 @@ public class AvaritiaIntegration {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static IEventBus MOD_EVENT_BUS;
 
-    @SuppressWarnings("removal")
     public AvaritiaIntegration(IEventBus bus, ModContainer modContainer) {
         MOD_EVENT_BUS = bus;
 

@@ -1,0 +1,44 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "avaritia_integration:processing_addon_neutron"
+    }
+  ],
+  "type": "industrialforegoing:dissolution_chamber",
+  "input": [
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:glass_panes"
+    },
+    {
+      "tag": "c:glass_panes"
+    },
+    {
+      "item": "avaritia:neutron_gear"
+    },
+    {
+      "item": "avaritia:neutron_gear"
+    },
+    {
+      "item": "minecraft:crafting_table"
+    },
+    {
+      "item": "minecraft:furnace"
+    }
+  ],
+  "inputFluid": {
+    "amount": 1000,
+    "fluid": "avaritia_integration:void_matter_source"
+  },
+  "output": {
+    "count": 1,
+    "id": "avaritia_integration:processing_addon_neutron"
+  },
+  "processingTime": 300
+}

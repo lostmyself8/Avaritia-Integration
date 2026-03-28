@@ -110,6 +110,10 @@
   "block.avaritia_integration.elderly_medulla": "Elderly Medulla",
   "item.avaritia_integration.void_matter_bucket": "Void Matter Bucket",
   "item.avaritia_integration.elderly_medulla_bucket": "Elderly Medulla Bucket",
+  "item.avaritia_integration.energy_addon_blaze_cube": "Addon: Energy Tier §bBlaze Cube",
+  "item.avaritia_integration.energy_addon_crystal_matrix": "Addon: Energy Tier §bCrystal Matrix",
+  "item.avaritia_integration.energy_addon_neutron": "Addon: Energy Tier §eNeutron",
+  "item.avaritia_integration.energy_addon_infinity": "Addon: Energy Tier §dInfinity",
 
   "block.avaritia_integration.molten_blaze_fluid": "Molten Blaze",
   "fluid.avaritia_integration.molten_blaze": "Molten Blaze",

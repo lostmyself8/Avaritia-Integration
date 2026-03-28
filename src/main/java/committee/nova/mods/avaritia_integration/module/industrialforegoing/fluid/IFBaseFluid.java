@@ -30,7 +30,7 @@ public class IFBaseFluid extends FlowingFluid {
 
     @Nonnull
     public Fluid getFlowing() {
-        return this.baseFluidInstance.getFlowingFluid();
+        return this.baseFluidInstance.getFlowingFluid().get();
     }
 
     @Nonnull
@@ -94,10 +94,10 @@ public class IFBaseFluid extends FlowingFluid {
     }
 
     public boolean isSame(@NotNull Fluid fluidIn) {
-        return fluidIn == this.baseFluidInstance.getFlowingFluid() || fluidIn == this.baseFluidInstance.getSourceFluid();
+        return fluidIn == this.baseFluidInstance.getFlowingFluid().get() || fluidIn == this.baseFluidInstance.getSourceFluid().get();
     }
 
-    public FluidType getFluidType() {
-        return this.baseFluidInstance.getFluidType();
+    public @NotNull FluidType getFluidType() {
+        return this.baseFluidInstance.getFluidType().get();
     }
 }

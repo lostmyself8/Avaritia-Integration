@@ -1,0 +1,51 @@
+{
+  "type": "avaritia:shaped_table",
+  "key": {
+    "a": {
+      "item": "ae2:ender_dust"
+    },
+    "c": {
+      "item": "ae2:singularity"
+    },
+    "d": {
+      "item": "ae2:controller"
+    },
+    "e": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "f": {
+      "item": "ae2:cell_component_256k"
+    },
+    "r": {
+      "item": "avaritia:infinity_ingot"
+    },
+    "s": {
+      "item": "ae2:sky_dust"
+    },
+    "v": {
+      "item": "avaritia:neutron_gear"
+    },
+    "x": {
+      "item": "ae2:matter_ball"
+    },
+    "z": {
+      "item": "ae2:spatial_cell_component_128"
+    }
+  },
+  "pattern": [
+    "  rrrrr  ",
+    " vesssev ",
+    "reafcfaer",
+    "rsfxzxfsr",
+    "rsczdzcsr",
+    "rsfxzxfsr",
+    "reafcfaer",
+    " vesssev ",
+    "  rrrrr  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "avaritia_integration:infinity_me_storage_component"
+  },
+  "tier": 4
+}
