@@ -21,7 +21,7 @@
 * This mod add capability between Re:Avaritia and many other mods.
 
 ## **✏️Authors:**
-- Programmer: `cnlimiter` `IAFEnvoy` `Frostbite-time` `CreepingCreeper` `Oganesson897` `cu6` `lostmyself8` `Lounode`
+- Programmer: `cnlimiter` `IAFEnvoy` `Frostbite-time` `CreepingCreeper` `Oganesson897` `cu6` `lostmyself8` `Lounode` `Y-Xiao233`
 - Artist: `MHanHanBing` `Neo-Tix`
 
 ## **🔒License:**
@@ -37,21 +37,22 @@
 * 🔲: Planned Support<br>
 * ❌: No Support Planned<br>
 
-| Mod                           | Content | Status | Notes |
-|-------------------------------|:--------|:------:|-------|
-| Apotheosis                    |         |   🔲   |       |
-| Applied Energistics 2         |         |   ✅   |       |
-| Blood Magic                   |         |   ✅   |       |
-| Botania                       |         |   ✅   |       |
-| Create                        |         |   🚧   |       |
-| Ender IO                      |         |   ✅   |       |
-| GregTechCEu Modern            |         |   🔲   |       |
-| Mekanism                      |         |   🔲   |       |
-| Mekanism Advanced Generators  |         |   🔲   |       |
-| NuclearCraft: Neoteric        |         |   🔲   |       |
-| PneumaticCraft: Repressurized |         |   ✅   |       |
-| Refined Storage               |         |   🚧   |       |
-| SlashBlade                    |         |   ✅   |       |
-| Tetra                         |         |   🔲   |       |
-| Tinker's Construct 3          |         |   ✅   |       |
-| Thermal Series                |         |   🚧   |       |
+| Mod                                 | Content | Status | Notes |
+|-------------------------------------|:--------|:------:|-------|
+| Apotheosis                          |         |   🔲   |       |
+| Applied Energistics 2               |         |   ✅   |       |
+| Blood Magic                         |         |   ✅   |       |
+| Botania                             |         |   ✅   |       |
+| Create                              |         |   🚧   |       |
+| Ender IO                            |         |   ✅   |       |
+| GregTechCEu Modern                  |         |   🔲   |       |
+| Mekanism                            |         |   🔲   |       |
+| Mekanism Advanced Generators        |         |   🔲   |       |
+| NuclearCraft: Neoteric              |         |   🔲   |       |
+| PneumaticCraft: Repressurized       |         |   ✅   |       |
+| Refined Storage                     |         |   🚧   |       |
+| SlashBlade                          |         |   ✅   |       |
+| Tetra                               |         |   🔲   |       |
+| Tinker's Construct 3                |         |   ✅   |       |
+| Thermal Series                      |         |   🚧   |       |
+| Industrial Foregoing                |         |   ✅   |       |
