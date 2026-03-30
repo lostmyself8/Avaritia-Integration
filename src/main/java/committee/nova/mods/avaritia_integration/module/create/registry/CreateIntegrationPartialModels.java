@@ -18,6 +18,8 @@ public class CreateIntegrationPartialModels {
     public static final PartialModel MATRIX_MECHANICAL_MIXER_POLE = block("matrix_mechanical_mixer/pole");
     public static final PartialModel MATRIX_MECHANICAL_MIXER_HEAD = block("matrix_mechanical_mixer/head");
     public static final PartialModel MATRIX_MECHANICAL_MIXER_COGWHEEL = block("matrix_mechanical_mixer/cogwheel");
+    public static final PartialModel EXTREME_ENCASED_FAN_INNER = block("extreme_encased_fan/propeller");
+    public static final PartialModel EXTREME_CRUSHING_WHEEL = block("extreme_crushing_wheel/block");
 
     private static PartialModel block(String path) {
         return PartialModel.of(AvaritiaIntegration.rl("block/create/" + path));

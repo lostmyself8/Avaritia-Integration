@@ -29,6 +29,7 @@ public final class CreateModule implements Module {
         REGISTRATE.registerEventListeners(registryBus);
         CreateIntegrationItems.REGISTRY.register(registryBus);
 
+        CreateIntegrationDisplaySources.register();
         CreateIntegrationMountedStorageTypes.register();
         CreateIntegrationBlocks.register();
         CreateIntegrationBlockEntityTypes.register();
@@ -71,5 +72,7 @@ public final class CreateModule implements Module {
         output.accept(CreateIntegrationBlocks.EXTREME_BASIN.asItem());
         output.accept(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem());
         output.accept(CreateIntegrationBlocks.EXTREME_DEPOT.asItem());
+        output.accept(CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem());
+        output.accept(CreateIntegrationBlocks.EXTREME_CRUSHING_WHEEL.asItem());
     }
 }

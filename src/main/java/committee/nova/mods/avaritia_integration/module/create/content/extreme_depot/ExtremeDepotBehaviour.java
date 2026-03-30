@@ -70,6 +70,7 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
                 be.notifyUpdate();
             }
         };
+        enableMerging();
     }
 
     public void enableMerging() {
@@ -281,26 +282,29 @@ public class ExtremeDepotBehaviour extends BlockEntityBehaviour {
             ItemStack inserted = heldItem.stack;
             if (remainingSpace <= 0)
                 return inserted;
-            if (this.heldItem != null && !ItemHelper.canItemStackAmountsStack(this.heldItem.stack, inserted))
+            if (this.heldItem != null && !ItemStack.isSameItemSameTags(this.heldItem.stack, inserted))
                 return inserted;
 
             ItemStack returned = ItemStack.EMPTY;
             if (remainingSpace < inserted.getCount()) {
                 returned = ItemHandlerHelper.copyStackWithSize(heldItem.stack, inserted.getCount() - remainingSpace);
                 if (!simulate) {
-                    TransportedItemStack copy = heldItem.copy();
-                    copy.stack.setCount(remainingSpace);
-                    if (this.heldItem != null)
-                        incoming.add(copy);
-                    else
+                    int amountToAdd = remainingSpace;
+                    if (this.heldItem != null) {
+                        this.heldItem.stack.grow(amountToAdd);
+                    } else {
+                        TransportedItemStack copy = heldItem.copy();
+                        copy.stack.setCount(amountToAdd);
                         this.heldItem = copy;
+                    }
                 }
             } else {
                 if (!simulate) {
-                    if (this.heldItem != null)
-                        incoming.add(heldItem);
-                    else
+                    if (this.heldItem != null) {
+                        this.heldItem.stack.grow(inserted.getCount());
+                    } else {
                         this.heldItem = heldItem;
+                    }
                 }
             }
             return returned;

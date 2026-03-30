@@ -320,7 +320,6 @@ public class ExtremeBlazeBurnerBlockEntity extends SmartBlockEntity implements I
         FuelType newFuel = FuelType.NONE;
         int newBurnTime = 0;
 
-        //TODO 是否需要标签驱动?
         if (CreateIntegrationItems.IGNIS_CAKE.isIn(itemStack)) {
             newBurnTime = 36000;
             newFuel = FuelType.BLAZE;
