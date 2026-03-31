@@ -25,7 +25,6 @@ import committee.nova.mods.avaritia_integration.module.create.registry.CreateInt
 import committee.nova.mods.avaritia_integration.module.create.registry.CreateIntegrationRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
