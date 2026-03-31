@@ -14,6 +14,7 @@
   "item.avaritia_integration.blaze_cube_screw": "炽骨立方螺丝",
   "item.avaritia_integration.blaze_cube_spring": "炽骨立方弹簧",
   "item.avaritia_integration.blaze_cube_wire": "炽骨立方线",
+  "item.avaritia_integration.molten_blaze_bucket": "熔火之焰桶",
 
   "item.avaritia_integration.crystal_matrix_bolt": "水晶矩阵螺栓",
   "item.avaritia_integration.crystal_matrix_dense_plate": "水晶矩阵致密板",
@@ -28,6 +29,7 @@
   "item.avaritia_integration.crystal_matrix_screw": "水晶矩阵螺丝",
   "item.avaritia_integration.crystal_matrix_spring": "水晶矩阵弹簧",
   "item.avaritia_integration.crystal_matrix_wire": "水晶矩阵线",
+  "item.avaritia_integration.molten_crystal_matrix_bucket": "液晶矩阵桶",
 
   "item.avaritia_integration.infinity_bolt": "无尽螺栓",
   "item.avaritia_integration.infinity_dense_plate": "无尽致密板",
@@ -41,6 +43,7 @@
   "item.avaritia_integration.infinity_screw": "无尽螺丝",
   "item.avaritia_integration.infinity_spring": "无尽弹簧",
   "item.avaritia_integration.infinity_wire": "无尽线",
+  "item.avaritia_integration.molten_infinity_bucket": "升腾无尽桶",
 
   "item.avaritia_integration.neutron_bolt": "中子螺栓",
   "item.avaritia_integration.neutron_dense_plate": "中子致密板",
@@ -53,6 +56,9 @@
   "item.avaritia_integration.neutron_screw": "中子螺丝",
   "item.avaritia_integration.neutron_spring": "中子弹簧",
   "item.avaritia_integration.neutron_wire": "中子线",
+  "item.avaritia_integration.molten_neutron_bucket": "中子流质桶",
+
+  "item.avaritia_integration.molten_star_bucket": "熔融恒星桶",
 
   "item.avaritia_integration.blood_orb_of_armok": "阿尔莫克之血宝珠",
 
@@ -79,6 +85,8 @@
   "block.avaritia_integration.soarleander_floating": "§c浮空索利安德之嗜",
   "block.avaritia_integration.infinity_mana_pool": "无尽魔力池",
   "block.avaritia_integration.infinity_potato": "无尽小土豆",
+  "item.avaritia_integration.alpha_spark": "阿尔法火花",
+  "entity.avaritia_integration.alpha_spark": "阿尔法火花",
 
   "block.avaritia_integration.neutron_collector": "中子态素收集器",
   "block.avaritia_integration.singularity_compressor": "奇点压缩机",
@@ -94,6 +102,11 @@
   "block.avaritia_integration.neutron_solar_generator": "中子太阳能发电机",
   "block.avaritia_integration.infinity_advanced_solar_generator": "无尽高级太阳能发电机",
   "block.avaritia_integration.neutron_advanced_solar_generator": "中子高级太阳能发电机",
+  "block.avaritia_integration.molten_blaze_fluid": "熔火之焰",
+  "block.avaritia_integration.molten_crystal_fluid": "液晶矩阵",
+  "block.avaritia_integration.molten_infinity_fluid": "升腾无尽",
+  "block.avaritia_integration.molten_neutron_fluid": "中子流质",
+  "block.avaritia_integration.molten_star_fluid": "熔融恒星",
 
   "tooltip.avaritia_integration.cooldown_amount": "冷却数量",
   "tooltip.avaritia_integration.cooldown_time": "冷却时间",
@@ -148,6 +161,7 @@
   "item.avaritia_integration.infinity_me_storage_cell_big": "极限无尽存储元件",
 
   "item.avaritia_integration.creative_augment_base": "创造升级模板",
+  "item.avaritia_integration.creative_integral_components": "创世整合组件",
 
   "item.avaritia_integration.creative_compressed_iron": "创造压缩铁锭",
 
