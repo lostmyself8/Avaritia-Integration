@@ -1,6 +1,5 @@
 package committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
