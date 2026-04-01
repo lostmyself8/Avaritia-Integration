@@ -1,5 +1,6 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine;
 
+import committee.nova.mods.avaritia_integration.module.mekanism.common.inventory.slot.MIInputInventorySlot;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.MekIntegrationRecipeType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
 import mekanism.api.IContentsListener;
@@ -17,7 +18,6 @@ import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
-import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.OutputInventorySlot;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.lib.transmitter.TransmissionType;
@@ -49,7 +49,7 @@ public class TileEntitySingularityCompressor extends TileEntityProgressMachine<I
     private final IOutputHandler<@NotNull ItemStack> outputHandler;
 
     private MachineEnergyContainer<TileEntitySingularityCompressor> energyContainer;
-    InputInventorySlot inputSlot;
+    MIInputInventorySlot inputSlot;
     OutputInventorySlot outputSlot;
     EnergyInventorySlot energySlot;
 
@@ -69,7 +69,7 @@ public class TileEntitySingularityCompressor extends TileEntityProgressMachine<I
     @Override
     protected @Nullable IInventorySlotHolder getInitialInventory(IContentsListener listener, IContentsListener recipeCacheListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this::getDirection, this::getConfig);
-        builder.addSlot(inputSlot = InputInventorySlot.at(this::containsRecipe, recipeCacheListener, 64, 17))
+        builder.addSlot(inputSlot = MIInputInventorySlot.at(this::containsRecipe, recipeCacheListener, 64, 17))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE, getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
         builder.addSlot(outputSlot = OutputInventorySlot.at(listener, 116, 35))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT, getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE)));

@@ -2,8 +2,8 @@
   "credit": "Made by CyanideX using Blockbench",
   "render_type": "minecraft:cutout",
   "textures": {
-    "particle": "avaritia_integration:block/factory/neutron_collecting/neutron_collecting_factory_front",
-    "front": "avaritia_integration:block/factory/neutron_collecting/neutron_collecting_factory_front",
+    "particle": "avaritia_integration:block/factory/neutron_collecting/front",
+    "front": "avaritia_integration:block/factory/neutron_collecting/front",
     "back": "mekanism:block/factory/enriching/enriching_factory_back",
     "side": "mekanism:block/factory/enriching/enriching_factory_side",
     "top": "mekanism:block/factory/enriching/enriching_factory_top",

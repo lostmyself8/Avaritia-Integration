@@ -28,4 +28,9 @@ public class MIFactoryInputInventorySlot extends InputInventorySlot {
     public void setStackUnchecked(ItemStack stack) {
         super.setStackUnchecked(stack);
     }
+
+    @Override
+    public int getLimit(ItemStack stack) {
+        return 65536;
+    }
 }

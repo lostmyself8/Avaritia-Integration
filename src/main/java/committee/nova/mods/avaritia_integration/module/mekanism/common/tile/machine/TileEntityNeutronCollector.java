@@ -1,19 +1,19 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.tile.machine;
 
-import committee.nova.mods.avaritia.init.registry.ModBlocks;
-import committee.nova.mods.avaritia.init.registry.ModItems;
 import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.cache.ChemicalToItemCachedRecipe;
 import committee.nova.mods.avaritia_integration.module.mekanism.api.recipes.chemicals.GasStackToItemStackRecipe;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.recipe.MekIntegrationRecipeType;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.registry.MekIntegrationBlocks;
-import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
+import mekanism.api.RelativeSide;
 import mekanism.api.chemical.ChemicalTankBuilder;
 import mekanism.api.chemical.attribute.ChemicalAttributeValidator;
 import mekanism.api.chemical.gas.Gas;
 import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasTank;
+import mekanism.api.chemical.gas.attribute.GasAttributes;
+import mekanism.api.radiation.IRadiationManager;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.inputs.IInputHandler;
@@ -75,7 +75,7 @@ public class TileEntityNeutronCollector extends TileEntityProgressMachine<GasSta
         super(MekIntegrationBlocks.NEUTRON_COLLECTOR, pos, state, TRACKED_ERROR_TYPES, 200);
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.GAS, TransmissionType.ENERGY);
         configComponent.setupItemIOConfig(gasInputSlot, outputSlot, energySlot);
-        configComponent.setupInputConfig(TransmissionType.GAS, gasTank);
+        configComponent.setupIOConfig(TransmissionType.GAS, gasTank, RelativeSide.RIGHT).setCanEject(false);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
 
         ejectorComponent = new TileComponentEjector(this);
@@ -88,7 +88,9 @@ public class TileEntityNeutronCollector extends TileEntityProgressMachine<GasSta
     @Override
     protected @Nullable IChemicalTankHolder<Gas, GasStack, IGasTank> getInitialGasTanks(IContentsListener listener, IContentsListener recipeCacheListener) {
         ChemicalTankHelper<Gas, GasStack, IGasTank> builder = ChemicalTankHelper.forSideGasWithConfig(this::getDirection, this::getConfig);
-        builder.addTank(gasTank = ChemicalTankBuilder.GAS.create(MAX_GAS, ChemicalTankBuilder.GAS.alwaysTrue, this::containsRecipe, this::canGasInsert,
+        builder.addTank(gasTank = ChemicalTankBuilder.GAS.create(MAX_GAS, (type, automationType) ->
+                        automationType != AutomationType.EXTERNAL || (type.has(GasAttributes.Radiation.class) && IRadiationManager.INSTANCE.isRadiationEnabled()),
+                ChemicalTankBuilder.GAS.alwaysTrueBi, this::containsRecipe,
                 ChemicalAttributeValidator.ALWAYS_ALLOW, recipeCacheListener));
         return builder.build();
     }
