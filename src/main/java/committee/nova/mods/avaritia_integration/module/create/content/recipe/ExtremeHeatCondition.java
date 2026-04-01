@@ -5,7 +5,6 @@ import committee.nova.mods.avaritia_integration.module.create.content.extreme_bu
 import net.createmod.catnip.lang.Lang;
 
 public enum ExtremeHeatCondition {
-    //TODO 确定color
     NORMAL(0xffffff), BLAZE(0xE88300), STAR(0x5C93E8);
 
     private int color;

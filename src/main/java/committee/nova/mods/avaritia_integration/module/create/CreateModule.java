@@ -9,6 +9,7 @@ import committee.nova.mods.avaritia_integration.module.ModMeta;
 import committee.nova.mods.avaritia_integration.module.Module;
 import committee.nova.mods.avaritia_integration.module.ModuleEntry;
 import committee.nova.mods.avaritia_integration.module.create.content.BoilerHeaters;
+import committee.nova.mods.avaritia_integration.module.create.content.extreme_crusher.ExtremeCrushingWheelBlockEntity;
 import committee.nova.mods.avaritia_integration.module.create.foundation.data.CreateIntegrationDataGen;
 import committee.nova.mods.avaritia_integration.module.create.registry.*;
 import net.createmod.catnip.lang.FontHelper;
@@ -29,6 +30,7 @@ public final class CreateModule implements Module {
         REGISTRATE.registerEventListeners(registryBus);
         CreateIntegrationItems.REGISTRY.register(registryBus);
 
+        CreateIntegrationDisplaySources.register();
         CreateIntegrationMountedStorageTypes.register();
         CreateIntegrationBlocks.register();
         CreateIntegrationBlockEntityTypes.register();
@@ -52,6 +54,8 @@ public final class CreateModule implements Module {
     @Override
     public void registerEvent(IEventBus modBus, IEventBus gameBus) {
         modBus.addListener(CreateIntegrationDataGen::gatherData);
+        modBus.addListener(ExtremeCrushingWheelBlockEntity::crushingIsFortunate);
+        modBus.addListener(ExtremeCrushingWheelBlockEntity::handleCrushedMobDrops);
 //        modBus.addListener(CreateIntegrationConfigs::onLoad);
 //        modBus.addListener(CreateIntegrationConfigs::onReload);
     }
@@ -71,5 +75,7 @@ public final class CreateModule implements Module {
         output.accept(CreateIntegrationBlocks.EXTREME_BASIN.asItem());
         output.accept(CreateIntegrationBlocks.MATRIX_MECHANICAL_MIXER.asItem());
         output.accept(CreateIntegrationBlocks.EXTREME_DEPOT.asItem());
+        output.accept(CreateIntegrationBlocks.EXTREME_ENCASED_FAN.asItem());
+        output.accept(CreateIntegrationBlocks.EXTREME_CRUSHING_WHEEL.asItem());
     }
 }

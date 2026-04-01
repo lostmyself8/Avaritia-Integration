@@ -14,6 +14,8 @@
   "item.avaritia_integration.blaze_cube_screw": "Blaze Cube Screw",
   "item.avaritia_integration.blaze_cube_spring": "Blaze Cube Spring",
   "item.avaritia_integration.blaze_cube_wire": "Blaze Cube Wire",
+  "item.avaritia_integration.molten_blaze_bucket": "Molten Blaze Bucket",
+
 
   "item.avaritia_integration.crystal_matrix_bolt": "Crystal Matrix Bolt",
   "item.avaritia_integration.crystal_matrix_dense_plate": "Crystal Matrix Dense Plate",
@@ -28,6 +30,7 @@
   "item.avaritia_integration.crystal_matrix_screw": "Crystal Matrix Screw",
   "item.avaritia_integration.crystal_matrix_spring": "Crystal Matrix Spring",
   "item.avaritia_integration.crystal_matrix_wire": "Crystal Matrix Wire",
+  "item.avaritia_integration.molten_crystal_matrix_bucket": "Molten Crystal Matrix Bucket",
 
   "item.avaritia_integration.infinity_bolt": "Infinity Bolt",
   "item.avaritia_integration.infinity_dense_plate": "Infinity Dense Plate",
@@ -41,6 +44,7 @@
   "item.avaritia_integration.infinity_screw": "Infinity Screw",
   "item.avaritia_integration.infinity_spring": "Infinity Spring",
   "item.avaritia_integration.infinity_wire": "Infinity Wire",
+  "item.avaritia_integration.molten_infinity_bucket": "Molten Infinity Bucket",
 
   "item.avaritia_integration.neutron_bolt": "Neutron Bolt",
   "item.avaritia_integration.neutron_dense_plate": "Neutron Dense Plate",
@@ -53,6 +57,9 @@
   "item.avaritia_integration.neutron_screw": "Neutron Screw",
   "item.avaritia_integration.neutron_spring": "Neutron Spring",
   "item.avaritia_integration.neutron_wire": "Neutron Wire",
+  "item.avaritia_integration.molten_neutron_bucket": "Molten Neutronium Bucket",
+
+  "item.avaritia_integration.molten_star_bucket": "Molten Star Bucket",
 
   "item.avaritia_integration.blood_orb_of_armok": "Blood Orb of Armok",
 
@@ -107,6 +114,13 @@
   "block.avaritia_integration.neutron_solar_generator": "Neutron SolarGenerator",
   "block.avaritia_integration.infinity_advanced_solar_generator": "Infinity Advanced Solar Generator",
   "block.avaritia_integration.neutron_advanced_solar_generator": "Neutron Advanced SolarGenerator",
+  "block.avaritia_integration.molten_blaze_fluid": "Molten Blaze",
+  "block.avaritia_integration.molten_crystal_matrix_fluid": "Molten Crystal Matrix",
+  "block.avaritia_integration.molten_infinity_fluid": "Molten Infinity",
+  "block.avaritia_integration.molten_neutron_fluid": "Molten Neutronium",
+  "block.avaritia_integration.molten_star_fluid": "Molten Star",
+
+
 
   "item.avaritia_integration.stredgeuniverse": "§cThe §6Strongest §eBlade §2in §bthe §3Universe §1[End of All Things · Boundless Starry Sky]",
   "item.avaritia_integration.stredgeuniverse.tooltip1": "§5§o“Liberated here, the mightiest power in the universe“",
@@ -117,16 +131,38 @@
   "slash_art.avaritia_integration.meteorite_sword": "§cExtreme · §6Meteorite Sword",
   "enchantment.level.100": "§cMax",
 
+  "tooltip.avaritia_integration.cooldown_amount": "Cooldown Amount",
+  "tooltip.avaritia_integration.cooldown_time": "Cooldown Time",
+  "addon.avaritia_integration.neutron": "§eNeutron",
+  "addon.avaritia_integration.blaze_cube": "§bBlaze Cube",
+  "addon.avaritia_integration.crystal_matrix": "§bCrystal Matrix",
+  "addon.avaritia_integration.infinity": "§dInfinity",
+  "fluid_type.avaritia_integration.void_matter": "Void Matter",
+  "fluid_type.avaritia_integration.elderly_medulla": "Elderly Medulla",
+  "block.avaritia_integration.void_matter": "Void Matter",
+  "block.avaritia_integration.elderly_medulla": "Elderly Medulla",
+  "item.avaritia_integration.void_matter_bucket": "Void Matter Bucket",
+  "item.avaritia_integration.elderly_medulla_bucket": "Elderly Medulla Bucket",
+
+  "crop.avaritia_integration.blaze_cube": "Blaze Cube",
+  "crop.avaritia_integration.crystal_matrix": "Crystal Matrix",
+  "crop.avaritia_integration.infinity": "Infinity",
+  "block.avaritia_integration.infinity_crux": "Infinity Crux",
+  "block.avaritia_integration.crystal_matrix_crux": "Crystal Matrix Crux",
+
   "item.avaritia_integration.creative_mechanism": "Creative Mechanism",
   "item.avaritia_integration.creative_compound": "Creative Compound",
   "item.avaritia_integration.ignis_cake": "Ignis Cake",
   "item.avaritia_integration.ignis_cake_base": "Ignis Cake Base",
-  "item.avaritia_integration.star_cake": "Star Blaze Cake",
-  "item.avaritia_integration.star_cake_base": "Star Blaze Cake Base",
+  "item.avaritia_integration.star_cake": "Star Cake",
+  "item.avaritia_integration.star_cake_base": "Star Cake Base",
   "block.avaritia_integration.crystal_matrix_casing": "Crystal Matrix Casing",
   "block.avaritia_integration.extreme_basin": "Extreme Basin",
   "block.avaritia_integration.extreme_blaze_burner": "Extreme Blaze Burner",
+  "block.avaritia_integration.extreme_crushing_wheel": "Extreme Crushing Wheel",
+  "block.avaritia_integration.extreme_crushing_wheel_controller": "Extreme Crushing Wheel Controller",
   "block.avaritia_integration.extreme_depot": "Extreme Depot",
+  "block.avaritia_integration.extreme_encased_fan": "Extreme Encased Fan",
   "block.avaritia_integration.matrix_mechanical_mixer": "Matrix Mechanical Mixer",
   "block.avaritia_integration.neutron_mechanical_press": "Neutron Mechanical Press",
   "avaritia_integration.recipe.extreme_mixing": "Extreme Mixing",
@@ -134,12 +170,14 @@
   "avaritia_integration.recipe.extreme_heat_requirement.normal": "Normal-Heated",
   "avaritia_integration.recipe.extreme_heat_requirement.blaze": "Blaze-Heated",
   "avaritia_integration.recipe.extreme_heat_requirement.star": "Star-Heated",
+  "avaritia_integration.display_source.combine_item_names": "Combine Item Names",
 
   "item.avaritia_integration.infinity_me_storage_component": "Infinity ME Storage Component",
   "item.avaritia_integration.infinity_me_storage_cell": "Infinity ME Storage Cell",
   "item.avaritia_integration.infinity_me_storage_cell_big": "Ultimate Infinity Storage Cell",
 
   "item.avaritia_integration.creative_augment_base": "Creative Augment Base",
+  "item.avaritia_integration.creative_integral_components": "Creative Integral Components",
 
   "item.avaritia_integration.creative_compressed_iron": "Creative Compressed Iron",
 

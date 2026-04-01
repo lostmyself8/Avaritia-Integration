@@ -26,9 +26,16 @@ public class ExtremeDepotItemHandler implements IItemHandler {
     public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
         if (slot != MAIN_SLOT)
             return stack;
-        if (!behaviour.getHeldItemStack()
-                .isEmpty() && !behaviour.canMergeItems())
-            return stack;
+
+        ItemStack heldStack = behaviour.getHeldItemStack();
+
+        if (!heldStack.isEmpty()) {
+            if (!behaviour.canMergeItems())
+                return stack;
+            if (!ItemStack.isSameItemSameTags(heldStack, stack))
+                return stack;
+        }
+
         if (!behaviour.isOutputEmpty() && !behaviour.canMergeItems())
             return stack;
 
