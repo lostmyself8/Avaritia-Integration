@@ -19,7 +19,7 @@ public class AvaritiaIntegration {
     public AvaritiaIntegration() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         AICreativeTabs.REGISTRY.register(bus);
-        AIItems.REGISTRY.register(bus);
+        AIItems.init(bus);
         AIBlocks.REGISTRY.register(bus);
         AIFluidTypes.REGISTRY.register(bus);
         AIFluids.REGISTRY.register(bus);

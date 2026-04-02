@@ -1,0 +1,5 @@
+{
+  "ldlib": {
+        "connection": "avaritia_integration:block/casings/neutron_casing_ctm"
+    }
+}
