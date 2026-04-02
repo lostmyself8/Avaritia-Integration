@@ -1,13 +1,17 @@
 package committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory;
 
 import committee.nova.mods.avaritia_integration.module.mekanism.common.upgrade.GasToItemUpgradeData;
+import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
 import mekanism.api.chemical.ChemicalTankBuilder;
+import mekanism.api.chemical.attribute.ChemicalAttributeValidator;
 import mekanism.api.chemical.gas.Gas;
 import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasTank;
+import mekanism.api.chemical.gas.attribute.GasAttributes;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.providers.IBlockProvider;
+import mekanism.api.radiation.IRadiationManager;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -37,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public abstract class TileEntityGasToItemMIFactory<RECIPE extends MekanismRecipe> extends TileEntityMIFactory<RECIPE>{
+public abstract class TileEntityGasToItemMIFactory<RECIPE extends MekanismRecipe> extends TileEntityMIFactory<RECIPE> {
 
     private static final long MAX_CHEMICAL = 10_000;
 
@@ -68,11 +72,15 @@ public abstract class TileEntityGasToItemMIFactory<RECIPE extends MekanismRecipe
         if (itemConfig != null) {
             itemConfig.addSlotInfo(DataType.OUTPUT, new InventorySlotInfo(false, true, outputSlot));
             itemConfig.addSlotInfo(DataType.ENERGY, new InventorySlotInfo(true, true, energySlot));
+            itemConfig.fill(DataType.OUTPUT);
         }
 
         ConfigInfo gasConfig = configComponent.getConfig(TransmissionType.GAS);
         if (gasConfig != null) {
             gasConfig.addSlotInfo(DataType.INPUT, new GasSlotInfo(true, false, inputGasTanks));
+            gasConfig.addSlotInfo(DataType.OUTPUT, new GasSlotInfo(false, true, inputGasTanks));
+            gasConfig.setDefaults();
+            gasConfig.setCanEject(false);
         }
     }
 
@@ -83,9 +91,11 @@ public abstract class TileEntityGasToItemMIFactory<RECIPE extends MekanismRecipe
         processInfoSlots = new GasToItemProcessInfo[tier.processes];
         for (int i = 0; i < tier.processes; i++) {
             int index = i;
-            inputTank[i] = ChemicalTankBuilder.GAS.input(MAX_CHEMICAL * tier.processes, gas -> isValidInputChemical(gas.getStack(1)),
+            inputTank[i] = ChemicalTankBuilder.GAS.create(MAX_CHEMICAL * tier.processes, (type, automationType) ->
+                            automationType != AutomationType.EXTERNAL || (type.has(GasAttributes.Radiation.class) && IRadiationManager.INSTANCE.isRadiationEnabled()),
+                    (stack, type) -> isValidInputChemical(stack.getStack(1)),
                     stack -> isChemicalValidForTank(stack.getStack(1)) && inputProducesOutput(index, stack.getStack(1), outputSlot[index], false),
-                    recipeCacheLookupMonitors[index]);
+                    ChemicalAttributeValidator.ALWAYS_ALLOW, recipeCacheLookupMonitors[index]);
             builder.addTank(inputTank[i]);
             gasInputHandlers[i] = InputHelper.getInputHandler(inputTank[i], CachedRecipe.OperationTracker.RecipeError.NOT_ENOUGH_INPUT);
         }
@@ -170,5 +180,6 @@ public abstract class TileEntityGasToItemMIFactory<RECIPE extends MekanismRecipe
         }
     }
 
-    public record GasToItemProcessInfo(int process, @NotNull IGasTank inputTank, @NotNull IInventorySlot outputSlot) {}
+    public record GasToItemProcessInfo(int process, @NotNull IGasTank inputTank, @NotNull IInventorySlot outputSlot) {
+    }
 }

@@ -1,33 +1,42 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "avaritia_integration:fake_bedrock",
-      "required": false
-    },
-    {
-      "id": "avaritia_integration:fake_end_portal",
-      "required": false
-    },
-    {
-      "id": "avaritia_integration:fake_end_portal_frame",
-      "required": false
-    },
-    "avaritia_integration:extreme_blaze_burner",
-    "avaritia_integration:crystal_matrix_casing",
-    "avaritia_integration:neutron_mechanical_press",
-    "avaritia_integration:extreme_basin",
-    "avaritia_integration:matrix_mechanical_mixer",
-    "avaritia_integration:extreme_depot",
-    "avaritia_integration:extreme_encased_fan",
-    "avaritia_integration:extreme_crushing_wheel",
-    {
-      "id": "avaritia_integration:infinity_crux",
-      "required": false
-    },
-    {
-      "id": "avaritia_integration:crystal_matrix_crux",
-      "required": false
-    }
+    {"id": "avaritia_integration:fake_bedrock", "required": false},
+    {"id": "avaritia_integration:fake_end_portal", "required": false},
+    {"id": "avaritia_integration:fake_end_portal_frame", "required": false},
+    {"id": "avaritia_integration:extreme_blaze_burner", "required": false},
+    {"id": "avaritia_integration:crystal_matrix_casing", "required": false},
+    {"id": "avaritia_integration:neutron_mechanical_press", "required": false},
+    {"id": "avaritia_integration:extreme_basin", "required": false},
+    {"id": "avaritia_integration:matrix_mechanical_mixer", "required": false},
+
+    {"id": "avaritia_integration:infinity_crux", "required": false},
+    {"id": "avaritia_integration:crystal_matrix_crux", "required": false},
+
+    {"id": "avaritia_integration:infinity_solar_generator", "required": false},
+    {"id": "avaritia_integration:neutron_solar_generator", "required": false},
+    {"id": "avaritia_integration:infinity_advanced_solar_generator", "required": false},
+    {"id": "avaritia_integration:neutron_advanced_solar_generator", "required": false},
+
+    {"id": "avaritia_integration:neutron_collector", "required": false},
+    {"id": "avaritia_integration:basic_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:advanced_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:elite_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:ultimate_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:overlocked_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:quantum_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:dense_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:multiversal_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:creative_neutron_collecting_factory", "required": false},
+    {"id": "avaritia_integration:singularity_compressor", "required": false},
+    {"id": "avaritia_integration:basic_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:advanced_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:elite_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:ultimate_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:overlocked_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:quantum_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:dense_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:multiversal_singularity_compressing_factory", "required": false},
+    {"id": "avaritia_integration:creative_singularity_compressing_factory", "required": false}
   ]
 }

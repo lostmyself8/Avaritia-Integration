@@ -1,6 +1,7 @@
 package committee.nova.mods.avaritia_integration.module.mekanismgenerators.common.tile;
 
 import mekanism.api.IEvaporationSolar;
+import mekanism.api.RelativeSide;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongSupplier;
 import mekanism.api.providers.IBlockProvider;
@@ -18,6 +19,11 @@ public class TileEntityAvaritiaAdvancedSolarGenerator extends TileEntitySolarGen
 
     public TileEntityAvaritiaAdvancedSolarGenerator(IBlockProvider blockProvider, BlockPos pos, BlockState state, @NotNull FloatingLongSupplier maxOutput) {
         super(blockProvider, pos, state, maxOutput);
+    }
+
+    @Override
+    protected RelativeSide[] getEnergySides() {
+        return new RelativeSide[]{RelativeSide.FRONT, RelativeSide.BOTTOM};
     }
 
     @Override

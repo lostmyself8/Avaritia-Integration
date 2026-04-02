@@ -5,6 +5,7 @@ import committee.nova.mods.avaritia_integration.module.mekanism.client.jei.MekIn
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityGasToItemMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityItemToItemMIFactory;
 import committee.nova.mods.avaritia_integration.module.mekanism.common.tile.factory.TileEntityMIFactory;
+import fr.iglee42.evolvedmekanism.tiers.EMFactoryTier;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
@@ -20,6 +21,7 @@ import mekanism.common.tier.FactoryTier;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 public class GuiMIFactory extends GuiConfigurableTile<TileEntityMIFactory<?>, MekanismTileContainer<TileEntityMIFactory<?>>> {
@@ -27,13 +29,28 @@ public class GuiMIFactory extends GuiConfigurableTile<TileEntityMIFactory<?>, Me
     public GuiMIFactory(MekanismTileContainer<TileEntityMIFactory<?>> container, Inventory inv, Component title) {
         super(container, inv, title);
         if (tile instanceof TileEntityGasToItemMIFactory<?>) imageHeight += 13;
-        inventoryLabelY = 75;
+        inventoryLabelY = tile instanceof TileEntityGasToItemMIFactory<?> ? 88 : 75;
         if (tile.tier == FactoryTier.ULTIMATE) {
             imageWidth += 34;
             inventoryLabelX = 26;
         }
+        // 想尝试使用Emek的gui布局，但似乎有点麻烦，还是采用原始布局吧
+        if (isEMLoadAndTierOrdinalAboveOverLocked()) {
+            // 这里采用mekE的布局公式，但要记得减去4，因为mekE是从0开始的
+            // 这两个公式似乎并非完美，在index过大时可能会导致有细微的便宜，但未得到验证
+            int index = tile.tier.ordinal() - 4;
+            imageWidth += (36 * (index + 2)) + (2 * index);
+            inventoryLabelX = (22 * (index + 2)) - (3 * index);
+        }
         titleLabelY = 4;
         dynamicSlots = true;
+    }
+
+    private boolean isEMLoadAndTierOrdinalAboveOverLocked() {
+        if (ModList.get().isLoaded("evolvedmekanism")) {
+            return tile.tier.ordinal() >= EMFactoryTier.OVERCLOCKED.ordinal();
+        }
+        return false;
     }
 
     @Override

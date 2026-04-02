@@ -45,7 +45,6 @@ import mekanism.common.recipe.lookup.monitor.FactoryRecipeCacheLookupMonitor;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.component.ITileComponent;
 import mekanism.common.tile.component.TileComponentConfig;
-import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.interfaces.ISustainedData;
 import mekanism.common.tile.prefab.TileEntityConfigurableMachine;
 import mekanism.common.tile.prefab.TileEntityRecipeMachine;
@@ -120,9 +119,6 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe> extends
 
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
-
-        ejectorComponent = new TileComponentEjector(this);
-        ejectorComponent.setOutputData(configComponent, TransmissionType.ITEM);
 
         progress = new int[tier.processes];
         activeStates = new boolean[tier.processes];
@@ -229,7 +225,7 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe> extends
             // would make it so that some slots are now empty (because of stacked inputs
             // being required), we want to make sure we are able to fill those slots
             // with other items.
-//            sortInventory();
+            needSortingInventory();
         } else if (!sortingNeeded && CommonWorldTickHandler.flushTagAndRecipeCaches) {
             //Otherwise, if sorting isn't currently needed and the recipe cache is invalid
             // Mark sorting as being needed again for the next check as recipes may
@@ -258,6 +254,10 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe> extends
         setActive(isActive);
         //If none of the recipes are actively processing don't bother with any subtraction
         lastUsage = isActive ? prev.minusEqual(energyContainer.getEnergy()) : FloatingLong.ZERO;
+    }
+
+    protected void needSortingInventory() {
+
     }
 
     @Nullable
@@ -407,10 +407,6 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe> extends
             sorting = data.sorting;
             energySlot.deserializeNBT(data.energySlot.serializeNBT());
             System.arraycopy(data.progress, 0, progress, 0, data.progress.length);
-//            for (int i = 0; i < data.inputSlots.size(); i++) {
-//                //Copy the stack using NBT so that if it is not actually valid due to a reload we don't crash
-//                inputItemSlots.get(i).deserializeNBT(data.inputSlots.get(i).serializeNBT());
-//            }
             for (int i = 0; i < data.outputSlots.size(); i++) {
                 outputItemSlots.get(i).setStack(data.outputSlots.get(i).getStack());
             }

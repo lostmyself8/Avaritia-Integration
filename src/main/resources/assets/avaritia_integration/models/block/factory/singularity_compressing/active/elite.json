@@ -2,14 +2,11 @@
   "loader": "forge:composite",
   "parent": "block/block",
   "textures": {
-    "particle": "avaritia_integration:block/factory/singularity_compressing/singularity_compressing_factory_front"
+    "particle": "avaritia_integration:block/factory/singularity_compressing/front"
   },
   "children": {
     "base": {
-      "parent": "avaritia_integration:block/factory/singularity_compressing/base",
-      "textures": {
-        "front": "mekanism:block/factory/enriching/enriching_factory_front_active"
-      }
+      "parent": "avaritia_integration:block/factory/singularity_compressing/base"
     },
     "front_led": {
       "parent": "mekanism:block/factory/front_led/active/elite"

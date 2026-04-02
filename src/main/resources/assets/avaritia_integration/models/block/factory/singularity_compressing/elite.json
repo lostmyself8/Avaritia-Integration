@@ -2,7 +2,7 @@
   "loader": "forge:composite",
   "parent": "block/block",
   "textures": {
-    "particle": "avaritia_integration:block/factory/singularity_compressing/singularity_collecting_factory_front"
+    "particle": "avaritia_integration:block/factory/singularity_compressing/front"
   },
   "children": {
     "base": {

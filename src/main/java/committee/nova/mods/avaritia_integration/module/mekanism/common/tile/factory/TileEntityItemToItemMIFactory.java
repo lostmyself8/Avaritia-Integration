@@ -66,8 +66,7 @@ public abstract class TileEntityItemToItemMIFactory<RECIPE extends MekanismRecip
     }
 
     @Override
-    protected void onUpdateServer() {
-        super.onUpdateServer();
+    protected void needSortingInventory() {
         sortInventory();
     }
 
@@ -173,8 +172,8 @@ public abstract class TileEntityItemToItemMIFactory<RECIPE extends MekanismRecip
                     // until it is needed. That way if we have no empty slots and all our input slots are filled
                     // we don't do any extra processing here, and can properly short circuit
                     HashedItem item = entry.getKey();
-                    ItemStack largerInput = item.createStack(Math.min(item.getMaxStackSize(), recipeProcessInfo.totalCount));
-                    ProcessInfo processInfo = recipeProcessInfo.processes.get(0);
+                    ItemStack largerInput = item.createStack(Math.min(65536, recipeProcessInfo.totalCount));
+                    ProcessInfo processInfo = recipeProcessInfo.processes.getFirst();
                     //Try getting a recipe for our input with a larger size, and update the cache if we find one
                     RECIPE recipe = getRecipeForInput(processInfo.process(), largerInput, processInfo.outputSlot(), true);
                     if (recipe != null) {
@@ -247,7 +246,7 @@ public abstract class TileEntityItemToItemMIFactory<RECIPE extends MekanismRecip
             }
             HashedItem item = entry.getKey();
             //Note: This isn't based on any limits the slot may have (but we currently don't have any reduced ones here, so it doesn't matter)
-            int maxStackSize = item.getMaxStackSize();
+            int maxStackSize = 65536;
             int numberPerSlot = recipeProcessInfo.totalCount / processCount;
             if (numberPerSlot == maxStackSize) {
                 //If all the slots are already maxed out; short-circuit, no balancing is needed
