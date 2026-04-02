@@ -228,5 +228,19 @@
   "module.avaritia_integration.name.pneumaticcraft": "气动工艺",
   "module.avaritia_integration.name.refinedstorage": "精致存储",
   "module.avaritia_integration.name.slashblade": "拔刀剑",
-  "module.avaritia_integration.name.thermal_expansion": "热力拓展（热力膨胀）"
+  "module.avaritia_integration.name.thermal_expansion": "热力拓展（热力膨胀）",
+
+  "block.avaritia_integration.blaze_coil_block": "炽骨线圈方块",
+  "block.avaritia_integration.blaze_cube_casing": "炽骨立方机械方块",
+  "block.avaritia_integration.crystal_matrix_casing": "水晶矩阵机械方块",
+  "block.avaritia_integration.infinity_casing": "无尽机械方块",
+  "block.avaritia_integration.infinity_coil_block": "无尽线圈方块",
+  "block.avaritia_integration.neutron_casing": "中子机械方块",
+  "block.avaritia_integration.star_coil_block": "恒星线圈方块",
+  "material.avaritia_integration.blaze_cube": "炽骨立方",
+  "material.avaritia_integration.crystal_matrix": "水晶矩阵",
+  "material.avaritia_integration.infinity": "无尽",
+  "material.avaritia_integration.neutron": "宇宙态中子素",
+  "material.avaritia_integration.star_fuel": "恒星燃料",
+  "itemGroup.tab.Integration.materialItem": "无尽集成|材料"
 }

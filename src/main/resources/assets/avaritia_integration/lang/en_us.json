@@ -235,5 +235,17 @@
   "module.avaritia_integration.name.refinedstorage": "Refined Storage",
   "module.avaritia_integration.name.slashblade": "SlashBlade",
   "module.avaritia_integration.name.thermal_expansion": "Thermal Expansion",
-  "module.avaritia_integration.name.tconstruct": "Tinkers' Construct"
+  "module.avaritia_integration.name.tconstruct": "Tinkers' Construct",
+  "block.avaritia_integration.blaze_coil_block": "Blaze Coil Block",
+  "block.avaritia_integration.blaze_cube_casing": "Blaze Cube Casing",
+  "block.avaritia_integration.crystal_matrix_casing": "Crystal Matrix Casing",
+  "block.avaritia_integration.infinity_casing": "Infinity Casing",
+  "block.avaritia_integration.infinity_coil_block": "Infinity Coil Block",
+  "block.avaritia_integration.neutron_casing": "Neutron Casing",
+  "block.avaritia_integration.star_coil_block": "Star Coil Block",
+  "material.avaritia_integration.blaze_cube": "Blaze Cube",
+  "material.avaritia_integration.crystal_matrix": "Crystal Matrix",
+  "material.avaritia_integration.infinity": "Infinity",
+  "material.avaritia_integration.neutron": "Neutron",
+  "material.avaritia_integration.star_fuel": "Star Fuel"
 }
