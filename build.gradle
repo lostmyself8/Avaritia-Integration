@@ -124,6 +124,9 @@ dependencies {
     implementation "mekanism:Mekanism:${mekanism_version}:generators"
     runtimeOnly "mekanism:Mekanism:${mekanism_version}:tools"
 
+    runtimeOnly "curse.maven:iglee-library-541199:7000755"
+    implementation "curse.maven:evolved-mekanism-1230085:7599592"
+
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

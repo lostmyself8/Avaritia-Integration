@@ -14,7 +14,8 @@ import net.minecraft.world.item.Rarity;
 
 public class MekIntegrationItems {
 
-    private  MekIntegrationItems() {}
+    private MekIntegrationItems() {
+    }
 
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(AvaritiaIntegration.MOD_ID);
 
