@@ -287,5 +287,11 @@
   "module.avaritia_integration.name.refinedstorage": "精致存储",
   "module.avaritia_integration.name.slashblade": "拔刀剑",
   "module.avaritia_integration.name.thermal_expansion": "热力拓展（热力膨胀）",
-  "module.avaritia_integration.name.tconstruct": "匠魂"
+  "module.avaritia_integration.name.tconstruct": "匠魂",
+
+  "factory.avaritia_integration.neutron_collecting": "中子收集",
+  "factory.avaritia_integration.singularity_compressing": "奇点压缩",
+
+  "description.avaritia_integration.neutron_collecting": "一台使用稀有物资产生中子素的机器",
+  "description.avaritia_integration.singularity_compressing": "一台将资源压缩成奇点的机器"
 }

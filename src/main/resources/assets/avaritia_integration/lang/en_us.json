@@ -287,5 +287,11 @@
   "module.avaritia_integration.name.refinedstorage": "Refined Storage",
   "module.avaritia_integration.name.slashblade": "SlashBlade",
   "module.avaritia_integration.name.thermal_expansion": "Thermal Expansion",
-  "module.avaritia_integration.name.tconstruct": "Tinkers' Construct"
+  "module.avaritia_integration.name.tconstruct": "Tinkers' Construct",
+
+  "factory.avaritia_integration.neutron_collecting": "neutron_collecting",
+  "factory.avaritia_integration.singularity_compressing": "singularity_compressing",
+
+  "description.avaritia_integration.neutron_collecting": "A machine that utilizes rare materials to produce neutronium",
+  "description.avaritia_integration.singularity_compressing": "A machine that compresses resources into a singularity"
 }

@@ -164,7 +164,12 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe<?>> exte
     @Override
     protected IEnergyContainerHolder getInitialEnergyContainers(IContentsListener listener) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
-        builder.addContainer(energyContainer = MachineEnergyContainer.input(this, listener));
+        builder.addContainer(energyContainer = MachineEnergyContainer.input(this, () -> {
+            listener.onContentsChanged();
+            for (FactoryRecipeCacheLookupMonitor<RECIPE> cacheLookupMonitor : recipeCacheLookupMonitors) {
+                cacheLookupMonitor.unpause();
+            }
+        }));
         return builder.build();
     }
 
@@ -219,7 +224,7 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe<?>> exte
             // would make it so that some slots are now empty (because of stacked inputs
             // being required), we want to make sure we are able to fill those slots
             // with other items.
-            needSortingInventory();
+            sortInventoryOrTank();
         } else if (!sortingNeeded && CommonWorldTickHandler.flushTagAndRecipeCaches) {
             //Otherwise, if sorting isn't currently needed and the recipe cache is invalid
             // Mark sorting as being needed again for the next check as recipes may
@@ -251,9 +256,7 @@ public abstract class TileEntityMIFactory<RECIPE extends MekanismRecipe<?>> exte
         return sendUpdatePacket;
     }
 
-    protected void needSortingInventory() {
-
-    }
+    protected abstract void sortInventoryOrTank();
 
     @Nullable
     protected CachedRecipe<RECIPE> getCachedRecipe(int cacheIndex) {

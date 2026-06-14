@@ -9,12 +9,9 @@ import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
 import mekanism.api.chemical.BasicChemicalTank;
 import mekanism.api.chemical.attribute.ChemicalAttributeValidator;
-import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
-import mekanism.api.chemical.attribute.ChemicalAttributes;
 import mekanism.api.functions.ConstantPredicates;
-import mekanism.api.radiation.IRadiationManager;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.inputs.IInputHandler;
@@ -38,7 +35,6 @@ import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.recipe.IMekanismRecipeTypeProvider;
 import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler.ChemicalRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache.SingleChemical;
-import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityProgressMachine;
 import net.minecraft.core.BlockPos;
@@ -96,7 +92,7 @@ public class TileEntityNeutronCollector extends TileEntityProgressMachine<Chemic
     @Override
     protected @Nullable IEnergyContainerHolder getInitialEnergyContainers(IContentsListener listener, IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
-        builder.addContainer(energyContainer = MachineEnergyContainer.input(this, listener));
+        builder.addContainer(energyContainer = MachineEnergyContainer.input(this, recipeCacheUnpauseListener));
         return builder.build();
     }
 
@@ -104,15 +100,11 @@ public class TileEntityNeutronCollector extends TileEntityProgressMachine<Chemic
     protected @Nullable IInventorySlotHolder getInitialInventory(IContentsListener listener, IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
         builder.addSlot(gasInputSlot = ChemicalInventorySlot.fill(gasTank, listener, 7, 56));
-        builder.addSlot(outputSlot = OutputInventorySlot.at(listener, 131, 36))
+        builder.addSlot(outputSlot = OutputInventorySlot.at(recipeCacheUnpauseListener, 131, 36))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT, getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE)));
         builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 7, 14));
         gasInputSlot.setSlotOverlay(SlotOverlay.PLUS);
         return builder.build();
-    }
-
-    private boolean canGasInsert(Chemical Chemical) {
-        return Chemical.equals(MekanismChemicals.SPENT_NUCLEAR_WASTE.get()) || Chemical.equals(MekanismChemicals.POLONIUM.get()) || Chemical.equals(MekanismChemicals.PLUTONIUM.get()) || Chemical.equals(MekanismChemicals.ANTIMATTER.get());
     }
 
     @Override
